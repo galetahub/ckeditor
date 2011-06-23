@@ -1,0 +1,83 @@
+= Ckeditor
+
+CKEditor is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to 
+the results users have when publishing it. It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
+
+== Features
+
+* Rails 3 integration
+* Files browser
+* HTML5 files uploader
+* Hooks for formtastic and simple_form forms generators
+
+== Install (not currently available, under construction)
+
+  gem "ckeditor", "~> 3.6.0"
+  
+  rails generate ckeditor:install
+
+You can pass version of ckeditor to download (http://ckeditor.com/download/releases):
+
+  rails generate ckeditor:install --version=3.5.4
+  
+== Usage
+
+  <%= javascript_include_tag :ckeditor %>
+  
+  cktext_area_tag("test_area", "Ckeditor is the best")
+
+  cktext_area_tag("content", "Ckeditor", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Easy')
+  
+* input_html - Options for text_area tag, others for ckeditor javascript configuration.
+* language - appends automatically, by default is I18n.locale
+* available ckeditor options - http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
+
+For configure ckeditor default options check:
+
+  public/javascripts/ckeditor/config.js
+  
+This stylesheet use editor for displaying edit area:
+
+  public/javascripts/ckeditor/contents.css
+
+FormBuilder helper for more usefully:
+
+  <%= form_for @page do |form| -%>
+    ...
+    <%= form.cktext_area :notes, :toolbar => 'Full', :width => 800, :height => 400 %>
+    ...
+    <%= form.cktext_area :content, :input_html => { :value => "Default value" } %>
+    ...
+    <%= cktext_area :page, :info %>
+  <% end -%>
+
+=== AJAX
+
+Jquery sample:
+
+  <script type='text/javascript' charset='UTF-8'>
+    $(document).ready(function(){  
+      $('form[data-remote]').bind("ajax:before", function(){
+        for (instance in CKEDITOR.instances){
+          CKEDITOR.instances[instance].updateElement();
+        }
+      });
+    });
+  </script>
+
+=== Formtastic integration
+
+  <%= form.input :content, :as => :ckeditor %>
+  <%= form.input :content, :as => :ckeditor, :input_html => { :height => 400 } %>
+
+=== SimpleForm integration
+
+  <%= form.ckeditor :content, :label => false, :input_html => { :toolbar => 'Full' } %>
+
+== I18n  
+  
+== Tests
+
+  rake test
+
+This project rocks and uses MIT-LICENSE.
