@@ -1,26 +1,23 @@
 class Ckeditor::BaseController < ApplicationController
   respond_to :html, :json
   layout "ckeditor"
+  
+  before_filter :set_locale
 
   protected
     
-    def respond_with_asset(record)
-      unless params[:CKEditor].blank?	  
-	      params[@swf_file_post_name] = params.delete(:upload)
-	    end
+    def set_locale
+      if !params[:langCode].blank? && I18n.available_locales.include?(params[:langCode].to_sym)
+        I18n.locale = params[:langCode]
+      end
+    end
+    
+    def respond_with_asset(asset)
+      params[:qqfile] = params.delete(:upload) unless params[:CKEditor].blank?
+	    asset.data = Ckeditor::Http.normalize_param(params[:qqfile], request)
 	    
-	    options = {}
-	    
-	    params.each do |k, v|
-	      key = k.to_s.downcase
-	      options[key] = v if record.respond_to?("#{key}=")
-	    end
-      
-      record.attributes = options
-      record.user ||= current_user if respond_to?(:current_user)
-      
-      if record.valid? && record.save
-        body = params[:CKEditor].blank? ? record.to_json(:only=>[:id, :type], :methods=>[:url, :content_type, :size, :filename, :format_created_at], :root => "asset") : %Q"<script type='text/javascript'>
+      if asset.save
+        body = params[:CKEditor].blank? ? record.to_json(:only=>[:id, :type]) : %Q"<script type='text/javascript'>
           window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{Ckeditor::Utils.escape_single_quotes(record.url_content)}');
         </script>"
         

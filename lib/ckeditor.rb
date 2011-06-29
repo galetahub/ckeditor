@@ -1,7 +1,10 @@
+require 'orm_adapter'
+
 module Ckeditor
   IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg', 'image/tiff', 'image/x-png']
   
   autoload :Utils, 'ckeditor/utils'
+  autoload :Http, 'ckeditor/http'
   
   module Helpers
     autoload :ViewHelper, 'ckeditor/helpers/view_helper'
@@ -18,6 +21,10 @@ module Ckeditor
   # a fresh initializer with all configuration values.
   def self.setup
     yield self
+  end
+  
+  def self.picture_model
+    Ckeditor::Picture.to_adapter
   end
 end
 

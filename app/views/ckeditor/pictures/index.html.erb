@@ -1,0 +1,23 @@
+<div class="gal-holder">
+  <div id="fileupload" class="gal-item">
+    <div class="fileupload-button gal-inner-holder">
+  		<%= link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), '#', :class => "add" %>
+		</div>
+	</div>
+  
+  <div id="fileupload-list">
+    <%= render :partial => 'ckeditor/shared/asset', :collection => @pictures %>		
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    new qq.FileUploaderInput({
+      "action": "/ckeditor/pictures", 
+      "multiple": true, 
+      "element": "fileupload", 
+      "listElement": "fileupload-list",
+      "allowedExtensions": ["jpg", "jpeg", "png", "gif", "tiff"]
+    });
+  });
+</script>

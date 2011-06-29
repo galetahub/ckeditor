@@ -1,0 +1,7 @@
+ru:
+  ckeditor:
+    page_title: "CKEditor Загрузка файлов"
+    buttons:
+      cancel: "Отмена"
+      upload: "Загрузить"
+      delete: "Удалить"

@@ -9,6 +9,7 @@ the results users have when publishing it. It brings to the web common editing f
 * Files browser
 * HTML5 files uploader
 * Hooks for formtastic and simple_form forms generators
+* Extra plugins: attachment and embed.
 
 == Install (not currently available, under construction)
 
@@ -19,7 +20,20 @@ the results users have when publishing it. It brings to the web common editing f
 You can pass version of ckeditor to download (http://ckeditor.com/download/releases):
 
   rails generate ckeditor:install --version=3.5.4
-  
+
+Now generate models for store uploading files:
+
+  rails generate ckeditor:models --orm=active_record
+
+Available orms:
+* active_record (default)
+* mongo_mapper
+* mongoid
+
+Autoload ckeditor models folder (application.rb):
+
+  config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
 == Usage
 
   <%= javascript_include_tag :ckeditor %>
@@ -75,7 +89,15 @@ Jquery sample:
   <%= form.ckeditor :content, :label => false, :input_html => { :toolbar => 'Full' } %>
 
 == I18n  
-  
+
+  en:
+    ckeditor:
+      page_title: "CKEditor Files Manager"
+      buttons:
+        cancel: "Cancel"
+        upload: "Upload"
+        delete: "Delete"
+
 == Tests
 
   rake test

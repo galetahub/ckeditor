@@ -32,6 +32,22 @@ module Ckeditor
         end
       end
       
+      def download_javascripts
+        js_dir = "public/javascripts/ckeditor/filebrowser/javascripts"
+        
+        say_status("fetching rails.js", "", :green)
+        get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "#{js_dir}/rails.js"
+        
+        say_status("fetching fileuploader.js", "", :green)
+        get "https://raw.github.com/galetahub/file-uploader/master/client/fileuploader.js", "#{js_dir}/fileuploader.js"
+        
+        say_status("fetching jquery-1.6.1.min.js", "", :green)
+        get "http://code.jquery.com/jquery-1.6.1.min.js", "#{js_dir}/jquery.js"
+        
+        say_status("fetching jquery.tmpl.min.js", "", :green)
+        get "https://raw.github.com/jquery/jquery-tmpl/master/jquery.tmpl.min.js", "#{js_dir}/jquery.tmpl.js"
+      end
+      
       protected
       
         def download_url

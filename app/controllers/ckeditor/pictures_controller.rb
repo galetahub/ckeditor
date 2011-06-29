@@ -1,12 +1,12 @@
 class Ckeditor::PicturesController < Ckeditor::BaseController
 
   def index
-    @pictures = Ckeditor.image_model.order("id DESC")
+    @pictures = Ckeditor.picture_model.find_all(:order => [:id, :desc])
     respond_with(@pictures) 
   end
   
   def create
-    @picture = Ckeditor.image_model.new
+    @picture = Ckeditor.picture_model.new
 	  respond_with_asset(@picture)
   end
   
@@ -18,6 +18,6 @@ class Ckeditor::PicturesController < Ckeditor::BaseController
   protected
   
     def find_asset
-      @picture = Ckeditor.image_model.find(params[:id])
+      @picture = Ckeditor.picture_model.find(params[:id])
     end
 end
