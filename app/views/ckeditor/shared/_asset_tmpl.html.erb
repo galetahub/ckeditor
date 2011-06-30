@@ -1,19 +1,19 @@
 <script id="fileupload_tmpl" type="text/x-jquery-tmpl">
-<div id="asset_${id}" class="gal-item" data-url="${url}">
+<div id="asset_${id}" class="gal-item" data-url="${url_content}">
   <%= link_to image_tag("/javascripts/ckeditor/filebrowser/images/gal_del.png", :title => I18n.t('ckeditor.buttons.delete')), 
-          "/ckeditor/assets/${id}", 
+          "/ckeditor/${controller}/${id}.json", 
           :remote => true,
           :method => :delete, 
           :confirm => t('ckeditor.confirm_delete'),
           :class => "fileupload-cancel gal-del" %>
 	
 	<div class="fileupload-file gal-inner-holder">
-		<div class="img preloader"><img src="${thumb_url}" title="${filename}"></div>
+		<div class="img"><img src="${url_thumb}" title="${filename}"></div>
 		<div class="img-data">
 			<div class="img-name">${filename}</div>
 			<div class="time-size">
 				<div class="time">${format_created_at}</div>
-				<div class="size">${size}</div>
+				<div class="fileupload-size size">${size}</div>
 			</div>
 		</div>
 	</div>

@@ -6,7 +6,7 @@ class Ckeditor::PicturesController < Ckeditor::BaseController
   end
   
   def create
-    @picture = Ckeditor.picture_model.new
+    @picture = Ckeditor::Picture.new
 	  respond_with_asset(@picture)
   end
   
@@ -18,6 +18,6 @@ class Ckeditor::PicturesController < Ckeditor::BaseController
   protected
   
     def find_asset
-      @picture = Ckeditor.picture_model.find(params[:id])
+      @picture = Ckeditor.picture_model.get!(params[:id])
     end
 end

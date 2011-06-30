@@ -1,13 +1,19 @@
-<div class="gal-item">
-			<a href="#" class="gal-del"><img src="gal_del.png"></a>
-			<div class="gal-inner-holder">
-				<div class="img preloader"><img src="preloader.gif"></div>
-				<div class="img-data">
-					<div class="img-name">Image.jpg</div>
-					<div class="time-size">
-						<div class="time">24.11.2011</div>
-						<div class="size">1024MB</div>
-					</div>
-				</div>
+<%= content_tag(:div, :id => dom_id(asset), :class => "gal-item", :"data-url" => asset.url_content) do %>
+  <%= link_to image_tag("/javascripts/ckeditor/filebrowser/images/gal_del.png", :title => I18n.t('ckeditor.buttons.delete')), 
+          polymorphic_path(asset, :format => :json), 
+          :remote => true,
+          :method => :delete, 
+          :confirm => t('ckeditor.confirm_delete'),
+          :class => "fileupload-cancel gal-del" %>
+	
+	<div class="fileupload-file gal-inner-holder">
+		<div class="img"><%= image_tag(asset.url_thumb, :title => asset.filename) %></div>
+		<div class="img-data">
+			<div class="img-name"><%= asset.filename %></div>
+			<div class="time-size">
+				<div class="time"><%= asset.format_created_at %></div>
+				<div class="fileupload-size size"><%= number_to_human_size(asset.size) %></div>
 			</div>
 		</div>
+	</div>
+<% end %>

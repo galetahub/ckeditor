@@ -17,6 +17,16 @@ module Ckeditor
     autoload :SimpleFormBuilder, 'ckeditor/hooks/simple_form'
   end
   
+  # Allowed image file types for upload. 
+  # Set to nil or [] (empty array) for all file types
+  mattr_accessor :image_file_types
+  @@image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
+  
+  # Allowed attachment file types for upload. 
+  # Set to nil or [] (empty array) for all file types
+  mattr_accessor :attachment_file_types
+  @@attachment_file_types = ["doc", "docx", "rar", "zip", "xls", "swf"]
+  
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   def self.setup
@@ -25,6 +35,10 @@ module Ckeditor
   
   def self.picture_model
     Ckeditor::Picture.to_adapter
+  end
+  
+  def self.attachment_file_model
+    Ckeditor::AttachmentFile.to_adapter
   end
 end
 

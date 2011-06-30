@@ -27,8 +27,8 @@ Now generate models for store uploading files:
 
 Available orms:
 * active_record (default)
-* mongo_mapper
-* mongoid
+* mongo_mapper / under construction
+* mongoid / under construction
 
 Autoload ckeditor models folder (application.rb):
 
@@ -93,6 +93,7 @@ Jquery sample:
   en:
     ckeditor:
       page_title: "CKEditor Files Manager"
+      confirm_delete: "Delete file?"
       buttons:
         cancel: "Cancel"
         upload: "Upload"

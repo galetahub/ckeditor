@@ -73,6 +73,8 @@ module Ckeditor
         UploadedFile.new(value)
       elsif value.is_a?(String)
         QqFile.new(*args)
+      else
+        value
       end
     end
   end

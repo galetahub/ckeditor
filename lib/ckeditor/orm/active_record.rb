@@ -28,7 +28,7 @@ module Ckeditor
           end
           
           def format_created_at
-            I18n.l(created_at, :format => "%d.%m.%Y %H:%M")
+            I18n.l(created_at, :format => "%d.%m.%Y")
           end
           
           def has_dimensions?

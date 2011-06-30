@@ -27,7 +27,7 @@ body {
 	-khtml-opacity: 0.7;
 	opacity: 0.7;
 }
-.gal-holder .gal-item .gal-inner-holder .add {
+.gal-holder .gal-item .gal-upload-holder .add {
 	display: block;
 	color: #2e5aff;
 	background: url(/javascripts/ckeditor/filebrowser/images/gal_add.png) no-repeat left center;
@@ -37,10 +37,10 @@ body {
 	margin: 50px 0 0 10px;
 	font-size: 14px;
 }
-.gal-holder .gal-item .gal-inner-holder .add:hover {
+.gal-holder .gal-item .gal-upload-holder .add:hover {
 	text-decoration: underline;
 }
-.gal-holder .gal-item .gal-inner-holder {
+.gal-holder .gal-item .gal-inner-holder, .gal-holder .gal-item .gal-upload-holder {
 	display: block;
 	margin: 6px 6px 0 0;
 	overflow: hidden;
@@ -60,6 +60,7 @@ body {
 .gal-holder .gal-item .gal-inner-holder .img {
 	height: 100px;
 	overflow: hidden;
+	cursor:pointer;
 }
 .gal-holder .gal-item .gal-inner-holder .img.preloader {
 	padding: 27px 0 0 33px;
@@ -75,6 +76,8 @@ body {
 	color: #333;
 	padding-bottom: 5px;
 	font-size: 12px;
+	overflow: hidden;
+	width: 500px;
 }
 .gal-holder .gal-item .gal-inner-holder .img-data .time-size {
 	display: block;

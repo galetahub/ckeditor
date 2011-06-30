@@ -31,13 +31,38 @@ module Ckeditor
         js.join
       end
       
+      def js_fileuploader(uploader_type, options = {})
+        options = { :multiple => true, :element => "fileupload" }.merge(options)
+        
+        case uploader_type.to_s.downcase
+          when "image" then
+            options[:action] = "^EDITOR.config.filebrowserImageUploadUrl"
+            options[:allowedExtensions] = Ckeditor.image_file_types
+          when "flash" then
+            options[:action] = "^EDITOR.config.filebrowserFlashUploadUrl"
+            options[:allowedExtensions] = ["swf"]
+          else
+            options[:action] = "^EDITOR.config.filebrowserUploadUrl"
+            options[:allowedExtensions] = Ckeditor.attachment_file_types
+        end
+        
+        js_options = applay_options(options)
+        
+        "$(document).ready(function(){ new qq.FileUploaderInput({ #{js_options} }); });"
+      end
+      
       def applay_options(options)
         str = []
         
         options.each do |key, value|
           item = case value
-            when String then "'#{value}'"
-            when Hash then "{ #{applay_options(value)} }"
+            when String then
+              value.split(//).first == '^' ? value.slice(1..-1) : "'#{value}'"
+            when Hash then 
+              "{ #{applay_options(value)} }"
+            when Array then 
+              arr = value.collect { |v| "'#{v}'" }
+              "[ #{arr.join(',')} ]"
             else value
           end
           
