@@ -10,6 +10,7 @@ module Ckeditor
     autoload :ViewHelper, 'ckeditor/helpers/view_helper'
     autoload :FormHelper, 'ckeditor/helpers/form_helper'
     autoload :FormBuilder, 'ckeditor/helpers/form_builder'
+    autoload :Controllers, 'ckeditor/helpers/controllers'
   end
   
   module Hooks

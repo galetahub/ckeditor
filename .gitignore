@@ -2,6 +2,8 @@
 log/*.log
 pkg/
 test/dummy/db/*.sqlite3
+test/dummy/db/schema.rb
 test/dummy/log/*.log
+test/dummy/public/ckeditor_assets/
 test/dummy/tmp/
 test/tmp

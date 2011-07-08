@@ -88,6 +88,32 @@ Jquery sample:
 
   <%= form.ckeditor :content, :label => false, :input_html => { :toolbar => 'Full' } %>
 
+=== Default scope
+
+For example, you need split assets collection for each user.
+
+  class ApplicationController < ActionController::Base
+  
+    protected
+      
+      def ckeditor_filebrowser_scope(options = {})
+        super { :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options)
+      end
+  end
+
+=== Before create asset callback
+
+  class ApplicationController < ActionController::Base
+  
+    protected
+      
+      def ckeditor_before_create_asset(asset)
+        asset.assetable = current_user if respond_to?(:current_user)
+        return can?(:create, asset)
+      end
+  end
+
+
 == I18n  
 
   en:
