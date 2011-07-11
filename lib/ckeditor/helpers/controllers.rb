@@ -4,14 +4,14 @@ module Ckeditor
       extend ActiveSupport::Concern
       
       protected
-      
-        def ckeditor_before_create_asset(asset)
-          asset.assetable = current_user if respond_to?(:current_user)
+        
+        def ckeditor_authenticate
           return true
         end
         
-        def ckeditor_authenticate(asset)
-          # TODO:
+        def ckeditor_before_create_asset(asset)
+          asset.assetable = current_user if respond_to?(:current_user)
+          return true
         end
         
         def ckeditor_pictures_scope(options = {})

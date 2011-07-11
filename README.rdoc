@@ -10,6 +10,7 @@ the results users have when publishing it. It brings to the web common editing f
 * HTML5 files uploader
 * Hooks for formtastic and simple_form forms generators
 * Extra plugins: attachment and embed.
+* Assets pagination (under construction)
 
 == Install (not currently available, under construction)
 
@@ -26,9 +27,9 @@ Now generate models for store uploading files:
   rails generate ckeditor:models --orm=active_record
 
 Available orms:
-* active_record (default)
-* mongo_mapper / under construction
-* mongoid / under construction
+* active_record
+* mongo_mapper (under construction)
+* mongoid (under construction)
 
 Autoload ckeditor models folder (application.rb):
 
@@ -100,16 +101,38 @@ For example, you need split assets collection for each user.
         super { :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options)
       end
   end
+  
+If your wont filter only pictures or attachment_files - redefine methods "ckeditor_pictures_scope" or "ckeditor_attachment_files_scope" respectively.
+By default, both these methods call "ckeditor_filebrowser_scope" method:
 
-=== Before create asset callback
+  class ApplicationController < ActionController::Base
+  
+    protected
+
+      def ckeditor_pictures_scope(options = {})
+        ckeditor_filebrowser_scope(options)
+      end
+          
+      def ckeditor_attachment_files_scope(options = {})
+        ckeditor_filebrowser_scope(options)
+      end
+  end
+
+=== Callbacks
 
   class ApplicationController < ActionController::Base
   
     protected
       
+      # Cancan example
+      def ckeditor_authenticate
+        authorize! action_name, @asset
+      end
+      
+      # Set current_user as assetable
       def ckeditor_before_create_asset(asset)
-        asset.assetable = current_user if respond_to?(:current_user)
-        return can?(:create, asset)
+        asset.assetable = current_user
+        return true
       end
   end
 
