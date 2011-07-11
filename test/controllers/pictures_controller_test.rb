@@ -7,6 +7,10 @@ class PicturesControllerTest < ActionController::TestCase
     @image = fixture_file_upload('files/rails.png', 'image/png')
   end
   
+  def teardown
+    Ckeditor::Picture.destroy_all
+  end
+  
   test "index action" do
     get :index
     
@@ -34,5 +38,15 @@ class PicturesControllerTest < ActionController::TestCase
     assert_no_difference 'Ckeditor::Picture.count' do
       post :create, :qqfile => nil
     end
+  end
+  
+  test "destroy action via filebrowser" do
+    @picture = Ckeditor::Picture.create :data => @image
+    
+    assert_difference 'Ckeditor::Picture.count', -1 do
+      delete :destroy, :id => @picture.id
+    end
+    
+    assert_equal 302, @response.status
   end
 end
