@@ -35,6 +35,14 @@ Autoload ckeditor models folder (application.rb):
 
   config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
+=== Dependencies
+
+For active_record orm is used paperclip gem (it's by default).
+
+  gem "paperclip"
+  
+For gem "carrierwave" shortly I will give an example.
+
 == Usage
 
   <%= javascript_include_tag :ckeditor %>
