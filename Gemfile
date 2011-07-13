@@ -9,7 +9,7 @@ platforms :ruby do
     
   group :development, :test do
     gem "capybara", ">= 0.4.0"
-    gem "redgreen", "~> 1.2.2"
+    gem "mynyml-redgreen", "~> 0.7.1", :require => 'redgreen'
     gem "paperclip", "~> 2.3.12"
     
     # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
@@ -18,6 +18,6 @@ platforms :ruby do
   end
   
   group :development do
-    gem "mongrel"
+    gem "unicorn", "~> 4.0.1"
   end
 end
