@@ -5,7 +5,7 @@ gemspec
 gem "rails", "3.0.9"
 
 platforms :ruby do
-  gem "mysql2", '0.2.11'
+  gem "sqlite3"
     
   group :development, :test do
     gem "capybara", ">= 0.4.0"
