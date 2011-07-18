@@ -19,11 +19,13 @@ class ModelsGeneratorTest < Rails::Generators::TestCase
     end
   end
 
-  test "models and migration for mongoid orm" do
+  test "models for mongoid orm" do
     run_generator %w(--orm=mongoid)
 
     assert_file "app/models/ckeditor/asset.rb"
     assert_file "app/models/ckeditor/picture.rb"
     assert_file "app/models/ckeditor/attachment_file.rb"
+
+    assert_no_migration "db/migrate/create_ckeditor_assets.rb"
   end
 end
