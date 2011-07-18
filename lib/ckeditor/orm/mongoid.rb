@@ -7,6 +7,7 @@ module Ckeditor
         def self.included(base)
           base.send(:include, InstanceMethods)
           base.send(:include, ::Mongoid::Document)
+          base.send(:include, ::Mongoid::Timestamps)
           base.send(:include, ::Mongoid::Paperclip)
           base.send(:extend, ClassMethods)
         end
