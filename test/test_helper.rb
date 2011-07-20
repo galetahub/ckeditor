@@ -1,5 +1,8 @@
 # Configure Rails Envinronment
 ENV["RAILS_ENV"] = "test"
+CKEDITOR_ORM = (ENV["CKEDITOR_ORM"] || :active_record).to_sym
+
+puts "\n==> Ckeditor.orm = #{CKEDITOR_ORM.inspect}. You can change orm in environment variable CKEDITOR_ORM"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
@@ -16,8 +19,8 @@ require "capybara/rails"
 Capybara.default_driver   = :rack_test
 Capybara.default_selector = :css
 
-# Run any available migration
-ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
+# Run specific orm operations
+require "orm/#{CKEDITOR_ORM}"
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

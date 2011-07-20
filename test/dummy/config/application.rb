@@ -6,9 +6,9 @@ require "action_controller/railtie"
 require "action_view/railtie"
 require "action_mailer/railtie"
 
-Bundler.require
+Bundler.require :default, CKEDITOR_ORM
+
 require "ckeditor"
-require "paperclip"
 
 module Dummy
   class Application < Rails::Application
@@ -17,7 +17,7 @@ module Dummy
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/models/#{CKEDITOR_ORM})
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
