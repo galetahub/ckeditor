@@ -12,7 +12,7 @@ the results users have when publishing it. It brings to the web common editing f
 * Extra plugins: attachment and embed.
 * Assets pagination (under construction)
 
-== Install (not currently available, under construction)
+== Install
 
   gem "ckeditor", "~> 3.6.0"
   
@@ -28,8 +28,8 @@ Now generate models for store uploading files:
 
 Available orms:
 * active_record
+* mongoid (Thanks Dmitry Lihachev https://github.com/lda)
 * mongo_mapper (under construction)
-* mongoid (under construction)
 
 Autoload ckeditor models folder (application.rb):
 
@@ -159,5 +159,6 @@ By default, both these methods call "ckeditor_filebrowser_scope" method:
 == Tests
 
   rake test
+  rake test CKEDITOR_ORM=mongoid
 
 This project rocks and uses MIT-LICENSE.

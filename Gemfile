@@ -10,12 +10,6 @@ platforms :mri_18 do
   end
 end
 
-#platforms :mri_19 do
-  #group :test do
-    #gem 'ruby-debug19'
-  #end
-#end
-
 platforms :ruby do
   gem "sqlite3"
 
@@ -37,5 +31,4 @@ platforms :ruby do
     gem "bson_ext"
     gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
   end
-
 end
