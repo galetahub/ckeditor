@@ -30,7 +30,7 @@ body {
 .gal-holder .gal-item .gal-upload-holder .add {
 	display: block;
 	color: #2e5aff;
-	background: url(/javascripts/ckeditor/filebrowser/images/gal_add.png) no-repeat left center;
+	background: url(/ckeditor/filebrowser/images/gal_add.png) no-repeat left center;
 	padding-left: 33px;
 	line-height: 25px;
 	text-decoration: none;
@@ -102,7 +102,7 @@ body {
 }
 .gal-more a {
 	color: #2e5aff;
-	background: url(/javascripts/ckeditor/filebrowser/images/gal_more.gif) no-repeat left center;
+	background: url(/ckeditor/filebrowser/images/gal_more.gif) no-repeat left center;
 	padding-left: 15px;
 	font-size: 14px;
 	text-decoration: none;
