@@ -2,6 +2,7 @@ class Ckeditor::BaseController < ApplicationController
   respond_to :html, :json
   layout "ckeditor"
   
+  skip_before_filter :verify_authenticity_token, :only => [:create]
   before_filter :set_locale
   before_filter :find_asset, :only => [:destroy]
   before_filter :ckeditor_authenticate
