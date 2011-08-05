@@ -57,11 +57,11 @@ For gem "carrierwave" shortly I will give an example.
 
 For configure ckeditor default options check:
 
-  public/javascripts/ckeditor/config.js
+  public/ckeditor/config.js
   
 This stylesheet use editor for displaying edit area:
 
-  public/javascripts/ckeditor/contents.css
+  public/ckeditor/contents.css
 
 FormBuilder helper for more usefully:
 

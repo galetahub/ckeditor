@@ -29,14 +29,14 @@ module Ckeditor
         filepath = Rails.root.join("tmp/#{filename}")
 
         if File.exist?(filepath)
-          Ckeditor::Utils.extract(filepath, Rails.root.join('public', 'javascripts'))
-          directory "ckeditor", "public/javascripts/ckeditor"
+          Ckeditor::Utils.extract(filepath, Rails.root.join('public'))
+          directory "ckeditor", "public/ckeditor"
           FileUtils.rm_rf(filepath)
         end
       end
 
       def download_javascripts
-        js_dir = "public/javascripts/ckeditor/filebrowser/javascripts"
+        js_dir = "public/ckeditor/filebrowser/javascripts"
 
         say_status("fetching rails.js", "", :green)
         get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "#{js_dir}/rails.js"
