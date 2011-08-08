@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AttachmentFilesControllerTest < ActionController::TestCase
   tests Ckeditor::AttachmentFilesController
+  include RawPost
   
   def setup
     @attachment = fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')
@@ -29,6 +30,14 @@ class AttachmentFilesControllerTest < ActionController::TestCase
   test "create action via CKEditor upload form" do
     assert_difference 'Ckeditor::AttachmentFile.count' do
       post :create, :upload => @attachment, :CKEditor => 'ckeditor_field'
+    end
+    
+    assert_equal 200, @response.status
+  end
+  
+  test "create action via html5 upload" do
+    assert_difference 'Ckeditor::AttachmentFile.count' do
+      raw_post :create, { :qqfile => @attachment.original_filename }, @attachment.read
     end
     
     assert_equal 200, @response.status

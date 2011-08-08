@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PicturesControllerTest < ActionController::TestCase
   tests Ckeditor::PicturesController
+  include RawPost
   
   def setup
     @image = fixture_file_upload('files/rails.png', 'image/png')
@@ -29,6 +30,14 @@ class PicturesControllerTest < ActionController::TestCase
   test "create action via CKEditor upload form" do
     assert_difference 'Ckeditor::Picture.count' do
       post :create, :upload => @image, :CKEditor => 'ckeditor_field'
+    end
+    
+    assert_equal 200, @response.status
+  end
+  
+  test "create action via html5 upload" do
+    assert_difference 'Ckeditor::Picture.count' do
+      raw_post :create, { :qqfile => @image.original_filename }, @image.read, "image/png"
     end
     
     assert_equal 200, @response.status

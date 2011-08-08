@@ -50,7 +50,7 @@ module Ckeditor
       end
      
       def fetch
-        self.write @request.raw_post
+        self.write(body)
         self.rewind
         self
       end
@@ -60,8 +60,16 @@ module Ckeditor
       end
      
       def content_type
-        types = MIME::Types.type_for(@request.content_type)
+        types = MIME::Types.type_for(original_filename)
         types.empty? ? @request.content_type : types.first.to_s
+      end
+      
+      def body
+        if @request.raw_post.respond_to?(:force_encoding)
+          @request.raw_post.force_encoding("UTF-8")
+        else
+          @request.raw_post
+        end
       end
     end
     
