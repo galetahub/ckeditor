@@ -18,6 +18,27 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+Rake::TestTask.new("test:controllers") do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/controllers/*_test.rb'
+  t.verbose = false
+end
+
+Rake::TestTask.new("test:generators") do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/generators/*_test.rb'
+  t.verbose = false
+end
+
+Rake::TestTask.new("test:integration") do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/integration/*_test.rb'
+  t.verbose = false
+end
+
 task :default => :test
 
 RDoc::Task.new do |rdoc|
