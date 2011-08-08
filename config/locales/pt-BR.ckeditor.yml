@@ -1,0 +1,8 @@
+"pt-BR":
+  ckeditor:
+    page_title: "Gerenciador de arquivos do CKEditor"
+    confirm_delete: "Apagar arquivo?"
+    buttons:
+      cancel: "Cancelar"
+      upload: "Enviar"
+      delete: "Apagar"
