@@ -29,6 +29,7 @@ module Ckeditor
         filepath = Rails.root.join("tmp/#{filename}")
 
         if File.exist?(filepath)
+          FileUtils.mkdir_p(Rails.root.join("public/javascripts"))
           Ckeditor::Utils.extract(filepath, Rails.root.join('public', 'javascripts'))
           directory "ckeditor", "public/javascripts/ckeditor"
           FileUtils.rm_rf(filepath)
