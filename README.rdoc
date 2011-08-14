@@ -14,7 +14,13 @@ the results users have when publishing it. It brings to the web common editing f
 
 == Install
 
+  gem install ckeditor
+
+Or via bundler:
+
   gem "ckeditor", "~> 3.6.0"
+
+=== Download ckeditor
   
   rails generate ckeditor:install
 
@@ -22,31 +28,56 @@ You can pass version of ckeditor to download (http://ckeditor.com/download/relea
 
   rails generate ckeditor:install --version=3.5.4
 
-Now generate models for store uploading files:
+=== Now generate models for store uploading files
 
-  rails generate ckeditor:models --orm=active_record
-
-Available orms:
-* active_record
-* mongoid (Thanks Dmitry Lihachev https://github.com/lda)
-* mongo_mapper (under construction)
-
-Autoload ckeditor models folder (application.rb):
-
-  config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-
-=== Dependencies
+==== ActiveRecord + paperclip
 
 For active_record orm is used paperclip gem (it's by default).
 
   gem "paperclip"
   
-For gem "carrierwave" shortly I will give an example.
+  rails generate ckeditor:models --orm=active_record --backend=paperclip
+  
+==== ActiveRecord + carrierwave
+
+  gem "carrierwave"
+  gem "mini_magick"
+
+  rails generate ckeditor:models --orm=active_record --backend=carrierwave
+
+==== Mongoid + paperclip
+
+  gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
+  
+  rails generate ckeditor:models --orm=mongoid --backend=paperclip
+
+==== Mongoid + carrierwave (under construction)
+
+Comming soon...
+
+  
+Available orms:
+* active_record
+* mongoid (Thanks Dmitry Lihachev https://github.com/lda)
+* mongo_mapper (under construction)
+
+
+Autoload ckeditor models folder (application.rb):
+
+  config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
 == Usage
 
+Include ckeditor javascripts:
+
   <%= javascript_include_tag :ckeditor %>
+
+or (for rails 3.1):
+
+  <%= javascript_include_tag "/javascripts/ckeditor/ckeditor.js" %>
   
+Form helpers:
+
   cktext_area_tag("test_area", "Ckeditor is the best")
 
   cktext_area_tag("content", "Ckeditor", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Easy')
