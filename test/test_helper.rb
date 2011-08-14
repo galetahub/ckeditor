@@ -1,8 +1,10 @@
 # Configure Rails Envinronment
 ENV["RAILS_ENV"] = "test"
 CKEDITOR_ORM = (ENV["CKEDITOR_ORM"] || :active_record).to_sym
+CKEDITOR_BACKEND = (ENV["CKEDITOR_BACKEND"] || :paperclip).to_sym
 
 puts "\n==> Ckeditor.orm = #{CKEDITOR_ORM.inspect}. You can change orm in environment variable CKEDITOR_ORM"
+puts "\n==> Ckeditor.backend = #{CKEDITOR_BACKEND.inspect}. You can change backend in environment variable CKEDITOR_BACKEND"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
