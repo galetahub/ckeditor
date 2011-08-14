@@ -7,13 +7,12 @@ if Object.const_defined?("Ckeditor")
     # available as additional gems.
     require "ckeditor/orm/<%= options[:orm] %>"
 
-
     # Allowed image file types for upload.
     # Set to nil or [] (empty array) for all file types
     # config.image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
 
     # Allowed attachment file types for upload.
     # Set to nil or [] (empty array) for all file types
-    # config.attachment_file_types = ["doc", "docx", "rar", "zip", "xls", "swf"]
+    # config.attachment_file_types = ["doc", "docx", "xls", "odt", "ods", "pdf", "rar", "zip", "tar", "swf"]
   end
 end
