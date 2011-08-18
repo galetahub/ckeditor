@@ -20,7 +20,7 @@ module Dummy
     config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/models/#{CKEDITOR_ORM}/#{CKEDITOR_BACKEND})
     
     if CKEDITOR_BACKEND == :carrierwave
-      config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/models/#{CKEDITOR_ORM}/#{CKEDITOR_BACKEND}/uploaders)
+      config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/models/base/#{CKEDITOR_BACKEND}/uploaders)
     end
     
     # Only load the plugins named here, in the order given (default is alphabetical).

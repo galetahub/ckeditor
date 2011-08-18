@@ -51,11 +51,14 @@ For active_record orm is used paperclip gem (it's by default).
   
   rails generate ckeditor:models --orm=mongoid --backend=paperclip
 
-==== Mongoid + carrierwave (under construction)
+==== Mongoid + carrierwave
 
-Comming soon...
+  gem "carrierwave-mongoid", :require => 'carrierwave/mongoid'
+  gem "mini_magick"
 
-  
+  rails generate ckeditor:models --orm=mongoid --backend=carrierwave
+
+
 Available orms:
 * active_record
 * mongoid (Thanks Dmitry Lihachev https://github.com/lda)
