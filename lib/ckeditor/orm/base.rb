@@ -30,10 +30,14 @@ module Ckeditor
           def url_thumb
             url(:thumb)
           end
+          
+          def as_json_methods
+            [:url_content, :url_thumb, :size, :filename, :format_created_at]
+          end
 
           def as_json(options = nil)
             options = {
-              :methods => [:url_content, :url_thumb, :size, :filename, :format_created_at],
+              :methods => as_json_methods,
               :root => "asset"
             }.merge(options || {})
 

@@ -6,10 +6,21 @@ module Ckeditor
     module Mongoid
       module AssetBase
         def self.included(base)
-          base.send(:include, Base::AssetBase::InstanceMethods)
           base.send(:include, ::Mongoid::Document)
           base.send(:include, ::Mongoid::Timestamps)
+          base.send(:include, Base::AssetBase::InstanceMethods)
+          base.send(:include, InstanceMethods)
           base.send(:extend, ClassMethods)
+        end
+        
+        module InstanceMethods
+          def type
+            _type
+          end
+          
+          def as_json_methods
+            [:id, :type] + super
+          end
         end
 
         module ClassMethods
