@@ -36,8 +36,8 @@ class ModelsGeneratorTest < Rails::Generators::TestCase
     end
   end
 
-  test "models for mongoid orm" do
-    run_generator %w(--orm=mongoid)
+  test "models for mongoid orm via paperclip" do
+    run_generator %w(--orm=mongoid --backend=paperclip)
 
     assert_file "app/models/ckeditor/asset.rb"
     assert_file "app/models/ckeditor/picture.rb"
