@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ckeditor (3.6.0)
+    ckeditor (3.6.1)
       mime-types (~> 1.16)
       orm_adapter (~> 0.0.5)
 

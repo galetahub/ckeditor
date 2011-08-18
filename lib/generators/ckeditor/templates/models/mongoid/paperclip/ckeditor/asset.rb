@@ -2,6 +2,10 @@ require 'mime/types'
 
 class Ckeditor::Asset
   include Ckeditor::Orm::Mongoid::AssetBase
+  include Mongoid::Paperclip
 
-  attr_accessible :data, :assetable_type, :assetable_id, :assetable
+  before_validation :extract_content_type
+  before_create :read_dimensions, :parameterize_filename
+
+  delegate :url, :path, :styles, :size, :content_type, :to => :data
 end
