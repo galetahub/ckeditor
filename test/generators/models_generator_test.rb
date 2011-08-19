@@ -36,13 +36,26 @@ class ModelsGeneratorTest < Rails::Generators::TestCase
     end
   end
 
-  test "models for mongoid orm" do
-    run_generator %w(--orm=mongoid)
+  test "models for mongoid orm via paperclip" do
+    run_generator %w(--orm=mongoid --backend=paperclip)
 
     assert_file "app/models/ckeditor/asset.rb"
     assert_file "app/models/ckeditor/picture.rb"
     assert_file "app/models/ckeditor/attachment_file.rb"
 
+    assert_no_migration "db/migrate/create_ckeditor_assets.rb"
+  end
+  
+  test "models for mongoid orm via carrierwave" do
+    run_generator %w(--orm=mongoid --backend=carrierwave)
+  
+    assert_file "app/models/ckeditor/asset.rb"
+    assert_file "app/models/ckeditor/picture.rb"
+    assert_file "app/models/ckeditor/attachment_file.rb"
+    
+    assert_file "app/uploaders/ckeditor_attachment_file_uploader.rb"
+    assert_file "app/uploaders/ckeditor_picture_uploader.rb"
+  
     assert_no_migration "db/migrate/create_ckeditor_assets.rb"
   end
 end
