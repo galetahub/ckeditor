@@ -18,6 +18,11 @@ module Ckeditor
     autoload :SimpleFormBuilder, 'ckeditor/hooks/simple_form'
   end
   
+  module Backend
+    autoload :Paperclip, 'ckeditor/backend/paperclip'
+    autoload :CarrierWave, 'ckeditor/backend/carrierwave'
+  end
+  
   # Allowed image file types for upload. 
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :image_file_types

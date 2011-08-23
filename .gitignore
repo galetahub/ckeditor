@@ -7,5 +7,6 @@ test/dummy/log/*.log
 test/dummy/public/ckeditor_assets/
 test/dummy/tmp/
 test/tmp
+test/dummy/public/uploads/*
 
 *.swp

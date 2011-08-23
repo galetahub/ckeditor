@@ -39,6 +39,13 @@ Rake::TestTask.new("test:integration") do |t|
   t.verbose = false
 end
 
+Rake::TestTask.new("test:models") do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/models/*_test.rb'
+  t.verbose = false
+end
+
 task :default => :test
 
 RDoc::Task.new do |rdoc|

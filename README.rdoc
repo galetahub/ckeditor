@@ -194,5 +194,6 @@ By default, both these methods call "ckeditor_filebrowser_scope" method:
 
   rake test
   rake test CKEDITOR_ORM=mongoid
+  rake test CKEDITOR_BACKEND=carrierwave
 
 This project rocks and uses MIT-LICENSE.
