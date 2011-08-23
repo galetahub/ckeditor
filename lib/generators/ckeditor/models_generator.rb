@@ -30,10 +30,10 @@ module Ckeditor
         end
         
         if backend == "carrierwave"
-          template "#{generator_dir}/uploaders/ckeditor_attachment_file_uploader.rb",
+          template "#{uploaders_dir}/uploaders/ckeditor_attachment_file_uploader.rb",
                    File.join("app/uploaders", "ckeditor_attachment_file_uploader.rb")
           
-          template "#{generator_dir}/uploaders/ckeditor_picture_uploader.rb",
+          template "#{uploaders_dir}/uploaders/ckeditor_picture_uploader.rb",
                    File.join("app/uploaders", "ckeditor_picture_uploader.rb")
         end
       end
@@ -52,6 +52,10 @@ module Ckeditor
 
         def generator_dir
           @generator_dir ||= [orm, backend].join('/')
+        end
+        
+        def uploaders_dir
+          @uploaders_dir ||= ['base', 'carrierwave'].join('/')
         end
         
         def orm
