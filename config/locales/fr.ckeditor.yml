@@ -4,5 +4,5 @@ fr:
     confirm_delete: "Supprimer le fichier ?"
     buttons:
       cancel: "Annuler"
-      upload: "Envoyer"
+      upload: "Ajouter"
       delete: "Supprimer"
