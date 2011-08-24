@@ -5,6 +5,7 @@ class Ckeditor::BaseController < ApplicationController
   before_filter :set_locale
   before_filter :find_asset, :only => [:destroy]
   before_filter :ckeditor_authenticate
+  skip_before_filter :verify_authenticity_token, :only => [:create]
 
   protected
     
