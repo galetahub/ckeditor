@@ -27,6 +27,11 @@ body {
 	-khtml-opacity: 0.7;
 	opacity: 0.7;
 }
+
+.gal-holder .gal-item .gal-upload-holder input {
+	height: 162px;
+}
+
 .gal-holder .gal-item .gal-upload-holder .add {
 	display: block;
 	color: #2e5aff;
