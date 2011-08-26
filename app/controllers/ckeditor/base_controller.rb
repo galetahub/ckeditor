@@ -21,7 +21,7 @@ class Ckeditor::BaseController < ApplicationController
 	    callback = ckeditor_before_create_asset(asset)
 	    
       if callback && asset.save
-      	result = asset.serializable_hash(:only => [:id, :type], :methods => [:url_content, :size, :url_thumb, :filename, :format_created_at])
+      	result = asset.serializable_hash(:only => [:id, :type], :methods => asset.as_json_methods)
         body = params[:CKEditor].blank? ? result.to_json : %Q"<script type='text/javascript'>
           window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{Ckeditor::Utils.escape_single_quotes(asset.url_content)}');
         </script>"
