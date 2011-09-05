@@ -45,8 +45,8 @@ module Ckeditor
         say_status("fetching fileuploader.js", "", :green)
         get "https://raw.github.com/galetahub/file-uploader/master/client/fileuploader.js", "#{js_dir}/fileuploader.js"
 
-        say_status("fetching jquery-1.6.1.min.js", "", :green)
-        get "http://code.jquery.com/jquery-1.6.1.min.js", "#{js_dir}/jquery.js"
+        say_status("fetching jquery-1.6.2.min.js", "", :green)
+        get "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "#{js_dir}/jquery.js"
 
         say_status("fetching jquery.tmpl.min.js", "", :green)
         get "https://raw.github.com/jquery/jquery-tmpl/master/jquery.tmpl.min.js", "#{js_dir}/jquery.tmpl.js"
