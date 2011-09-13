@@ -24,20 +24,33 @@ module Ckeditor
       # copy ckeditor files
       def install_ckeditor
         say_status("fetching #{filename}", "", :green)
-        get(download_url, "tmp/#{filename}")
+        
+        in_root do
+          filepath = "tmp/#{filename}"
+          get(download_url, filepath)
 
-        filepath = Rails.root.join("tmp/#{filename}")
-
-        if File.exist?(filepath)
-          FileUtils.mkdir_p(Rails.root.join("public/javascripts"))
-          Ckeditor::Utils.extract(filepath, Rails.root.join('public', 'javascripts'))
-          directory "ckeditor", "public/javascripts/ckeditor"
-          FileUtils.rm_rf(filepath)
+          if File.exist?(filepath)
+            FileUtils.mkdir_p(install_dir)
+            Ckeditor::Utils.extract(filepath, install_dir)
+            FileUtils.rm_rf(filepath)
+          end
         end
+      end
+      
+      def update_javascripts      
+        in_root do
+          directory "ckeditor/filebrowser", "#{install_dir}/ckeditor/filebrowser"
+          directory "ckeditor/plugins", "#{install_dir}/ckeditor/plugins"
+          copy_file "ckeditor/config.js", "#{install_dir}/ckeditor/config.js", :force => true
+          
+          gsub_file "#{install_dir}/ckeditor/plugins/image/dialogs/image.js", 
+                    /id\:\'uploadButton\'\,filebrowser\:\'info:txtUrl\'/,
+                    "id:'uploadButton',filebrowser:{target:'info:txtUrl',action:'QuickUpload',params:b.config.filebrowserParams()}"
+        end	
       end
 
       def download_javascripts
-        js_dir = "public/javascripts/ckeditor/filebrowser/javascripts"
+        js_dir = "#{install_dir}/ckeditor/filebrowser/javascripts"
 
         say_status("fetching rails.js", "", :green)
         get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "#{js_dir}/rails.js"
@@ -60,6 +73,10 @@ module Ckeditor
 
         def filename
           "ckeditor_#{options[:version]}.tar.gz"
+        end
+        
+        def install_dir
+          "public/javascripts"
         end
     end
   end

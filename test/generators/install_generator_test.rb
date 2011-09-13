@@ -9,8 +9,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator %w(--orm=active_record)
 
     assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/active_record"/
-
-    assert_file "tmp/ckeditor_#{Ckeditor::Version::EDITOR}.tar.gz"
+    assert_file "public/javascripts/ckeditor/plugins/image/dialogs/image.js", 
+                /filebrowser:\{target:\'info:txtUrl\',action:\'QuickUpload\',params\:b.config.filebrowserParams\(\)\}/
+    assert_no_file "tmp/ckeditor_#{Ckeditor::Version::EDITOR}.tar.gz"
 
     ["rails.js", "jquery.js", "fileuploader.js", "jquery.tmpl.js"].each do |file|
       assert_file "public/javascripts/ckeditor/filebrowser/javascripts/#{file}"
