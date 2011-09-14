@@ -18,7 +18,7 @@ the results users have when publishing it. It brings to the web common editing f
 
 Or via bundler:
 
-  gem "ckeditor", "~> 3.6.0"
+  gem "ckeditor"
 
 === Download ckeditor
   
