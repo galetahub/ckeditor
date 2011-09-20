@@ -140,7 +140,7 @@ For example, you need split assets collection for each user.
     protected
       
       def ckeditor_filebrowser_scope(options = {})
-        super { :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options)
+        super({ :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options))
       end
   end
   
