@@ -42,12 +42,16 @@ module Ckeditor
           directory "ckeditor/filebrowser", "#{install_dir}/ckeditor/filebrowser"
           directory "ckeditor/plugins", "#{install_dir}/ckeditor/plugins"
           copy_file "ckeditor/config.js", "#{install_dir}/ckeditor/config.js", :force => true
+          copy_file "ckeditor/set_basepath.js", "#{install_dir}/ckeditor/set_basepath.js"
+          inject_into_file "app/assets/javascripts/application.js", "\n//= require ckeditor/set_basepath\n//= require ckeditor/ckeditor\n"
           
           gsub_file "#{install_dir}/ckeditor/plugins/image/dialogs/image.js", 
                     /id\:\'uploadButton\'\,filebrowser\:\'info:txtUrl\'/,
                     "id:'uploadButton',filebrowser:{target:'info:txtUrl',action:'QuickUpload',params:b.config.filebrowserParams()}"
         end	
       end
+
+
 
       def download_javascripts
         js_dir = "#{install_dir}/ckeditor/filebrowser/javascripts"
