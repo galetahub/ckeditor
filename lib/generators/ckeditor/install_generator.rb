@@ -76,7 +76,7 @@ module Ckeditor
         end
         
         def install_dir
-          "public/javascripts"
+          "app/javascripts"
         end
     end
   end
