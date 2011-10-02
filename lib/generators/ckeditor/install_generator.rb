@@ -76,7 +76,7 @@ module Ckeditor
         end
         
         def install_dir
-          @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), '../../../../app/assets/javascripts'))
+          @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), '../../../app/assets/javascripts'))
         end
     end
   end
