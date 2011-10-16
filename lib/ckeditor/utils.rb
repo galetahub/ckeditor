@@ -15,7 +15,7 @@ module Ckeditor
       
       def extract(filepath, output)
         # TODO: need check system OS
-        system("tar --exclude=*.php --exclude=*.asp -C '#{output}' -xzvf '#{filepath}' ckeditor/")
+        system("tar --exclude=*.php --exclude=*.asp -C '#{output}' -xzf '#{filepath}' ckeditor/")
       end
       
       def js_replace(dom_id, options = {})
