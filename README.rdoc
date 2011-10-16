@@ -28,6 +28,10 @@ You can pass version of ckeditor to download (http://ckeditor.com/download/relea
 
   rails generate ckeditor:install --version=3.5.4
 
+=== Install destination
+
+  rails generate ckeditor:install --path=public/assets
+
 === Now generate models for store uploading files
 
 ==== ActiveRecord + paperclip
@@ -57,7 +61,6 @@ For active_record orm is used paperclip gem (it's by default).
   gem "mini_magick"
 
   rails generate ckeditor:models --orm=mongoid --backend=carrierwave
-
 
 Available orms:
 * active_record
@@ -195,5 +198,10 @@ By default, both these methods call "ckeditor_filebrowser_scope" method:
   rake test
   rake test CKEDITOR_ORM=mongoid
   rake test CKEDITOR_BACKEND=carrierwave
+  
+  rake test:controllers
+  rake test:generators
+  rake test:integration
+  rake test:models
 
 This project rocks and uses MIT-LICENSE.

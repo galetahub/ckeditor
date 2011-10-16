@@ -23,4 +23,17 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
     assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/mongoid"/
   end
+  
+  test "Assert all files are properly created into custom destination" do
+    dest = 'public/assets'
+    
+    run_generator %w(--orm=active_record --path=public/assets)
+
+    assert_file "config/initializers/ckeditor.rb", /config.path = 'public\/assets'/
+    assert_no_file "tmp/ckeditor_#{Ckeditor::Version::EDITOR}.tar.gz"
+
+    ["rails.js", "jquery.js", "fileuploader.js", "jquery.tmpl.js"].each do |file|
+      assert_file "#{dest}/ckeditor/filebrowser/javascripts/#{file}"
+    end
+  end
 end

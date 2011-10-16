@@ -10,4 +10,18 @@ class CkeditorTest < ActiveSupport::TestCase
       assert_equal Ckeditor, config
     end
   end
+  
+  test "relative public path" do
+    Ckeditor.path = 'public/javascripts'
+    
+    assert_equal Ckeditor.path, 'public/javascripts'
+    assert_equal Ckeditor.relative_path, '/javascripts'
+  end
+  
+  test "custom relative public path" do
+    Ckeditor.path = 'public/assets'
+    
+    assert_equal Ckeditor.path, 'public/assets'
+    assert_equal Ckeditor.relative_path, '/assets'
+  end
 end

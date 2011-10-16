@@ -5,12 +5,15 @@ module Ckeditor
   module Generators
     class InstallGenerator < Rails::Generators::Base
       class_option :version, :type => :string, :default => Ckeditor::Version::EDITOR,
-                   :desc => "Version of ckeditor which be install"
+                   :desc => "Version of ckeditor which be install (by default #{Ckeditor::Version::EDITOR})"
 
       class_option :orm, :type => :string, :default => 'active_record',
-                   :desc => "Backend processor for upload support"
+                   :desc => "Backend processor for upload support (by default active_record)"
+      
+      class_option :path, :type => :string, :default => Ckeditor.path,
+                   :desc => "Ckeditor install directory destination (by default #{Ckeditor.path})"
 
-      desc "Download and install ckeditor"
+      desc "Download and install ckeditor into destination folder"
 
       def self.source_root
         @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
@@ -76,7 +79,7 @@ module Ckeditor
         end
         
         def install_dir
-          "public/javascripts"
+          options[:path] || Ckeditor.path
         end
     end
   end
