@@ -10,6 +10,7 @@ class Ckeditor::AttachmentFile < Ckeditor::Asset
 	  @url_thumb ||= begin
 	    extname = File.extname(filename).gsub(/^\./, '')
       "/javascripts/ckeditor/filebrowser/images/thumbs/#{extname}.gif"
+    rescue
 	  end
 	end
 end
