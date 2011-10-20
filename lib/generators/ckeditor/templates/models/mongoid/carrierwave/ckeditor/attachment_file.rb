@@ -6,6 +6,7 @@ class Ckeditor::AttachmentFile < Ckeditor::Asset
 	    extname = File.extname(filename).gsub(/^\./, '')
       "/javascripts/ckeditor/filebrowser/images/thumbs/#{extname}.gif"
     rescue
+      '/javascripts/ckeditor/filebrowser/images/thumbs/ckfnothumb.gif'
 	  end
 	end
 end
