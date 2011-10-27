@@ -66,7 +66,7 @@ module Ckeditor
             else value
           end
           
-          str << "#{key}: #{item}"
+          str << %Q{"#{key}": #{item}}
         end
         
         str.sort.join(',')
