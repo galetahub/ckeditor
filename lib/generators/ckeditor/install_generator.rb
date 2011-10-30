@@ -5,10 +5,10 @@ module Ckeditor
   module Generators
     class InstallGenerator < Rails::Generators::Base
       class_option :version, :type => :string, :default => Ckeditor::Version::EDITOR,
-                   :desc => "Version of ckeditor which be install"
+        :desc => "Version of ckeditor which be install"
 
       class_option :orm, :type => :string, :default => 'active_record',
-                   :desc => "Backend processor for upload support"
+        :desc => "Backend processor for upload support"
 
       desc "Download and install ckeditor"
 
@@ -44,12 +44,12 @@ module Ckeditor
           copy_file "ckeditor/config.js", "#{install_dir}/ckeditor/config.js", :force => true
           copy_file "ckeditor/set_basepath.js", "#{install_dir}/ckeditor/set_basepath.js"
 
-          append_file "app/assets/javascripts/application.js", "\n//= require ckeditor/set_basepath\n"
-          append_file "app/assets/javascripts/application.js", "//= require ckeditor/ckeditor\n"
+          inject_into_file "app/assets/javascripts/application.js", "\n//= require ckeditor/set_basepath\n", :before => "//= require_tree .\n"
+          inject_into_file "app/assets/javascripts/application.js", "//= require ckeditor/ckeditor\n", :before => "//= require_tree .\n"
           
           gsub_file "#{install_dir}/ckeditor/plugins/image/dialogs/image.js", 
-                    /id\:\'uploadButton\'\,filebrowser\:\'info:txtUrl\'/,
-                    "id:'uploadButton',filebrowser:{target:'info:txtUrl',action:'QuickUpload',params:b.config.filebrowserParams()}"
+            /id\:\'uploadButton\'\,filebrowser\:\'info:txtUrl\'/,
+            "id:'uploadButton',filebrowser:{target:'info:txtUrl',action:'QuickUpload',params:b.config.filebrowserParams()}"
         end	
       end
 
@@ -73,17 +73,17 @@ module Ckeditor
 
       protected
 
-        def download_url
-          "http://download.cksource.com/CKEditor/CKEditor/CKEditor%20#{options[:version]}/#{filename}"
-        end
+      def download_url
+        "http://download.cksource.com/CKEditor/CKEditor/CKEditor%20#{options[:version]}/#{filename}"
+      end
 
-        def filename
-          "ckeditor_#{options[:version]}.tar.gz"
-        end
+      def filename
+        "ckeditor_#{options[:version]}.tar.gz"
+      end
         
-        def install_dir
-          @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), '../../../app/assets/javascripts'))
-        end
+      def install_dir
+        @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), '../../../app/assets/javascripts'))
+      end
     end
   end
 end
