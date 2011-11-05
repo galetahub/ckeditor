@@ -33,6 +33,10 @@ module Ckeditor
   mattr_accessor :attachment_file_types
   @@attachment_file_types = ["doc", "docx", "xls", "odt", "ods", "pdf", "rar", "zip", "tar", "tar.gz", "swf"]
   
+  # Ckeditor files destination path
+  mattr_accessor :path
+  @@path = 'public/javascripts'
+  
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   def self.setup
@@ -45,6 +49,19 @@ module Ckeditor
   
   def self.attachment_file_model
     Ckeditor::AttachmentFile.to_adapter
+  end
+  
+  def self.relative_path
+    @@relative_path ||= File.join("/", Rails.root.join(path).relative_path_from(public_path).to_s)
+  end
+  
+  def self.public_path
+    Rails.root.join('public')
+  end
+  
+  def self.path=(value)
+    @@relative_path = nil
+    @@path = value
   end
 end
 

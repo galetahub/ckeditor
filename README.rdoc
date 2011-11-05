@@ -18,7 +18,7 @@ the results users have when publishing it. It brings to the web common editing f
 
 Or via bundler:
 
-  gem "ckeditor", "~> 3.6.0"
+  gem "ckeditor"
 
 === Download ckeditor
   
@@ -27,6 +27,10 @@ Or via bundler:
 You can pass version of ckeditor to download (http://ckeditor.com/download/releases):
 
   rails generate ckeditor:install --version=3.5.4
+
+=== Install destination
+
+  rails generate ckeditor:install --path=public/assets
 
 === Now generate models for store uploading files
 
@@ -57,7 +61,6 @@ For active_record orm is used paperclip gem (it's by default).
   gem "mini_magick"
 
   rails generate ckeditor:models --orm=mongoid --backend=carrierwave
-
 
 Available orms:
 * active_record
@@ -140,7 +143,7 @@ For example, you need split assets collection for each user.
     protected
       
       def ckeditor_filebrowser_scope(options = {})
-        super { :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options)
+        super({ :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options))
       end
   end
   
@@ -195,5 +198,10 @@ By default, both these methods call "ckeditor_filebrowser_scope" method:
   rake test
   rake test CKEDITOR_ORM=mongoid
   rake test CKEDITOR_BACKEND=carrierwave
+  
+  rake test:controllers
+  rake test:generators
+  rake test:integration
+  rake test:models
 
 This project rocks and uses MIT-LICENSE.

@@ -27,20 +27,8 @@ body {
 	-khtml-opacity: 0.7;
 	opacity: 0.7;
 }
-
 .gal-holder .gal-item .gal-upload-holder input {
 	height: 162px;
-}
-
-.gal-holder .gal-item .gal-upload-holder .add {
-	display: block;
-	color: #2e5aff;
-	background: url(/javascripts/ckeditor/filebrowser/images/gal_add.png) no-repeat left center;
-	padding-left: 33px;
-	line-height: 25px;
-	text-decoration: none;
-	margin: 50px 0 0 10px;
-	font-size: 14px;
 }
 .gal-holder .gal-item .gal-upload-holder .add:hover {
 	text-decoration: underline;
@@ -61,6 +49,16 @@ body {
 .gal-holder .gal-item .gal-inner-holder.selected {
     background: #B4D9FF;
     border: solid 1px #6565FE;
+}
+.gal-holder .gal-item .gal-upload-holder .add {
+  display: block;
+  color: #2e5aff;
+  /*background: url(/javascripts/ckeditor/filebrowser/images/gal_add.png) no-repeat left center;*/
+  padding-left: 33px;
+  line-height: 25px;
+  text-decoration: none;
+  margin: 50px 0 0 10px;
+  font-size: 14px;
 }
 .gal-holder .gal-item .gal-inner-holder .img {
 	height: 100px;
@@ -107,7 +105,7 @@ body {
 }
 .gal-more a {
 	color: #2e5aff;
-	background: url(/javascripts/ckeditor/filebrowser/images/gal_more.gif) no-repeat left center;
+	/*background: url(/javascripts/ckeditor/filebrowser/images/gal_more.gif) no-repeat left center;*/
 	padding-left: 15px;
 	font-size: 14px;
 	text-decoration: none;
