@@ -8,5 +8,5 @@ test/dummy/public/ckeditor_assets/
 test/dummy/tmp/
 test/tmp
 test/dummy/public/uploads/*
-
+.redcar
 *.swp
