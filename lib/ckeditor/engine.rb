@@ -21,7 +21,10 @@ module Ckeditor
     
     initializer "ckeditor.hooks" do
       if Object.const_defined?("Formtastic")
-        ::Formtastic::SemanticFormBuilder.send :include, Ckeditor::Hooks::FormtasticBuilder
+        klass = Object.const_set('CkeditorInput', Class.new)
+        klass.class_eval do
+          include Ckeditor::Hooks::FormtasticBuilder
+        end
       end
       
       if Object.const_defined?("SimpleForm")
