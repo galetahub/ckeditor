@@ -1,4 +1,4 @@
-class Ckeditor::AttachmentFilesController < Ckeditor::BaseController
+class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
 
   def index
     @attachments = Ckeditor.attachment_file_model.find_all(ckeditor_attachment_files_scope)
