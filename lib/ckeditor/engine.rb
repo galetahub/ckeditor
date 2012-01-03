@@ -1,7 +1,10 @@
 require 'rails'
+require 'ckeditor'
 
 module Ckeditor
   class Engine < ::Rails::Engine
+    isolate_namespace Ckeditor
+    
     config.action_view.javascript_expansions[:ckeditor] = "ckeditor/ckeditor"
     
     initializer "ckeditor.helpers" do

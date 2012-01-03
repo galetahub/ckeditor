@@ -1,6 +1,4 @@
-Rails.application.routes.draw do
-  namespace :ckeditor, :only => [:index, :create, :destroy] do
-    resources :pictures
-    resources :attachment_files
-  end
+Ckeditor::Engine.routes.draw do
+  resources :pictures, :only => [:index, :create, :destroy]
+  resources :attachment_files, :only => [:index, :create, :destroy]
 end

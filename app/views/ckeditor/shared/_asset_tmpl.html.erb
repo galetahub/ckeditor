@@ -1,6 +1,6 @@
 <script id="fileupload_tmpl" type="text/x-jquery-tmpl">
 <div id="asset_${id}" class="gal-item" data-url="${url_content}">
-  <%= link_to image_tag("#{Ckeditor.relative_path}/ckeditor/filebrowser/images/gal_del.png", 
+  <%= link_to image_tag("/assets/ckeditor/filebrowser/images/gal_del.png", 
     :title => I18n.t('ckeditor.buttons.delete')), 
           "/ckeditor/${controller}/${id}.json", 
           :remote => true,
