@@ -2,7 +2,9 @@ require 'test_helper'
 
 class AttachmentFilesControllerTest < ActionController::TestCase
   tests Ckeditor::AttachmentFilesController
+  
   include RawPost
+  include ControllerHooks
   
   def setup
     @attachment = fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')

@@ -27,6 +27,10 @@ module Ckeditor
       def copy_initializer
         template "ckeditor.rb", "config/initializers/ckeditor.rb"
       end
+      
+      def mount_engine
+        route "mount Ckeditor::Engine => '/ckeditor'"
+      end
 
       def create_models
         [:asset, :picture, :attachment_file].each do |filename|

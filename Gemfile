@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "rails", "3.0.9"
+gem "rails", "3.1.3"
 
 platforms :mri_18 do
   group :test do

@@ -12,7 +12,7 @@ class PostsTest < ActiveSupport::IntegrationCase
   test "include javascripts" do
     visit(posts_path)
     
-    assert page.body.include?('/javascripts/ckeditor/ckeditor.js')
+    assert page.body.include?('/assets/application.js')
     assert page.body.include?("CKEDITOR.replace('test_area', { language: 'en' });")
   end
   

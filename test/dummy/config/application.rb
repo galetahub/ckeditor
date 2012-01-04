@@ -1,13 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-require "active_model/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_view/railtie"
-require "action_mailer/railtie"
+require 'rails/all'
 
 Bundler.require :default, CKEDITOR_ORM
-
 require "ckeditor"
 
 module Dummy
@@ -17,12 +12,12 @@ module Dummy
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/models/#{CKEDITOR_ORM}/#{CKEDITOR_BACKEND})
+    config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/#{CKEDITOR_ORM}/#{CKEDITOR_BACKEND})
     
     if CKEDITOR_BACKEND == :carrierwave
-      config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/models/base/#{CKEDITOR_BACKEND}/uploaders)
+      config.autoload_paths += %W(#{config.root}/../../lib/generators/ckeditor/templates/base/#{CKEDITOR_BACKEND}/uploaders)
     end
-    
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -38,13 +33,17 @@ module Dummy
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
   end
 end
+
