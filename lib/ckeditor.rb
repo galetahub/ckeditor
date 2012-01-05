@@ -14,7 +14,6 @@ module Ckeditor
   end
   
   module Hooks
-    autoload :FormtasticBuilder, 'ckeditor/hooks/formtastic'
     autoload :SimpleFormBuilder, 'ckeditor/hooks/simple_form'
   end
   

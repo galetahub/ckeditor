@@ -21,7 +21,7 @@ module Ckeditor
     
     initializer "ckeditor.hooks" do
       if Object.const_defined?("Formtastic")
-        ::Formtastic::SemanticFormBuilder.send :include, Ckeditor::Hooks::FormtasticBuilder
+        require "ckeditor/hooks/formtastic"
       end
       
       if Object.const_defined?("SimpleForm")
