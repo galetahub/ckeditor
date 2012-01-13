@@ -16,7 +16,7 @@ the results users have when publishing it. It brings to the web common editing f
 
 Rails 3.1:
 
-  gem "ckeditor", "3.7.0.rc1"
+  gem "ckeditor", "3.7.0.rc2"
 
 Rails <= 3.0:
 
