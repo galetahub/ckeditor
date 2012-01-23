@@ -70,7 +70,7 @@ module Ckeditor
       def filethumb(filename)
         extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
 	      image = "#{extname}.gif"
-	      source = File.expand_path("../../../vendor/assets/javascripts/ckeditor/filebrowser/images/thumbs", __FILE__)
+	      source = Ckeditor.root_path.join("vendor/assets/javascripts/ckeditor/filebrowser/images/thumbs")
 	      
 	      unless File.exists?(File.join(source, image))
 	        image = "unknown.gif"

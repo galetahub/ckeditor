@@ -7,6 +7,10 @@ module Ckeditor
     
     config.action_view.javascript_expansions[:ckeditor] = "ckeditor/ckeditor"
     
+    initializer "ckeditor.assets_precompile" do |app|
+      app.config.assets.precompile += Ckeditor.assets
+    end
+    
     initializer "ckeditor.helpers" do
       ActiveSupport.on_load(:action_controller) do
         ActionController::Base.send :include, Ckeditor::Helpers::Controllers

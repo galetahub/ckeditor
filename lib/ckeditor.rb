@@ -1,4 +1,5 @@
 require 'orm_adapter'
+require 'pathname'
 
 module Ckeditor
   IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg', 'image/tiff', 'image/x-png']
@@ -40,6 +41,20 @@ module Ckeditor
   # a fresh initializer with all configuration values.
   def self.setup
     yield self
+  end
+  
+  def self.root_path
+    @root_path ||= Pathname.new( File.dirname(File.expand_path('../', __FILE__)) )
+  end
+  
+  def self.assets
+    Dir[root_path.join('vendor/assets/javascripts/ckeditor/**', '*.{js,css}')].inject([]) do |list, path|
+      unless path.include?("/ckeditor/filebrowser/")
+        list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts'))
+      end
+      
+      list
+    end
   end
   
   def self.picture_model
