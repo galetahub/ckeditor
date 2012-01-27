@@ -24,7 +24,7 @@ module Ckeditor
     end
     
     initializer "ckeditor.hooks" do
-      if Object.const_defined?("Formtastic")
+      if Object.const_defined?("Formtastic") && Formtastic.const_defined?("Inputs")  # Formtastic < 2.0.0 didn't define a Formtastic::Inputs, aparently.
         require "ckeditor/hooks/formtastic"
       end
       
