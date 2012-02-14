@@ -29,7 +29,7 @@ module Ckeditor
       end
       
       if Object.const_defined?("SimpleForm")
-        ::SimpleForm::FormBuilder.send :include, Ckeditor::Hooks::SimpleFormBuilder
+        require "ckeditor/hooks/simple_form"
       end
     end
   end

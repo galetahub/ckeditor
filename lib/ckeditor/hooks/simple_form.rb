@@ -1,28 +1,17 @@
-module Ckeditor
-  module Hooks
-    module SimpleFormBuilder
-      class CkeditorInput < ::SimpleForm::Inputs::Base
-        def input
-          @builder.send(:cktext_area, attribute_name, input_html_options)
-        end
-      end
-      
-      def self.included(base)
-        base.send(:include, InstanceMethods)
-      end
-    
-      module InstanceMethods
-        def ckeditor(attribute_name, options={}, &block)
-          column     = find_attribute_column(attribute_name)
-          input_type = default_input_type(attribute_name, column, options)
-
-          if block_given?
-            SimpleForm::Inputs::BlockInput.new(self, attribute_name, column, input_type, options, &block).render
-          else
-            CkeditorInput.new(self, attribute_name, column, input_type, options).render
-          end
-        end
-      end
+module Ckeditor::Hooks::SimpleForm
+  class CkeditorInput < ::SimpleForm::Inputs::Base
+    def input
+      @builder.send(:cktext_area, attribute_name, input_html_options)
     end
+  end
+end
+::SimpleForm::FormBuilder.map_type :ckeditor, :to => Ckeditor::Hooks::SimpleForm::CkeditorInput
+
+# TODO: remove this after a while, SimpleForm::FormBuilder#ckeditor is deprecated.
+class SimpleForm::FormBuilder
+  def ckeditor(attribute_name, options={}, &block)
+    warn "[DEPRECATION] calling f.ckeditor(:#{attribute_name}, ...) is deprecated, call f.input(:#{attribute_name}, :as => :ckeditor, #{options.to_s[1..-1]}) #{Kernel.caller.first}"
+    options[:as] = :ckeditor
+    self.input(attribute_name, options, &block)
   end
 end
