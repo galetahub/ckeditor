@@ -1,7 +1,7 @@
 module Ckeditor::Hooks::SimpleForm
   class CkeditorInput < ::SimpleForm::Inputs::Base
     def input
-      @builder.send(:cktext_area, attribute_name, input_html_options)
+      @builder.cktext_area(attribute_name, input_html_options)
     end
   end
 end
