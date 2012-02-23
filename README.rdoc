@@ -5,7 +5,7 @@ the results users have when publishing it. It brings to the web common editing f
 
 == Features
 
-* Rails 3.1 integration
+* Rails 3.2 integration
 * Files browser
 * HTML5 files uploader
 * Hooks for formtastic and simple_form forms generators
@@ -14,9 +14,9 @@ the results users have when publishing it. It brings to the web common editing f
 
 == Install
 
-Rails 3.1:
+Rails 3.2:
 
-  gem "ckeditor", "3.7.0.rc2"
+  gem "ckeditor", "3.7.0.rc3"
 
 Rails <= 3.0:
 
@@ -64,9 +64,14 @@ Autoload ckeditor models folder (application.rb):
 
 == Usage
 
-Include ckeditor javascripts rails 3.1:
+Include ckeditor javascripts rails 3.2:
 
-  //= require ckeditor/ckeditor
+  //= require ckeditor/init
+
+or
+
+  <%= javascript_include_tag "ckeditor/init" %>  
+
 
 Rails <= 3.0:
 
