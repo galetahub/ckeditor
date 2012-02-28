@@ -1,0 +1,8 @@
+pl:
+  ckeditor:
+    page_title: "CKEditor Menadżer Plików"
+    confirm_delete: "Usunąć plik?"
+    buttons:
+      cancel: "Anuluj"
+      upload: "Wyślij"
+      delete: "Skasuj"
