@@ -16,7 +16,14 @@ module Ckeditor
         
         output_buffer = ActiveSupport::SafeBuffer.new
         output_buffer << instance_tag.to_text_area_tag(input_html)
-        output_buffer << javascript_tag(Utils.js_replace(hash['id'], options))
+        
+        js_content_for_section = options.delete(:js_content_for)
+        js = Utils.js_replace(hash['id'], options)
+        if js_content_for_section
+          content_for(js_content_for_section) { js.html_safe }
+        else
+          output_buffer << javascript_tag(js)
+        end
         
         output_buffer
       end
