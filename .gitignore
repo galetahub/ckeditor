@@ -10,3 +10,4 @@ test/dummy/tmp/
 test/tmp
 test/dummy/public/uploads/*
 *.swp
+.idea
