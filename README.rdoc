@@ -127,7 +127,7 @@ Jquery sample:
 
 === SimpleForm integration
 
-  <%= form.ckeditor :content, :label => false, :input_html => { :toolbar => 'Full' } %>
+  <%= form.input :content, :as => :ckeditor, :label => false, :input_html => { :toolbar => 'Full' } %>
 
 === Default scope
 
