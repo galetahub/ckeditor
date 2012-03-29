@@ -14,7 +14,7 @@ module Ckeditor
       end
       
       def js_replace(dom_id, options = {})
-        js_options = applay_options(options)
+        js_options = applay_options(options.reject{|k,v| v.nil?})
         js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
         
         if js_options.blank?
