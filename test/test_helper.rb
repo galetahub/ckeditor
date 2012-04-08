@@ -30,3 +30,9 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 # For generators
 require "rails/generators/test_case"
 require "generators/ckeditor/install_generator"
+
+# Run template migration for the selected backend
+if CKEDITOR_ORM == :active_record
+  require "generators/ckeditor/templates/active_record/#{CKEDITOR_BACKEND}/migration.rb"
+  CreateCkeditorAssets.new.up
+end
