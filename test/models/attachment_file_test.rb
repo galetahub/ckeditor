@@ -6,13 +6,13 @@ class AttachmentFileTest < ActiveSupport::TestCase
     
     # TODO: fix filename parameterization
     if CKEDITOR_BACKEND == :paperclip
-      assert_equal @attachment.data_file_name, "rails_tar.gz"
+      assert_equal "rails_tar.gz", @attachment.data_file_name
     else
-      assert_equal @attachment.data_file_name, "rails.tar.gz"
+      assert_equal "rails.tar.gz", @attachment.data_file_name
     end
     
-    assert_equal @attachment.data_content_type, "application/x-gzip"
-    assert_equal @attachment.data_file_size, 6823
-    assert_equal @attachment.url_thumb, "/assets/ckeditor/filebrowser/images/thumbs/gz.gif"
+    assert_equal "application/x-gzip", @attachment.data_content_type
+    assert_equal 6823, @attachment.data_file_size
+    assert_equal "/assets/ckeditor/filebrowser/images/thumbs/gz.gif", @attachment.url_thumb
   end
 end
