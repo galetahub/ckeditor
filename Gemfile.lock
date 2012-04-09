@@ -57,6 +57,8 @@ GEM
       ffi (~> 1.0.6)
     cocaine (0.2.1)
     columnize (0.3.6)
+    dragonfly (0.9.12)
+      rack
     erubis (2.7.0)
     ffi (1.0.11)
     hike (1.2.1)
@@ -161,6 +163,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-mongoid
   ckeditor!
+  dragonfly
   mini_magick
   mongoid
   mongoid-paperclip

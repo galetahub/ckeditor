@@ -4,7 +4,7 @@ CKEDITOR_ORM = (ENV["CKEDITOR_ORM"] || :active_record).to_sym
 CKEDITOR_BACKEND = (ENV["CKEDITOR_BACKEND"] || :paperclip).to_sym
 
 puts "\n==> Ckeditor.orm = #{CKEDITOR_ORM.inspect}. CKEDITOR_ORM = (active_record|mongoid)"
-puts "\n==> Ckeditor.backend = #{CKEDITOR_BACKEND.inspect}. CKEDITOR_BACKEND = (paperclip|carrierwave)"
+puts "\n==> Ckeditor.backend = #{CKEDITOR_BACKEND.inspect}. CKEDITOR_BACKEND = (paperclip|carrierwave|dragonfly)"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"

@@ -21,6 +21,7 @@ module Ckeditor
   module Backend
     autoload :Paperclip, 'ckeditor/backend/paperclip'
     autoload :CarrierWave, 'ckeditor/backend/carrierwave'
+    autoload :Dragonfly, 'ckeditor/backend/dragonfly'
   end
   
   # Allowed image file types for upload. 
