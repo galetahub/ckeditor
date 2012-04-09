@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class PictureTest < ActiveSupport::TestCase
+  def teardown
+    @picture.destroy rescue nil
+  end
+
   test "Set file content_type and size" do
     @picture = create_picture
     
