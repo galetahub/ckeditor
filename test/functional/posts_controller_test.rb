@@ -6,7 +6,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   def teardown
-    @post.destroy
+    @post.destroy rescue nil
   end
 
   test "include javascripts" do
