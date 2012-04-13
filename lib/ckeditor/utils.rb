@@ -22,8 +22,8 @@ module Ckeditor
         else
           js << "CKEDITOR.replace('#{dom_id}', { #{js_options} });"
         end
-        
-        js.join
+
+        "$(document).ready(function(){ #{js.join} });".html_safe
       end
       
       def js_fileuploader(uploader_type, options = {})
