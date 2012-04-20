@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "rails", "3.1.3"
+gem "rails", "3.2.3"
 
 platforms :mri_18 do
   group :test do
@@ -24,8 +24,9 @@ platforms :ruby do
   end
 
   group :active_record do
-    gem "paperclip"
+    gem "paperclip", "< 3.0.1" # https://github.com/thoughtbot/paperclip/issues/807
     gem "carrierwave"
+    gem "dragonfly"
     gem "mini_magick"
   end
 

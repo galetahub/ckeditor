@@ -14,7 +14,7 @@ module Ckeditor
       end
       
       def js_replace(dom_id, options = {})
-        js_options = applay_options(options)
+        js_options = apply_options(options)
         js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
         
         if js_options.blank?
@@ -41,12 +41,12 @@ module Ckeditor
             options[:allowedExtensions] = Ckeditor.attachment_file_types
         end
         
-        js_options = applay_options(options)
+        js_options = apply_options(options)
         
         "$(document).ready(function(){ new qq.FileUploaderInput({ #{js_options} }); });".html_safe
       end
       
-      def applay_options(options)
+      def apply_options(options)
         str = []
         
         options.each do |key, value|
@@ -54,7 +54,7 @@ module Ckeditor
             when String then
               value.split(//).first == '^' ? value.slice(1..-1) : "'#{value}'"
             when Hash then 
-              "{ #{applay_options(value)} }"
+              "{ #{apply_options(value)} }"
             when Array then 
               arr = value.collect { |v| "'#{v}'" }
               "[ #{arr.join(',')} ]"
