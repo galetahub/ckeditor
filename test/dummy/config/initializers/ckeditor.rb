@@ -1,18 +1,10 @@
-# Use this hook to configure ckeditor
-if Object.const_defined?("Ckeditor")
-  Ckeditor.setup do |config|
-    # ==> ORM configuration
-    # Load and configure the ORM. Supports :active_record (default), :mongo_mapper and
-    # :mongoid (bson_ext recommended) by default. Other ORMs may be
-    # available as additional gems.
-    require "ckeditor/orm/#{CKEDITOR_ORM}"
+dir = File.join(Rails.root, "..", "..", "lib", "generators", "ckeditor", "templates")
 
-    # Allowed image file types for upload.
-    # Set to nil or [] (empty array) for all file types
-    # config.image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
+# Load the CKEditor initializer from the codebase.
+initializer = ERB.new(File.read(File.join(dir, "ckeditor.rb")))
+options = { :orm => CKEDITOR_ORM }
+eval initializer.result(binding)
 
-    # Allowed attachment file types for upload.
-    # Set to nil or [] (empty array) for all file types
-    # config.attachment_file_types = ["doc", "docx", "rar", "zip", "xls", "swf"]
-  end
-end
+# Also load the specific initializer for the selected backend.
+initializer = File.join(dir, "base", CKEDITOR_BACKEND.to_s, "initializer.rb")
+require initializer if File.exist?(initializer)

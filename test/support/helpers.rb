@@ -4,16 +4,16 @@ require 'action_dispatch/testing/test_process'
 class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
   
-  def new_attachemnt(data = nil)
+  def new_attachment(data = nil)
     data ||= fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')
     
     Ckeditor::AttachmentFile.new(:data => data)
   end
   
-  def create_attachemnt(data = nil)
-    attachemnt = new_attachemnt(data)
-    attachemnt.save!
-    attachemnt
+  def create_attachment(data = nil)
+    attachment = new_attachment(data)
+    attachment.save!
+    attachment
   end
   
   def new_picture(data = nil)

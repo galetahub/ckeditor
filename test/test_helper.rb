@@ -4,7 +4,7 @@ CKEDITOR_ORM = (ENV["CKEDITOR_ORM"] || :active_record).to_sym
 CKEDITOR_BACKEND = (ENV["CKEDITOR_BACKEND"] || :paperclip).to_sym
 
 puts "\n==> Ckeditor.orm = #{CKEDITOR_ORM.inspect}. CKEDITOR_ORM = (active_record|mongoid)"
-puts "\n==> Ckeditor.backend = #{CKEDITOR_BACKEND.inspect}. CKEDITOR_BACKEND = (paperclip|carrierwave)"
+puts "\n==> Ckeditor.backend = #{CKEDITOR_BACKEND.inspect}. CKEDITOR_BACKEND = (paperclip|carrierwave|dragonfly)"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
@@ -30,3 +30,9 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 # For generators
 require "rails/generators/test_case"
 require "generators/ckeditor/install_generator"
+
+# Run template migration for the selected backend
+if CKEDITOR_ORM == :active_record
+  require "generators/ckeditor/templates/active_record/#{CKEDITOR_BACKEND}/migration.rb"
+  CreateCkeditorAssets.new.up
+end
