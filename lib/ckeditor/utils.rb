@@ -51,7 +51,7 @@ module Ckeditor
         
         js_options = ActiveSupport::JSON.encode(options)
         
-        "$(document).ready(function(){ new qq.FileUploaderInput({ #{js_options} }); });".html_safe
+        "$(document).ready(function(){ new qq.FileUploaderInput(#{js_options}); });".html_safe
       end
       
       def filethumb(filename)

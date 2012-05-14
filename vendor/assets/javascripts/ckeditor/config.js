@@ -5,10 +5,10 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 CKEDITOR.editorConfig = function( config )
 {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
-	
+  // Define changes to default configuration here. For example:
+  // config.language = 'fr';
+  // config.uiColor = '#AADC6E';
+  
   /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
@@ -43,6 +43,38 @@ CKEDITOR.editorConfig = function( config )
     
     return params;
   };
+  
+  config.addQueryString = function( url, params ){
+    var queryString = [];
+
+    if ( !params )
+      return url;
+    else
+    {
+      for ( var i in params )
+        queryString.push( i + "=" + encodeURIComponent( params[ i ] ) );
+    }
+
+    return url + ( ( url.indexOf( "?" ) != -1 ) ? "&" : "?" ) + queryString.join( "&" );
+  };
+  
+  // Integrate Rails CSRF token into file upload dialogs (link, image, attachment and flash)
+  CKEDITOR.on( 'dialogDefinition', function( ev ){
+    // Take the dialog name and its definition from the event data.
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+    var content, upload;
+    
+    if ( ['link', 'image', 'attachment', 'flash'].indexOf(dialogName) > -1 ) {
+      content = (dialogDefinition.getContents('Upload') || dialogDefinition.getContents('upload'));
+      upload = (content == null ? null : content.get('upload'));
+      
+      if (upload && upload.filebrowser['params'] == null) {
+        upload.filebrowser['params'] = config.filebrowserParams();
+        upload.action = config.addQueryString(upload.action, upload.filebrowser['params']);
+      }
+    }
+  });
   
   /* Extra plugins */
   // works only with en, ru, uk locales
