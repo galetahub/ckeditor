@@ -16,7 +16,7 @@ the results users have when publishing it. It brings to the web common editing f
 
 Rails 3.2:
 
-  gem "ckeditor", "3.7.0.rc3"
+  gem "ckeditor", "3.7.0"
 
 Rails <= 3.0:
 
@@ -63,6 +63,10 @@ Autoload ckeditor models folder (application.rb):
   config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
 == Usage
+
+Mount engine in your routes (config/routes.rb):
+
+  mount Ckeditor::Engine => "/ckeditor"
 
 Include ckeditor javascripts rails 3.2:
 
