@@ -46,6 +46,13 @@ Rake::TestTask.new("test:models") do |t|
   t.verbose = false
 end
 
+Rake::TestTask.new("test:functional") do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/functional/*_test.rb'
+  t.verbose = false
+end
+
 task :default => :test
 
 RDoc::Task.new do |rdoc|
