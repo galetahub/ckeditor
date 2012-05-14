@@ -24,7 +24,7 @@ platforms :ruby do
   end
 
   group :active_record do
-    gem "paperclip", "< 3.0.1" # https://github.com/thoughtbot/paperclip/issues/807
+    gem "paperclip", "~> 3.0.3"
     gem "carrierwave"
     gem "dragonfly"
     gem "mini_magick"
