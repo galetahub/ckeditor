@@ -7,7 +7,7 @@ module Ckeditor
     
     config.action_view.javascript_expansions[:ckeditor] = "ckeditor/ckeditor"
     
-    initializer "ckeditor.assets_precompile" do |app|
+    initializer "ckeditor.assets_precompile", :group => :assets do |app|
       app.config.assets.precompile += Ckeditor.assets
     end
     
