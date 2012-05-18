@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.rdoc"]
   s.require_paths = ["lib"]
   
-  s.add_dependency("mime-types", "~> 1.17.2")
-  s.add_dependency("orm_adapter", "~> 0.0.6")
+  s.add_dependency("mime-types")
+  s.add_dependency("orm_adapter")
 end
