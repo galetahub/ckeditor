@@ -3,6 +3,9 @@ body {
 	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
 }
+img {
+  border: 0;
+}
 .gal-holder {
 	display: block;
 	overflow: hidden;
