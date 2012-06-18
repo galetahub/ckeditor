@@ -31,7 +31,7 @@ module Ckeditor
         js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
         js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
 
-        "$(document).ready(function(){ #{js.join} });".html_safe
+        "jQuery(document).ready(function($){ #{js.join} });".html_safe
       end
       
       def js_fileuploader(uploader_type, options = {})
@@ -51,7 +51,7 @@ module Ckeditor
         
         js_options = ActiveSupport::JSON.encode(options)
         
-        "$(document).ready(function(){ new qq.FileUploaderInput(#{js_options}); });".html_safe
+        "jQuery(document).ready(function($){ new qq.FileUploaderInput(#{js_options}); });".html_safe
       end
       
       def filethumb(filename)

@@ -65,7 +65,7 @@ CKEDITOR.editorConfig = function( config )
     var dialogDefinition = ev.data.definition;
     var content, upload;
     
-    if ($.inArray(dialogName, ['link', 'image', 'attachment', 'flash']) > -1) {
+    if (jQuery.inArray(dialogName, ['link', 'image', 'attachment', 'flash']) > -1) {
       content = (dialogDefinition.getContents('Upload') || dialogDefinition.getContents('upload'));
       upload = (content == null ? null : content.get('upload'));
       
