@@ -11,6 +11,7 @@ module Ckeditor
         input_html = (options.delete(:input_html) || {}).stringify_keys
         js_content_for_section = options.delete(:js_content_for)
         
+        input_html['id'] ||= options[:id]
         instance_tag = ActionView::Base::InstanceTag.new(object_name, method, self, options.delete(:object))
         instance_tag.send(:add_default_name_and_id, input_html)
         
