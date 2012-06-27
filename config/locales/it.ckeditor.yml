@@ -1,0 +1,8 @@
+it:
+  ckeditor:
+    page_title: "CKEditor Files Manager"
+    confirm_delete: "Cancellare il file?"
+    buttons:
+      cancel: "Annulla"
+      upload: "Carica"
+      delete: "Elimina"
