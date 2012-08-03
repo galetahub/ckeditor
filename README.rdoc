@@ -88,10 +88,10 @@ Form helpers:
   cktext_area_tag("content", "Ckeditor", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Easy')
   
 * input_html - Options for text_area tag, others for ckeditor javascript configuration.
-* language - appends automatically, by default is I18n.locale
+* language - appends automatically, by default it's I18n.locale
 * available ckeditor options - http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
 
-For configure ckeditor default options check:
+In order to configure the ckeditor default options, look at
 
   public/javascripts/ckeditor/config.js
   
@@ -99,7 +99,7 @@ This stylesheet use editor for displaying edit area:
 
   public/javascripts/ckeditor/contents.css
 
-FormBuilder helper for more usefully:
+Here's a FormBuilder helper example:
 
   <%= form_for @page do |form| -%>
     ...
@@ -112,7 +112,7 @@ FormBuilder helper for more usefully:
 
 === AJAX
 
-Jquery sample:
+jQuery sample:
 
   <script type='text/javascript' charset='UTF-8'>
     $(document).ready(function(){  
@@ -146,7 +146,7 @@ For example, you need split assets collection for each user.
       end
   end
   
-If your wont filter only pictures or attachment_files - redefine methods "ckeditor_pictures_scope" or "ckeditor_attachment_files_scope" respectively.
+If you want to filter only pictures or attachment_files - redefine methods "ckeditor_pictures_scope" or "ckeditor_attachment_files_scope" respectively.
 By default, both these methods call "ckeditor_filebrowser_scope" method:
 
   class ApplicationController < ActionController::Base
