@@ -1,3 +1,11 @@
+= Intro
+
+This fork will fix the problem with assets:precompile and ckeditor:
+
+  *** Invalid CSS after "": expected "{", was "html .cke_uicol..."
+
+Inside yui.css there is a hack for IE6. Who cares about ie6?
+
 = Ckeditor
 
 CKEditor is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to 
