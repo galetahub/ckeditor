@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    ckeditor (3.7.0)
-      mime-types (~> 1.17.2)
-      orm_adapter (~> 0.0.6)
+    ckeditor (3.7.1)
+      mime-types
+      orm_adapter
 
 GEM
   remote: http://rubygems.org/
@@ -87,7 +87,7 @@ GEM
     mynyml-redgreen (0.7.1)
       term-ansicolor (>= 1.0.4)
     nokogiri (1.5.2)
-    orm_adapter (0.0.7)
+    orm_adapter (0.4.0)
     paperclip (3.0.3)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)

@@ -41,6 +41,10 @@ module Ckeditor
   # Ckeditor assets for precompilation
   mattr_accessor :assets
   @@assets = nil
+
+  # Turn on/off filename parameterize
+  mattr_accessor :parameterize_filenames
+  @@parameterize_filenames = true
   
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
@@ -54,13 +58,8 @@ module Ckeditor
   
   def self.assets
     @@assets ||= begin
-      Dir[root_path.join('vendor/assets/javascripts/ckeditor/**', '*.{js,css}')].inject([]) do |list, path|
-        unless path.include?("/ckeditor/filebrowser/")
-          list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts'))
-        end
-        
-        list
-      end
+      Utils.select_assets("vendor/assets/javascripts/ckeditor", "vendor/assets/javascripts") +
+      Utils.select_assets("app/assets/javascripts/ckeditor/plugins", "app/assets/javascripts")
     end
   end
   

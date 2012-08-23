@@ -19,6 +19,8 @@ module Ckeditor
       end
       
       def parameterize_filename(filename)
+        return filename unless Ckeditor.parameterize_filenames
+
         extension = File.extname(filename)
         basename = filename.gsub(/#{extension}$/, "")
         
@@ -31,7 +33,7 @@ module Ckeditor
         js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
         js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
 
-        "jQuery(document).ready(function($){ #{js.join} });".html_safe
+        "window.onload = function(){ #{js.join} };".html_safe
       end
       
       def js_fileuploader(uploader_type, options = {})
@@ -51,19 +53,29 @@ module Ckeditor
         
         js_options = ActiveSupport::JSON.encode(options)
         
-        "jQuery(document).ready(function($){ new qq.FileUploaderInput(#{js_options}); });".html_safe
+        "window.onload = function(){ new qq.FileUploaderInput(#{js_options}); };".html_safe
       end
       
       def filethumb(filename)
         extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
 	      image = "#{extname}.gif"
-	      source = Ckeditor.root_path.join("vendor/assets/javascripts/ckeditor/filebrowser/images/thumbs")
+	      source = Ckeditor.root_path.join("app/assets/javascripts/ckeditor/filebrowser/images/thumbs")
 	      
 	      unless File.exists?(File.join(source, image))
 	        image = "unknown.gif"
 	      end
 	      
 	      File.join(Ckeditor.relative_path, "filebrowser/images/thumbs", image)
+      end
+
+      def select_assets(path, relative_path)
+        folder = File.join(path, '**')
+        relative_folder = Ckeditor.root_path.join(relative_path)
+      
+        Dir[Ckeditor.root_path.join(folder, '*.{js,css}')].inject([]) do |list, file|
+          list << Pathname.new(file).relative_path_from(relative_folder).to_s
+          list
+        end
       end
     end
   end

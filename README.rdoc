@@ -68,6 +68,10 @@ Mount engine in your routes (config/routes.rb):
 
   mount Ckeditor::Engine => "/ckeditor"
 
+Procompile ckeditor js and css files (config/environments/production.rb):
+
+  config.assets.precompile += Ckeditor.assets
+
 Include ckeditor javascripts rails 3.2:
 
   //= require ckeditor/init
@@ -91,14 +95,12 @@ Form helpers:
 * language - appends automatically, by default it's I18n.locale
 * available ckeditor options - http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
 
-In order to configure the ckeditor default options, look at
+In order to configure the ckeditor default options, create files:
 
-  public/javascripts/ckeditor/config.js
+  app/assets/javascripts/ckeditor/config.js
+
+  app/assets/javascripts/ckeditor/contents.css
   
-This stylesheet use editor for displaying edit area:
-
-  public/javascripts/ckeditor/contents.css
-
 Here's a FormBuilder helper example:
 
   <%= form_for @page do |form| -%>
