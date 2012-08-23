@@ -20,6 +20,7 @@ nb.js      Found: 4 Missing: 0
 nl.js      Found: 4 Missing: 0
 no.js      Found: 4 Missing: 0
 pl.js      Found: 4 Missing: 0
+pt-br.js   Found: 4 Missing: 0
 tr.js      Found: 4 Missing: 0
 ug.js      Found: 4 Missing: 0
 uk.js      Found: 4 Missing: 0
