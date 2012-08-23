@@ -3,6 +3,8 @@ Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
+jQuery.noConflict();
+
 CKEDITOR.editorConfig = function( config )
 {
   // Define changes to default configuration here. For example:
@@ -47,10 +49,9 @@ CKEDITOR.editorConfig = function( config )
   config.addQueryString = function( url, params ){
     var queryString = [];
 
-    if ( !params )
+    if ( !params ) {
       return url;
-    else
-    {
+    } else {
       for ( var i in params )
         queryString.push( i + "=" + encodeURIComponent( params[ i ] ) );
     }
