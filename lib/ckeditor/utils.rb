@@ -33,7 +33,7 @@ module Ckeditor
         js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
         js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
 
-        "window.onload = function(){ #{js.join} };".html_safe
+        "new function(){ #{js.join} };".html_safe
       end
       
       def js_fileuploader(uploader_type, options = {})
