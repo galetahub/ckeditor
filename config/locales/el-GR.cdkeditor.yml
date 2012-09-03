@@ -1,0 +1,8 @@
+"el-GR":
+  ckeditor:
+    page_title: "CKEditor Διαχείρηση Αρχείων"
+    confirm_delete: "Διαγραφή αρχείου;"
+    buttons:
+      cancel: "Ακύρωση"
+      upload: "Μεταφόρτωση"
+      delete: "Διαγραφή"
