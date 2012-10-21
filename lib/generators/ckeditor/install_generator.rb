@@ -7,14 +7,14 @@ module Ckeditor
       include Rails::Generators::Migration
 
       desc "Generates migration for Asset (Picture, AttachmentFile) models"
-      
+
       # ORM configuration
       class_option :orm, :type => :string, :default => "active_record",
         :desc => "Backend processor for upload support"
-      
+
       class_option :backend, :type => :string, :default => 'paperclip',
         :desc => "paperclip (default), carrierwave, or dragonfly"
-      
+
       def self.source_root
         @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
       end
@@ -31,7 +31,7 @@ module Ckeditor
           template File.join("base", "dragonfly", "initializer.rb"), "config/initializers/ckeditor_dragonfly.rb"
         end
       end
-      
+
       def mount_engine
         route "mount Ckeditor::Engine => '/ckeditor'"
       end
@@ -41,11 +41,11 @@ module Ckeditor
           template "#{generator_dir}/ckeditor/#{filename}.rb",
                    File.join('app/models', ckeditor_dir, "#{filename}.rb")
         end
-        
+
         if backend == "carrierwave"
           template "#{uploaders_dir}/uploaders/ckeditor_attachment_file_uploader.rb",
                    File.join("app/uploaders", "ckeditor_attachment_file_uploader.rb")
-          
+
           template "#{uploaders_dir}/uploaders/ckeditor_picture_uploader.rb",
                    File.join("app/uploaders", "ckeditor_picture_uploader.rb")
         end
@@ -56,7 +56,7 @@ module Ckeditor
           migration_template "#{generator_dir}/migration.rb", File.join('db/migrate', "create_ckeditor_assets.rb")
         end
       end
-      
+
       protected
 
         def ckeditor_dir
@@ -66,15 +66,15 @@ module Ckeditor
         def generator_dir
           @generator_dir ||= [orm, backend].join('/')
         end
-        
+
         def uploaders_dir
           @uploaders_dir ||= ['base', 'carrierwave'].join('/')
         end
-        
+
         def orm
           options[:orm] || "active_record"
         end
-        
+
         def backend
           options[:backend] || "paperclip"
         end
