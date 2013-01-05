@@ -72,11 +72,11 @@ module Ckeditor
         end
         
         def orm
-          options[:orm] || "active_record"
+          (options[:orm] || "active_record").to_s
         end
         
         def backend
-          options[:backend] || "paperclip"
+          (options[:backend] || "paperclip").to_s
         end
     end
   end
