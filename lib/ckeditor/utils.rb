@@ -27,13 +27,18 @@ module Ckeditor
         [basename.parameterize('_'), extension].join.downcase
       end
       
-      def js_replace(dom_id, options = {})
-        js_options = ActiveSupport::JSON.encode(options)
-        
-        js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
-        js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
+      def js_replace(dom_id, options = nil)
+        js = ["if (typeof CKEDITOR != 'undefined') {"]
 
-        "(function() { #{js.join} }).call(this);".html_safe
+        if options && !options.keys.empty?
+          js_options = ActiveSupport::JSON.encode(options)
+          js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
+        else
+          js << "CKEDITOR.replace('#{dom_id}');"
+        end
+
+        js << "}"
+        js.join(" ").html_safe
       end
       
       def js_fileuploader(uploader_type, options = {})
@@ -69,7 +74,7 @@ module Ckeditor
       end
 
       def select_assets(path, relative_path)
-        folder = File.join(path, '**')
+        folder = File.join(relative_path, path, '**')
         relative_folder = Ckeditor.root_path.join(relative_path)
       
         Dir[Ckeditor.root_path.join(folder, '*.{js,css}')].inject([]) do |list, file|

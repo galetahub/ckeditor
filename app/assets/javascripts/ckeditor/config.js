@@ -90,10 +90,6 @@ CKEDITOR.editorConfig = function( config )
     }
   });
   
-  /* Extra plugins */
-  // works only with en, ru, uk locales
-  config.extraPlugins = "embed,attachment";
-  
   /* Toolbars */
   config.toolbar = 'Easy';
   
@@ -105,7 +101,7 @@ CKEDITOR.editorConfig = function( config )
         ['Styles','Format'], ['Subscript', 'Superscript', 'TextColor'], ['Maximize','-','About'], '/',
         ['Bold','Italic','Underline','Strike'], ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-        ['Link','Unlink','Anchor'], ['Image', 'Attachment', 'Flash', 'Embed'],
+        ['Link','Unlink','Anchor'], ['Image', 'Flash'],
         ['Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
     ];
 };

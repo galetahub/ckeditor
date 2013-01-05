@@ -5,9 +5,7 @@ module Ckeditor
   class Engine < ::Rails::Engine
     isolate_namespace Ckeditor
     
-    config.action_view.javascript_expansions[:ckeditor] = "ckeditor/ckeditor"
-    
-    initializer "ckeditor.assets_precompile", :group => :assets do |app|
+    initializer "ckeditor.assets_precompile", :group => :all do |app|
       app.config.assets.precompile += Ckeditor.assets
     end
     
@@ -24,8 +22,7 @@ module Ckeditor
     end
     
     initializer "ckeditor.hooks" do
-      # Don't load the hook for Formtastic < 2.0.0 that (it crashes), apparently, didn't define a Formtastic::Inputs.
-      if Object.const_defined?("Formtastic") && Formtastic.const_defined?("Inputs")
+      if Object.const_defined?("Formtastic")
         require "ckeditor/hooks/formtastic"
       end
       

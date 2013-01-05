@@ -1,3 +1,5 @@
+require 'simple_form'
+
 module Ckeditor::Hooks::SimpleForm
   class CkeditorInput < ::SimpleForm::Inputs::Base
     def input
@@ -5,6 +7,7 @@ module Ckeditor::Hooks::SimpleForm
     end
   end
 end
+
 ::SimpleForm::FormBuilder.map_type :ckeditor, :to => Ckeditor::Hooks::SimpleForm::CkeditorInput
 
 # TODO: remove this after a while, SimpleForm::FormBuilder#ckeditor is deprecated.

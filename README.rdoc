@@ -1,7 +1,6 @@
 = Ckeditor
 
-CKEditor is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to 
-the results users have when publishing it. It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
+CKEditor is a ready-for-use HTML text editor designed to simplify web content creation. It's a WYSIWYG editor that brings common word processor features directly to your web pages. Enhance your website experience with our community maintained editor. http://ckeditor.com/
 
 == Features
 
@@ -9,20 +8,20 @@ the results users have when publishing it. It brings to the web common editing f
 * Files browser
 * HTML5 files uploader
 * Hooks for formtastic and simple_form forms generators
-* Extra plugins: attachment and embed.
-* Assets pagination (under construction)
 
-== Install
+== Installation
 
-Rails 3.2:
+For basic usage just include ckeditor gem:
 
-  gem "ckeditor", "3.7.3"
+  gem "ckeditor"
 
-Rails <= 3.0:
+For files uploading support you need generage models for file storage.
+Currently supported next backends:
 
-  gem "ckeditor", "3.6.3"
+* ActiveRecord (paperclip, carrierwave)
+* Mongoid (paperclip, carrierwave)
 
-=== Now generate models for store uploading files
+=== How generate models for store uploading files
 
 ==== ActiveRecord + paperclip
 
@@ -52,65 +51,41 @@ For active_record orm is used paperclip gem (it's by default).
 
   rails generate ckeditor:install --orm=mongoid --backend=carrierwave
 
-Available orms:
-* active_record
-* mongoid (Thanks Dmitry Lihachev https://github.com/lda)
-* mongo_mapper (under construction)
-
-
+All ckeditor models will be generated into app/models/ckeditor folder.
 Autoload ckeditor models folder (application.rb):
 
   config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-
-== Usage
 
 Mount engine in your routes (config/routes.rb):
 
   mount Ckeditor::Engine => "/ckeditor"
 
-Procompile ckeditor js and css files (config/environments/production.rb):
+== Usage
 
-  config.assets.precompile += Ckeditor.assets
-
-Include ckeditor javascripts rails 3.2:
+Include ckeditor javascripts rails 3.2 (application.js):
 
   //= require ckeditor/init
 
-or
-
-  <%= javascript_include_tag "ckeditor/init" %>  
-
-
-Rails <= 3.0:
-
-  <%= javascript_include_tag :ckeditor %>
-
 Form helpers:
 
-  cktext_area_tag("test_area", "Ckeditor is the best")
+  <%= form_for @page do |form| -%>
+    ...
+    <%= form.cktext_area :notes, :class => "someclass", :ckeditor => {:language => "uk"} %>
+    ...
+    <%= form.cktext_area :content, :value => "Default value" %>
+    ...
+    <%= cktext_area :page, :info, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
+    ...
+  <% end -%>
 
-  cktext_area_tag("content", "Ckeditor", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Easy')
-  
-* input_html - Options for text_area tag, others for ckeditor javascript configuration.
-* language - appends automatically, by default it's I18n.locale
-* available ckeditor options - http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
+
+All ckeditor 4.0 options here http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 In order to configure the ckeditor default options, create files:
 
   app/assets/javascripts/ckeditor/config.js
 
   app/assets/javascripts/ckeditor/contents.css
-  
-Here's a FormBuilder helper example:
-
-  <%= form_for @page do |form| -%>
-    ...
-    <%= form.cktext_area :notes, :toolbar => 'Full', :width => 800, :height => 400 %>
-    ...
-    <%= form.cktext_area :content, :input_html => { :value => "Default value" } %>
-    ...
-    <%= cktext_area :page, :info %>
-  <% end -%>
 
 === AJAX
 
@@ -129,61 +104,13 @@ jQuery sample:
 === Formtastic integration
 
   <%= form.input :content, :as => :ckeditor %>
-  <%= form.input :content, :as => :ckeditor, :input_html => { :height => 400 } %>
+  <%= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400 } } %>
 
 === SimpleForm integration
 
-  <%= form.input :content, :as => :ckeditor, :label => false, :input_html => { :toolbar => 'Full' } %>
+  <%= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
 
-=== Default scope
-
-For example, you need split assets collection for each user.
-
-  class ApplicationController < ActionController::Base
-  
-    protected
-      
-      def ckeditor_filebrowser_scope(options = {})
-        super({ :assetable_id => current_user.id, :assetable_type => 'User' }.merge(options))
-      end
-  end
-  
-If you want to filter only pictures or attachment_files - redefine methods "ckeditor_pictures_scope" or "ckeditor_attachment_files_scope" respectively.
-By default, both these methods call "ckeditor_filebrowser_scope" method:
-
-  class ApplicationController < ActionController::Base
-  
-    protected
-
-      def ckeditor_pictures_scope(options = {})
-        ckeditor_filebrowser_scope(options)
-      end
-          
-      def ckeditor_attachment_files_scope(options = {})
-        ckeditor_filebrowser_scope(options)
-      end
-  end
-
-=== Callbacks
-
-  class ApplicationController < ActionController::Base
-  
-    protected
-      
-      # Cancan example
-      def ckeditor_authenticate
-        authorize! action_name, @asset
-      end
-      
-      # Set current_user as assetable
-      def ckeditor_before_create_asset(asset)
-        asset.assetable = current_user
-        return true
-      end
-  end
-
-
-== I18n  
+== I18n
 
   en:
     ckeditor:

@@ -2,8 +2,6 @@ require 'orm_adapter'
 require 'pathname'
 
 module Ckeditor
-  IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg', 'image/tiff', 'image/x-png']
-  
   autoload :Utils, 'ckeditor/utils'
   autoload :Http, 'ckeditor/http'
   
@@ -23,6 +21,8 @@ module Ckeditor
     autoload :CarrierWave, 'ckeditor/backend/carrierwave'
     autoload :Dragonfly, 'ckeditor/backend/dragonfly'
   end
+
+  IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg', 'image/tiff', 'image/x-png']
   
   # Allowed image file types for upload. 
   # Set to nil or [] (empty array) for all file types
@@ -53,14 +53,11 @@ module Ckeditor
   end
   
   def self.root_path
-    @root_path ||= Pathname.new( File.dirname(File.expand_path('../', __FILE__)) )
+    @root_path ||= Pathname.new(File.dirname(File.expand_path('../', __FILE__)))
   end
   
   def self.assets
-    @@assets ||= begin
-      Utils.select_assets("vendor/assets/javascripts/ckeditor", "vendor/assets/javascripts") +
-      Utils.select_assets("app/assets/javascripts/ckeditor/plugins", "app/assets/javascripts")
-    end
+    @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts")
   end
   
   def self.picture_model
