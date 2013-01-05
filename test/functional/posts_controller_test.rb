@@ -27,9 +27,9 @@ class PostsControllerTest < ActionController::TestCase
     get :new
     
     assert_select "textarea#post_content[name='post[content]'][cols=40][rows=20]", ""
-    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('post_content', {"language":"en","width":800,"height":400});!))
-    assert_select "textarea#post_info[name='post[info]'][cols=40][rows=20]", "Defaults info content"
-    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('post_info', {"language":"en"});!))
+    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('post_content', {"width":800,"height":400});!))
+    assert_select "textarea#new_info_content[name='post[info]'][cols=40][rows=20]", "Defaults info content"
+    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('new_info_content');!))
   end
 
   test "text_area value" do

@@ -18,8 +18,8 @@ For basic usage just include ckeditor gem:
 For files uploading support you need generage models for file storage.
 Currently supported next backends:
 
-* ActiveRecord (paperclip, carrierwave)
-* Mongoid (paperclip, carrierwave)
+* ActiveRecord (paperclip, carrierwave, dragonfly)
+* Mongoid (paperclip, carrierwave, dragonfly)
 
 === How generate models for store uploading files
 
@@ -109,6 +109,26 @@ jQuery sample:
 === SimpleForm integration
 
   <%= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
+
+=== CanCan integration
+
+To use cancan with Ckeditor, add this to an initializer.
+
+  # in config/initializers/ckeditor.rb
+
+  Ckeditor.setup do |config|
+    config.authorize_with :cancan
+  end
+
+At this point, all authorization will fail and no one will be able to access the filebrowser pages.
+To grant access, add this to Ability#initialize
+  
+  # Always performed
+  can :access, :ckeditor   # needed to access Ckeditor filebrowser
+
+  # Performed checks for actions:
+  can [:read, :create, :destroy], Ckeditor::Picture
+  can [:read, :create, :destroy], Ckeditor::AttachmentFile
 
 == I18n
 

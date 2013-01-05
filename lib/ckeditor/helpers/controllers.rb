@@ -5,12 +5,16 @@ module Ckeditor
       
       protected
         
-        def ckeditor_authenticate
-          return true
+        def ckeditor_current_user
+          instance_eval &Ckeditor.current_user_method
+        end
+
+        def ckeditor_authorize!
+          instance_eval &Ckeditor.authorize_with
         end
         
         def ckeditor_before_create_asset(asset)
-          asset.assetable = current_user if respond_to?(:current_user)
+          asset.assetable = ckeditor_current_user
           return true
         end
         

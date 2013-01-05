@@ -2,7 +2,8 @@ class Ckeditor::ApplicationController < ::ApplicationController
   respond_to :html, :json
   
   before_filter :find_asset, :only => [:destroy]
-  before_filter :ckeditor_authenticate
+  before_filter :ckeditor_authorize!
+  before_filter :authorize_resource
 
   protected
     

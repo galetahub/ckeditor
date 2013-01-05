@@ -29,6 +29,10 @@ module Ckeditor
       if Object.const_defined?("SimpleForm")
         require "ckeditor/hooks/simple_form"
       end
+
+      if Object.const_defined?("CanCan")
+        require "ckeditor/hooks/cancan"
+      end
     end
   end
 end
