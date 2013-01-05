@@ -7,10 +7,11 @@ module Ckeditor
       include ActionView::Helpers::JavaScriptHelper
       
       def cktext_area(object_name, method, options = {})
-        ck_options = (options.delete(:ckeditor) || {}).stringify_keys
+        options = (options || {}).stringify_keys
+        ck_options = (options.delete('ckeditor') || {}).stringify_keys
         
-        instance_tag = ActionView::Base::InstanceTag.new(object_name, method, self, options.delete(:object))
-        instance_tag.send(:add_default_name_and_id, options)
+        instance_tag = ActionView::Base::InstanceTag.new(object_name, method, self, options.delete('object'))
+        instance_tag.send(:add_default_name_and_id, options) if options['id'].blank?
         
         output_buffer = ActiveSupport::SafeBuffer.new
         output_buffer << instance_tag.to_text_area_tag(options)
