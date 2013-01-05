@@ -57,7 +57,7 @@ module Ckeditor
   end
   
   def self.assets
-    @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts")
+    @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
   end
   
   def self.picture_model
