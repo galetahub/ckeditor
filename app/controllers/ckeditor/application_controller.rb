@@ -1,17 +1,10 @@
 class Ckeditor::ApplicationController < ::ApplicationController
   respond_to :html, :json
   
-  before_filter :set_locale
   before_filter :find_asset, :only => [:destroy]
   before_filter :ckeditor_authenticate
 
   protected
-    
-    def set_locale
-      if !params[:langCode].blank? && I18n.available_locales.include?(params[:langCode].to_sym)
-        I18n.locale = params[:langCode]
-      end
-    end
     
     def respond_with_asset(asset)
       file = params[:CKEditor].blank? ? params[:qqfile] : params[:upload]
