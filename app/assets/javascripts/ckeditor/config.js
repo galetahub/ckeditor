@@ -95,13 +95,12 @@ CKEDITOR.editorConfig = function( config )
   
   config.toolbar_Easy =
     [
-        ['Source','-','Preview'],
-        ['Cut','Copy','Paste','PasteText','PasteFromWord',],
-        ['Undo','Redo','-','SelectAll','RemoveFormat'],
-        ['Styles','Format'], ['Subscript', 'Superscript', 'TextColor'], ['Maximize','-','About'], '/',
-        ['Bold','Italic','Underline','Strike'], ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-        ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-        ['Link','Unlink','Anchor'], ['Image', 'Flash'],
-        ['Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
+        ['Source','-','Cut','Copy','Paste','PasteText','PasteFromWord'],
+        ['Undo','Redo'], ['Link','Unlink','Anchor'],
+        ['Image', 'Table','HorizontalRule','SpecialChar'],
+        ['Maximize','-','About'], '/',
+        ['Bold','Italic','Underline','Strike', 'RemoveFormat'], 
+        ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+        ['Styles','Format'], ['Subscript', 'Superscript']
     ];
 };
