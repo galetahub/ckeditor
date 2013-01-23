@@ -45,9 +45,8 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
     Ckeditor.image_file_types
   end
 
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  # Use the model's stored attribute to retrieve the file name
+  def filename
+    model.data_file_name
+  end
 end
