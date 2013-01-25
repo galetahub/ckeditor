@@ -9,7 +9,7 @@
           :class => "fileupload-cancel gal-del" %>
 	
 	<div class="fileupload-file gal-inner-holder">
-		<div class="img"><img src="${url_thumb}" title="${filename}"></div>
+		<div class="img"><img src="<%= Rails.configuration.action_controller.asset_host %>${url_thumb}" title="${filename}"></div>
 		<div class="img-data">
 			<div class="img-name">${filename}</div>
 			<div class="time-size">
