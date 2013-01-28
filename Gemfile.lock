@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ckeditor (4.0.0.rc1)
+    ckeditor (4.0.0)
       mime-types
       orm_adapter
 

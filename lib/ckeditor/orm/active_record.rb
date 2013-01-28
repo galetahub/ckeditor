@@ -14,9 +14,7 @@ module Ckeditor
             base.class_eval do
               self.table_name = "ckeditor_assets"
               
-              belongs_to :assetable, :polymorphic => true
-              
-              attr_accessible :data, :assetable_type, :assetable_id, :assetable
+              belongs_to :assetable, :polymorphic => true              
             end
           end
         end

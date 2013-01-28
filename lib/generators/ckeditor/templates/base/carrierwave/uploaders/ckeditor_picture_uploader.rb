@@ -44,9 +44,4 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   def extension_white_list
     Ckeditor.image_file_types
   end
-
-  # Use the model's stored attribute to retrieve the file name
-  def filename
-    model.data_file_name
-  end
 end
