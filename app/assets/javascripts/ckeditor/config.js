@@ -89,18 +89,4 @@ CKEDITOR.editorConfig = function( config )
       }
     }
   });
-  
-  /* Toolbars */
-  config.toolbar = 'Easy';
-  
-  config.toolbar_Easy =
-    [
-        ['Source','-','Cut','Copy','Paste','PasteText','PasteFromWord'],
-        ['Undo','Redo'], ['Link','Unlink','Anchor'],
-        ['Image', 'Table','HorizontalRule','SpecialChar'],
-        ['Maximize','-','About'], '/',
-        ['Bold','Italic','Underline','Strike', 'RemoveFormat'], 
-        ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-        ['Styles','Format'], ['Subscript', 'Superscript']
-    ];
 };
