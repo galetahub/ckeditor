@@ -4,7 +4,7 @@ CKEditor is a ready-for-use HTML text editor designed to simplify web content cr
 
 == Features
 
-* Ckeditor version 4.0.1 (standard)
+* Ckeditor version 4.0.1 (full)
 * Rails 3.2 integration
 * Files browser
 * HTML5 files uploader
