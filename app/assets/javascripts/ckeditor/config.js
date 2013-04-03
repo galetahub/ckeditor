@@ -83,7 +83,7 @@ CKEDITOR.editorConfig = function( config )
       content = (dialogDefinition.getContents('Upload') || dialogDefinition.getContents('upload'));
       upload = (content == null ? null : content.get('upload'));
       
-      if (upload && upload.filebrowser['params'] == null) {
+      if (upload && upload.filebrowser && upload.filebrowser['params'] === undefined) {
         upload.filebrowser['params'] = config.filebrowserParams();
         upload.action = config.addQueryString(upload.action, upload.filebrowser['params']);
       }
