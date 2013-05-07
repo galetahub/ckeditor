@@ -86,7 +86,7 @@ In order to configure the ckeditor default options, create files:
 
   app/assets/javascripts/ckeditor/config.js
 
-  app/assets/javascripts/ckeditor/contents.css
+  app/assets/stylesheets/ckeditor/contents.css
 
 === AJAX
 
