@@ -52,6 +52,8 @@ For active_record orm is used paperclip gem (it's by default).
 
   rails generate ckeditor:install --orm=mongoid --backend=carrierwave
 
+==== Load generated models
+
 All ckeditor models will be generated into app/models/ckeditor folder.
 Autoload ckeditor models folder (application.rb):
 
