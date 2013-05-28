@@ -6,8 +6,15 @@
 	<%= csrf_meta_tag %>
 	<%= tag(:meta, :name => "ckeditor-path", :content => Ckeditor.relative_path) %>
   <title><%= I18n.t('page_title', :scope => [:ckeditor]) %></title>
-  
-  <% if Rails.application.config.assets.enabled %>
+
+  <%
+    assets_enabled = if Gem::Version.new(::Rails.version.to_s) >= Gem::Version.new('4.0.0.beta1')
+      defined?(Sprockets::Rails)
+    else
+      Rails.application.config.assets.enabled
+    end
+  %>
+  <% if assets_enabled %>
       <%= stylesheet_link_tag "ckeditor/application" %>
       <%= javascript_include_tag "ckeditor/application" %>
   <% else %>
