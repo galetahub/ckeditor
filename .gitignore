@@ -11,3 +11,4 @@ test/tmp
 test/dummy/public/uploads/*
 *.swp
 .idea
+.DS_Store
