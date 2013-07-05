@@ -3,38 +3,29 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="robots" content="noindex, nofollow">
-	<%= csrf_meta_tag %>
-	<%= tag(:meta, :name => "ckeditor-path", :content => Ckeditor.relative_path) %>
+  <%= csrf_meta_tag %>
+  <%= tag(:meta, :name => "ckeditor-path", :content => Ckeditor.relative_path) %>
   <title><%= I18n.t('page_title', :scope => [:ckeditor]) %></title>
-  
-  <%
-    assets =  false
-    if Gem.loaded_specs["rails"].version.to_s.first == '4' && defined?(Sprockets::Rails)
-      assets = true
-    elsif Gem.loaded_specs["rails"].version.to_s.first == '3' && Rails.application.config.assets.enabled
-      assets = true
-    end
-  %>
 
-  <% if assets %>
-      <%= stylesheet_link_tag "ckeditor/application" %>
-      <%= javascript_include_tag "ckeditor/application" %>
-  <% else %>
-     <link href="/javascripts/ckeditor/filebrowser/stylesheets/uploader.css" type="text/css" rel="stylesheet">
-      <% ["jquery.js", "jquery.tmpl.js", "fileuploader.js", "rails.js", "application.js"].each do |js| %>
-          <script src="/javascripts/ckeditor/filebrowser/javascripts/<%= js %>" type="text/javascript"></script>
-      <% end %>
-  <% end %>
+  <% if assets_pipeline_enabled? -%>
+    <%= stylesheet_link_tag "ckeditor/application" %>
+    <%= javascript_include_tag "ckeditor/application" %>
+  <% else -%>
+    <link href="/javascripts/ckeditor/filebrowser/stylesheets/uploader.css" type="text/css" rel="stylesheet">
+    <% ["jquery.js", "jquery.tmpl.js", "fileuploader.js", "rails.js", "application.js"].each do |js| -%>
+      <script src="/javascripts/ckeditor/filebrowser/javascripts/<%= js %>" type="text/javascript"></script>
+    <% end -%>
+  <% end -%>
   
   <script type="text/javascript">
     var CKEditorFuncNum = $.QueryString["CKEditorFuncNum"];
-	  var CKEditorName = $.QueryString["CKEditor"];
-	  var CKEDITOR = window.opener.CKEDITOR;
-	  var EDITOR = CKEDITOR.instances[CKEditorName];
+    var CKEditorName = $.QueryString["CKEditor"];
+    var CKEDITOR = window.opener.CKEDITOR;
+    var EDITOR = CKEDITOR.instances[CKEditorName];
   </script>
 </head>
 <body>
-	<%= yield %>
-	<%= render :partial => 'ckeditor/shared/asset_tmpl' %>
+  <%= yield %>
+  <%= render :partial => 'ckeditor/shared/asset_tmpl' %>
 </body>
 </html>
