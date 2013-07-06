@@ -1,4 +1,4 @@
-class Ckeditor::ApplicationHelper
+module Ckeditor::ApplicationHelper
   def assets_pipeline_enabled?
     if Gem::Version.new(::Rails.version.to_s) >= Gem::Version.new('4.0.0')
       defined?(Sprockets::Rails)
