@@ -5,6 +5,8 @@ class Ckeditor::ApplicationController < ::ApplicationController
   before_filter :ckeditor_authorize!
   before_filter :authorize_resource
 
+  layout 'ckeditor'
+
   protected
     
     def respond_with_asset(asset)
