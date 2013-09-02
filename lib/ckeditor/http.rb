@@ -46,6 +46,7 @@ module Ckeditor
         @request = request
         
         super Digest::SHA1.hexdigest(filename), tmpdir
+        binmode
         fetch
       end
      
