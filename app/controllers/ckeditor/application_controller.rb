@@ -14,7 +14,7 @@ class Ckeditor::ApplicationController < ::ApplicationController
       callback = ckeditor_before_create_asset(asset)
 
       if callback && asset.save
-        body = params[:CKEditor].blank? ? asset.to_json(:only=>[:id, :type]) : %Q"<script type='text/javascript'>
+        body = params[:CKEditor].blank? ? asset_to_json(asset) : %Q"<script type='text/javascript'>
           window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{Ckeditor::Utils.escape_single_quotes(asset.url_content)}');
         </script>"
         
@@ -22,5 +22,12 @@ class Ckeditor::ApplicationController < ::ApplicationController
       else
         render :nothing => true
       end
+    end
+
+    def asset_to_json(asset)
+      JSON.parse(asset.to_json(:only=>[:id, :type])).tap do |hash|
+        # Add asset_host to url
+        hash["asset"]["url_content"] = view_context.image_path asset.url_content
+      end.to_json
     end
 end
