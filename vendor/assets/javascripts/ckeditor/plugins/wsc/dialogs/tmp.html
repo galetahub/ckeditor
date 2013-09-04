@@ -74,11 +74,15 @@
 
 				var appString = 'lf/23/unpacked_js/spell.js';
 				var toolsString = 'lf/23/js/tools.js';
-				var url_version = 0;
 
 				var parseUrl = function(){
 					var serverUrl = window.location.hash.replace( /^#server=/, '' );
 					return serverUrl;
+				};
+
+				var url_version = function() {
+					var frameNumber = window.location.hash.match( /\?.*$/ )[0].replace( /^\?/, '' );
+					return frameNumber;
 				};
 
 				function loadScript(src, callback) {
@@ -108,12 +112,12 @@
 
 
 				window.onload = function(){
+
 					toolsString = parseUrl() + toolsString;
-					url_version += 1;
-					appString = parseUrl() + appString + '?'+ url_version;
+
+					appString = parseUrl() + appString;
 
 					 loadScript(appString, function(){
-					 	url_version += 1;
 						manageMessageTmp.send({
 							'id': 'iframeOnload',
 							'target': window.parent
