@@ -4,6 +4,7 @@ require 'pathname'
 module Ckeditor
   autoload :Utils, 'ckeditor/utils'
   autoload :Http, 'ckeditor/http'
+  autoload :TextArea, 'ckeditor/text_area'
   
   module Helpers
     autoload :ViewHelper, 'ckeditor/helpers/view_helper'

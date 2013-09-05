@@ -95,12 +95,12 @@ Form helpers:
   ...
   <%= form.cktext_area :content, :value => "Default value", :id => "sometext" %>
   ...
-  <%= cktext_area :page, :info, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
+  <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
   ...
 <% end -%>
 ```
 
-All ckeditor 4.0 options [here](http://docs.ckeditor.com/#!/api/CKEDITOR.config)
+All ckeditor options [here](http://docs.ckeditor.com/#!/api/CKEDITOR.config)
 
 In order to configure the ckeditor default options, create files:
 

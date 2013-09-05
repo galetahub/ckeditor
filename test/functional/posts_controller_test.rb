@@ -13,14 +13,14 @@ class PostsControllerTest < ActionController::TestCase
     get :index
     
     assert_select "script[src=/assets/application.js]"
-    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('test_area', {"language":"en"});!))
+    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('test_area');!))
   end
 
   test "pass text_area with options" do
     get :index
 
     assert_select "textarea#content[name=content][cols=10][rows=20]", "Ckeditor"
-    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('content', {"language":"en","toolbar":"Easy"});!))
+    assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('content', {"toolbar":"Easy"});!))
   end
 
   test "form builder helper" do
