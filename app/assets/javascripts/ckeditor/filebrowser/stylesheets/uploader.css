@@ -26,7 +26,7 @@ img {
 	top: 0;
 }
 .gal-holder .gal-item .gal-del:hover {
-	-moz-opacity: 0.7; 
+	-moz-opacity: 0.7;
 	-khtml-opacity: 0.7;
 	opacity: 0.7;
 }
@@ -115,4 +115,36 @@ img {
 }
 .gal-more a:hover {
 	text-decoration: underline;
+}
+
+.pagination {
+  height: 36px;
+  margin: 18px 0;
+  clear: both;
+}
+.pagination ul {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+}
+.pagination li {
+  float: left;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+.pagination li:first-child { border-left-width: 1px; }
+.pagination a, .pagination  .current, .pagination .gap {
+  display: block;
+  padding: 0 14px;
+  line-height: 34px;
+}
+.pagination a:hover,
+.pagination .active a {
+  background-color: #f5f5f5;
+}
+.pagination .current, .pagination .active a {
+  color: #999999;
+  background-color: transparent;
+  cursor: default;
 }
