@@ -4,10 +4,12 @@
   		<%= link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), 'javascript:void(0)', :class => "add" %>
 		</div>
 	</div>
-  
+
   <div class="fileupload-list">
-    <%= render :partial => 'ckeditor/shared/asset', :collection => @pictures %>		
+    <%= render :partial => 'ckeditor/shared/asset', :collection => @pictures %>
   </div>
+
+  <%= paginate @pictures %>
 </div>
 
 <script type="text/javascript">
