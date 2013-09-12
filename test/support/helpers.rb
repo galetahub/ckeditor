@@ -7,7 +7,7 @@ class ActiveSupport::TestCase
   def new_attachment(data = nil)
     data ||= fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')
     
-    Ckeditor::AttachmentFile.new(:data => data)
+    Ckeditor.attachment_file_model.new(:data => data)
   end
   
   def create_attachment(data = nil)
@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
   def new_picture(data = nil)
     data ||= fixture_file_upload('files/rails.png', 'image/png')
     
-    Ckeditor::Picture.new(:data => data)
+    Ckeditor.picture_model.new(:data => data)
   end
   
   def create_picture(data = nil)
