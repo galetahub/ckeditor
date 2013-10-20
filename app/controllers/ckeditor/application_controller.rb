@@ -1,5 +1,6 @@
 class Ckeditor::ApplicationController < ::ApplicationController
   respond_to :html, :json
+  layout 'ckeditor/application'
   
   before_filter :find_asset, :only => [:destroy]
   before_filter :ckeditor_authorize!
