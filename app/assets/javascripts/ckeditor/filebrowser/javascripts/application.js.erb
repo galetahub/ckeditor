@@ -76,7 +76,6 @@ qq.FileUploaderInput = function(o){
     this._classes = this._options.classes;
         
     this._button = this._createUploadButton(this._find(this._element, 'button'));  
-    this._path = $('meta[name="ckeditor-path"]').attr('content');
     
     //this._setupDragDrop();
     
@@ -188,7 +187,7 @@ qq.extend(qq.FileUploaderInput.prototype, {
             format_created_at: '',
             url_content: "#",
             controller: "assets",
-            url_thumb: this._path + "/filebrowser/images/preloader.gif"
+            url_thumb: "<%= asset_path('ckeditor/filebrowser/images/preloader.gif') %>"
           };
           
           var item = $(this._options.template_id)
