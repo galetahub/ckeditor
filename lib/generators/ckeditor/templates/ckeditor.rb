@@ -16,4 +16,8 @@ Ckeditor.setup do |config|
 
   # Setup authorization to be run as a before filter
   # config.authorize_with :cancan
+
+  # Asset model classes
+  # config.picture_model { Ckeditor::Picture }
+  # config.attachment_file_model { Ckeditor::AttachmentFile }
 end

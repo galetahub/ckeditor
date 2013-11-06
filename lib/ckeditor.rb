@@ -55,7 +55,11 @@ module Ckeditor
   # Turn on/off filename parameterize
   mattr_accessor :parameterize_filenames
   @@parameterize_filenames = true
-  
+
+  # Model classes
+  @@picture_model = nil
+  @@attachment_file_model = nil
+
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   #
@@ -77,13 +81,51 @@ module Ckeditor
   def self.assets
     @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
   end
-  
-  def self.picture_model
-    Ckeditor::Picture.to_adapter
+
+  def self.picture_model(&block)
+    if block_given?
+      self.picture_model = block
+    else
+      @@picture_model_class ||= begin
+        if @@picture_model.respond_to? :call
+          @@picture_model.call
+        else
+          @@picture_model || Ckeditor::Picture
+        end
+      end
+    end
   end
-  
-  def self.attachment_file_model
-    Ckeditor::AttachmentFile.to_adapter
+
+  def self.picture_model=(value)
+    @@picture_model_class = nil
+    @@picture_model = value
+  end
+
+  def self.picture_adapter
+    picture_model.to_adapter
+  end
+
+  def self.attachment_file_model(&block)
+    if block_given?
+      self.attachment_file_model = block
+    else
+      @@attachment_file_model_class ||= begin
+        if @@attachment_file_model.respond_to? :call
+          @@attachment_file_model.call
+        else
+          @@attachment_file_model || Ckeditor::AttachmentFile
+        end
+      end
+    end
+  end
+
+  def self.attachment_file_model=(value)
+    @@attachment_file_model_class = nil
+    @@attachment_file_model = value
+  end
+
+  def self.attachment_file_adapter
+    attachment_file_model.to_adapter
   end
 
   # Setup authorization to be run as a before filter
