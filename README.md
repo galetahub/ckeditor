@@ -123,29 +123,29 @@ First, you need to include in `application.js` **before** `ckeditor/init`
 It forces ckeditor core to respect digested assets.
 
 Next you need to check, that some non-core plugins and skins don't use core ckeditor functions
-to determine path to assets. For the latter we must determine task to copy non-digest assets in
-assets folder. Some example of such rake task is:
+to determine path to assets. Therefore we have to create a rake task thats copies the original assets and creates a non-digest version of it. Some example of such rake task is:
 
 ```ruby
 namespace :ckeditor do
-  def copy_assets(regexp)
-    Rails.application.assets.each_logical_path(regexp) do |name, path|
-      asset = Rails.root.join('public', 'assets', name)
-      p "Copy #{path} to #{asset}"
-      FileUtils.mkdir_p(File.dirname(asset))
-      FileUtils.cp path, asset
+  desc 'Create nondigest versions of some ckeditor assets (e.g. moono skin png)'
+  task :create_nondigest_assets do
+    fingerprint = /\-[0-9a-f]{32}\./
+    for file in Dir['public/assets/ckeditor/contents-*.css', 'public/assets/ckeditor/skins/moono/*.png']
+      next unless file =~ fingerprint
+      nondigest = file.sub fingerprint, '.' # contents-0d8ffa186a00f5063461bc0ba0d96087.css => contents.css
+      FileUtils.cp file, nondigest, verbose: true
     end
   end
+end
 
-  desc 'Copy ckeditor assets, that cant be used with digest'
-  task copy_nondigest_assets: :environment do
-    copy_assets /ckeditor\/contents.css/
-    copy_assets /ckeditor\/skins\/moono\/.+png/
-  end
+# auto run ckeditor:create_nondigest_assets after assets:precompile
+Rake::Task['assets:precompile'].enhance do
+  Rake::Task['ckeditor:create_nondigest_assets'].invoke
 end
 ```
+This also works on heroku. Even after restarting dynos running on a cedar stack, the assets will remain.
 
-You can include this rake task in capistrano task (if you are deploying via capistrano):
+You can include this rake task in a capistrano task (if you are deploying via capistrano):
 
 ```ruby
 desc 'copy ckeditor nondigest assets'
@@ -156,7 +156,7 @@ after 'deploy:assets:precompile', 'copy_nondigest_assets'
 ```
 
 Periodically check your error monitoring tool, if you see some part of ckeditor try to load
-unexisted non-digest asset - just add it in ckeditor rake task.
+unexisting non-digest asset - if so just add it in the ckeditor rake task.
 
 ### AJAX
 
