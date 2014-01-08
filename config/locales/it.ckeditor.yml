@@ -6,3 +6,4 @@ it:
       cancel: "Annulla"
       upload: "Carica"
       delete: "Elimina"
+      next: "Next"

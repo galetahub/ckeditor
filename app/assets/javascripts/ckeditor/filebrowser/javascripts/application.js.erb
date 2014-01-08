@@ -27,6 +27,16 @@ $(document).ready(function(){
   $("div.gal-item a.gal-del").live('ajax:complete', function(xhr, status){
     $(this).parents('div.gal-item').remove();
   });
+
+  var endlessScroll = $.endlessScroll({
+    container: ".fileupload-list",
+    entity: ".gal-item",
+    scrollPadding: 100
+  });
+
+  // Don't listen events first second
+  endlessScroll.scrollModule.unbind();
+  window.setTimeout(function() { endlessScroll.scrollModule.bind();}, 1000);
 });
 
 // Collection of all instances on page

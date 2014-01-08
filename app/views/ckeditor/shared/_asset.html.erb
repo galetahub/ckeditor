@@ -4,7 +4,7 @@
           polymorphic_path(asset, :format => :json),
           :remote => true,
           :method => :delete, 
-          :confirm => t('ckeditor.confirm_delete'),
+          :data => {:confirm => t('ckeditor.confirm_delete')},
           :class => "fileupload-cancel gal-del" %>
 	
 	<div class="fileupload-file gal-inner-holder">

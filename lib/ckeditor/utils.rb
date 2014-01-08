@@ -4,13 +4,8 @@ require 'active_support/json/encoding'
 module Ckeditor
   module Utils
     class JavascriptCode < String
-      def to_json(options = nil)
-        self
-      end
-      
-      def as_json(options = nil)
-        ActiveSupport::JSON::Variable.new(to_s).freeze
-      end
+      def as_json(options = nil) self end #:nodoc:
+      def encode_json(encoder) self end #:nodoc:
     end
 
     class << self

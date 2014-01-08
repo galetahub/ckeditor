@@ -5,6 +5,7 @@ module Ckeditor
   autoload :Utils, 'ckeditor/utils'
   autoload :Http, 'ckeditor/http'
   autoload :TextArea, 'ckeditor/text_area'
+  autoload :Paginatable, 'ckeditor/paginatable'
   
   module Helpers
     autoload :ViewHelper, 'ckeditor/helpers/view_helper'
@@ -55,6 +56,10 @@ module Ckeditor
   # Turn on/off filename parameterize
   mattr_accessor :parameterize_filenames
   @@parameterize_filenames = true
+
+  # Paginate assets
+  mattr_accessor :default_per_page
+  @@default_per_page = 24
 
   # Model classes
   @@picture_model = nil
