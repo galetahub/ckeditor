@@ -55,32 +55,60 @@ module Ckeditor
             options[:action] = JavascriptCode.new("EDITOR.config.filebrowserUploadUrl")
             options[:allowedExtensions] = Ckeditor.attachment_file_types
         end
-        
+
         js_options = ActiveSupport::JSON.encode(options)
-        
+
         "(function() { new qq.FileUploaderInput(#{js_options}); }).call(this);".html_safe
       end
-      
+
       def filethumb(filename)
         extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
 	      image = "#{extname}.gif"
 	      source = Ckeditor.root_path.join("app/assets/javascripts/ckeditor/filebrowser/images/thumbs")
-	      
+
 	      unless File.exists?(File.join(source, image))
 	        image = "unknown.gif"
 	      end
-	      
+
 	      File.join(Ckeditor.relative_path, "filebrowser/images/thumbs", image)
       end
 
       def select_assets(path, relative_path)
-        folder = File.join(relative_path, path, '**')
-        relative_folder = Ckeditor.root_path.join(relative_path)
-      
-        Dir[Ckeditor.root_path.join(folder, '*.{js,css,png,gif,jpg}')].inject([]) do |list, file|
-          list << Pathname.new(file).relative_path_from(relative_folder).to_s
-          list
+        relative_folder = Ckeditor.root_path.join relative_path
+        folder = relative_folder.join path
+        extensions = '*.{js,css,png,gif,jpg}'
+
+        # Files at root
+        files = Dir[folder.join(extensions)]
+
+        # Plugins
+        if Ckeditor.assets_plugins.nil?
+          files += Dir[folder.join('plugins', '**', extensions)]
+        else
+          Ckeditor.assets_plugins.each do |plugin|
+            files += Dir[folder.join('plugins', plugin, '**', extensions)]
+          end
         end
+
+        # Other folders
+        Dir[folder.join('*/')].each do |subfolder|
+          path = Pathname.new(subfolder)
+          unless path.basename.to_s == 'plugins'
+            files += Dir[path.join('**', extensions)]
+          end
+        end
+
+        paths = files.map { |file| Pathname.new(file) }
+
+        # Filter languages
+        if Ckeditor.assets_languages.present?
+          paths.select! do |path|
+            path.dirname.basename.to_s != 'lang' ||
+            Ckeditor.assets_languages.include?(path.basename.to_s.split('.')[0])
+          end
+        end
+
+        paths.map { |path| path.relative_path_from(relative_folder).to_s }
       end
     end
   end

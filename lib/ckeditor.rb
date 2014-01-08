@@ -56,6 +56,12 @@ module Ckeditor
   mattr_accessor :parameterize_filenames
   @@parameterize_filenames = true
 
+  # Asset restrictions
+  mattr_accessor :assets_languages
+  mattr_accessor :assets_plugins
+  @@assets_languages = nil
+  @@assets_plugins = nil
+
   # Model classes
   @@picture_model = nil
   @@attachment_file_model = nil
