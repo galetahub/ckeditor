@@ -158,6 +158,19 @@ after 'deploy:assets:precompile', 'copy_nondigest_assets'
 Periodically check your error monitoring tool, if you see some part of ckeditor try to load
 unexisting non-digest asset - if so just add it in the ckeditor rake task.
 
+Also you can use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), which do the same work. 
+
+To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
+
+```ruby
+# in config/initializers/ckeditor.rb
+
+Ckeditor.setup do |config|
+  config.assets_languages = ['en', 'fr']
+  config.assets_plugins = ['image', 'smiley']
+end
+```
+
 ### AJAX
 
 jQuery sample:
