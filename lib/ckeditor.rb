@@ -16,6 +16,7 @@ module Ckeditor
   module Hooks
     autoload :SimpleFormBuilder, 'ckeditor/hooks/simple_form'
     autoload :CanCanAuthorization, 'ckeditor/hooks/cancan'
+    autoload :PunditAuthorization, 'ckeditor/hooks/pundit'
   end
   
   module Backend

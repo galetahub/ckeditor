@@ -33,6 +33,10 @@ module Ckeditor
       if Object.const_defined?("CanCan")
         require "ckeditor/hooks/cancan"
       end
+
+      if Object.const_defined?("Pundit")
+        require "ckeditor/hooks/pundit"
+      end
     end
   end
 end
