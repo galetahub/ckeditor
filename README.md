@@ -10,6 +10,7 @@ CKEditor is a ready-for-use HTML text editor designed to simplify web content cr
 * Files browser
 * HTML5 files uploader
 * Hooks for formtastic and simple_form forms generators
+* Integrated with authorization framework CanCan and Pundit
 
 ## Installation
 
@@ -210,6 +211,29 @@ can :access, :ckeditor   # needed to access Ckeditor filebrowser
 can [:read, :create, :destroy], Ckeditor::Picture
 can [:read, :create, :destroy], Ckeditor::AttachmentFile
 ```
+
+### Pundit integration
+
+Just like cancan, you can write this code in your config/initializers/ckeditor.rb file
+
+```ruby
+Ckeditor.setup do |config|
+  config.authorize_with :pundit
+end
+```
+
+And then, generate the policy files for model **Picture** and **AttachmentFile**
+
+```
+$ rails g ckeditor:pundit_policy
+```
+By this command, you will got two files:
+> create  app/policies/ckeditor/picture_policy.rb  
+create  app/policies/ckeditor/attachment_file_policy.rb
+
+By default, only the user that logged in can access the models(with action *index* and *create*), and only the owner of the asset can **destroy** the resource. 
+
+You can simply customize these two policy files as you like.
 
 ## I18n
 
