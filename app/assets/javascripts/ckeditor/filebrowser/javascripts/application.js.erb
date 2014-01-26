@@ -24,9 +24,14 @@ $(document).ready(function(){
       window.close();
     });
   
-  $("div.gal-item a.gal-del").live('ajax:complete', function(xhr, status){
+  $("div.gal-item a.gal-del").live('ajax:success', function(xhr, status){
     $(this).parents('div.gal-item').remove();
   });
+
+  $("div.gal-item a.gal-del").live('ajax:error', function(xhr, jqXHR){
+    alert('<%= I18n.t 'ckeditor.delete_error_msg' %>' + jqXHR.status);
+  });
+
 });
 
 // Collection of all instances on page

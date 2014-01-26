@@ -2,6 +2,7 @@ en:
   ckeditor:
     page_title: "CKEditor Files Manager"
     confirm_delete: "Delete file?"
+    delete_error_msg: 'Failed to delete this file, server responsed: '
     buttons:
       cancel: "Cancel"
       upload: "Upload"
