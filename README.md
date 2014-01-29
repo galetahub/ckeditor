@@ -19,6 +19,13 @@ For basic usage just include ckeditor gem:
 ```
 gem "ckeditor"
 ```
+#### Using with ruby 1.8.7
+
+For usage with ruby 1.8.7 you need to specify gem version:
+
+```
+gem 'ckeditor', '4.0.4'
+```
 
 For files uploading support you need generage models for file storage.
 Currently supported next backends:
@@ -159,7 +166,7 @@ after 'deploy:assets:precompile', 'copy_nondigest_assets'
 Periodically check your error monitoring tool, if you see some part of ckeditor try to load
 unexisting non-digest asset - if so just add it in the ckeditor rake task.
 
-Also you can use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), which do the same work. 
+Also you can use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), which do the same work.
 
 To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
 
@@ -241,10 +248,10 @@ And then, generate the policy files for model **Picture** and **AttachmentFile**
 $ rails g ckeditor:pundit_policy
 ```
 By this command, you will got two files:
-> app/policies/ckeditor/picture_policy.rb  
+> app/policies/ckeditor/picture_policy.rb
 app/policies/ckeditor/attachment_file_policy.rb
 
-By default, only the user that logged in can access the models(with action *index* and *create*), and only the owner of the asset can **destroy** the resource. 
+By default, only the user that logged in can access the models(with action *index* and *create*), and only the owner of the asset can **destroy** the resource.
 
 You can simply customize these two policy files as you like.
 
