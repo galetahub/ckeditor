@@ -17,7 +17,7 @@ CKEditor is a ready-for-use HTML text editor designed to simplify web content cr
 For basic usage just include ckeditor gem:
 
 ```
-gem "ckeditor"
+gem 'ckeditor'
 ```
 #### Using with ruby 1.8.7
 
@@ -40,7 +40,7 @@ Currently supported next backends:
 For active_record orm is used paperclip gem (it's by default).
 
 ```
-gem "paperclip"
+gem 'paperclip'
 
 rails generate ckeditor:install --orm=active_record --backend=paperclip
 ```
@@ -48,8 +48,8 @@ rails generate ckeditor:install --orm=active_record --backend=paperclip
 #### ActiveRecord + carrierwave
 
 ```
-gem "carrierwave"
-gem "mini_magick"
+gem 'carrierwave'
+gem 'mini_magick'
 
 rails generate ckeditor:install --orm=active_record --backend=carrierwave
 ```
@@ -65,8 +65,8 @@ rails generate ckeditor:install --orm=mongoid --backend=paperclip
 #### Mongoid + carrierwave
 
 ```
-gem "carrierwave-mongoid", :require => 'carrierwave/mongoid'
-gem "mini_magick"
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick'
 
 rails generate ckeditor:install --orm=mongoid --backend=carrierwave
 ```
@@ -83,7 +83,7 @@ config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 Mount engine in your routes (config/routes.rb):
 
 ```ruby
-mount Ckeditor::Engine => "/ckeditor"
+mount Ckeditor::Engine => '/ckeditor'
 ```
 
 ## Usage
@@ -99,11 +99,11 @@ Form helpers:
 ```erb
 <%= form_for @page do |form| -%>
   ...
-  <%= form.cktext_area :notes, :class => "someclass", :ckeditor => {:language => "uk"} %>
+  <%= form.cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'uk'} %>
   ...
-  <%= form.cktext_area :content, :value => "Default value", :id => "sometext" %>
+  <%= form.cktext_area :content, :value => 'Default value', :id => 'sometext' %>
   ...
-  <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
+  <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %>
   ...
 <% end -%>
 ```
@@ -186,7 +186,7 @@ jQuery sample:
 ```html
 <script type='text/javascript' charset='UTF-8'>
   $(document).ready(function(){
-    $('form[data-remote]').bind("ajax:before", function(){
+    $('form[data-remote]').bind('ajax:before', function(){
       for (instance in CKEDITOR.instances){
         CKEDITOR.instances[instance].updateElement();
       }
@@ -260,13 +260,13 @@ You can simply customize these two policy files as you like.
 ```yml
 en:
   ckeditor:
-    page_title: "CKEditor Files Manager"
-    confirm_delete: "Delete file?"
+    page_title: 'CKEditor Files Manager'
+    confirm_delete: 'Delete file?'
     buttons:
-      cancel: "Cancel"
-      upload: "Upload"
-      delete: "Delete"
-      next: "Next"
+      cancel: 'Cancel'
+      upload: 'Upload'
+      delete: 'Delete'
+      next: 'Next'
 ```
 
 ## Tests
