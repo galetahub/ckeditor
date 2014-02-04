@@ -49,6 +49,10 @@ module Ckeditor
   # Ckeditor files destination path
   mattr_accessor :relative_path
   @@relative_path = '/assets/ckeditor'
+
+  # Ckeditor assets path
+  mattr_accessor :asset_path
+  @@asset_path = (Rails::VERSION::MAJOR == 4 ? 'assets/ckeditor' : 'ckeditor')
   
   # Ckeditor assets for precompilation
   mattr_accessor :assets
