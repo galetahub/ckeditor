@@ -8,7 +8,7 @@ module Ckeditor
         base.send(:include, InstanceMethods)
         base.send(:extend, ClassMethods)
       end
-      
+
       module ClassMethods
         def self.extended(base)
           base.class_eval do
@@ -17,7 +17,7 @@ module Ckeditor
           end
         end
       end
-      
+
       module InstanceMethods
         # process :strip
         def strip
@@ -27,7 +27,7 @@ module Ckeditor
             img
           end
         end
-        
+
         # process :quality => 85
         def quality(percentage)
           manipulate! do |img|
@@ -36,28 +36,28 @@ module Ckeditor
             img
           end
         end
-        
+
         def extract_content_type
           if file.content_type == 'application/octet-stream' || file.content_type.blank?
             content_type = MIME::Types.type_for(original_filename).first
           else
             content_type = file.content_type
           end
-          
+
           model.data_content_type = content_type.to_s
-        end 
-        
+        end
+
         def set_size
           model.data_file_size = file.size
         end
-        
+
         def read_dimensions
           if model.image? && model.has_dimensions?
             magick = ::MiniMagick::Image.new(current_path)
             model.width, model.height = magick[:width], magick[:height]
           end
         end
-        
+
       end
     end
   end

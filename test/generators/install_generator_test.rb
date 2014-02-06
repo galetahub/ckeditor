@@ -8,7 +8,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
   setup do
     dir = File.expand_path("../../", __FILE__)
-    
+
     FileUtils.mkdir_p File.join(dir, 'tmp/config')
     FileUtils.cp File.join(dir, 'support/routes.txt'), File.join(dir, 'tmp/config/routes.rb')
   end
@@ -25,7 +25,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
     assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/mongoid"/
   end
-  
+
   test "models and migration for active_record orm via paperclip" do
     run_generator %w(--orm=active_record --backend=paperclip)
 
@@ -46,7 +46,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     assert_file "app/models/ckeditor/asset.rb"
     assert_file "app/models/ckeditor/picture.rb"
     assert_file "app/models/ckeditor/attachment_file.rb"
-    
+
     assert_file "app/uploaders/ckeditor_attachment_file_uploader.rb"
     assert_file "app/uploaders/ckeditor_picture_uploader.rb"
 
@@ -81,17 +81,17 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
     assert_no_migration "db/migrate/create_ckeditor_assets.rb"
   end
-  
+
   test "models for mongoid orm via carrierwave" do
     run_generator %w(--orm=mongoid --backend=carrierwave)
-  
+
     assert_file "app/models/ckeditor/asset.rb"
     assert_file "app/models/ckeditor/picture.rb"
     assert_file "app/models/ckeditor/attachment_file.rb"
-    
+
     assert_file "app/uploaders/ckeditor_attachment_file_uploader.rb"
     assert_file "app/uploaders/ckeditor_picture_uploader.rb"
-  
+
     assert_no_migration "db/migrate/create_ckeditor_assets.rb"
   end
 end

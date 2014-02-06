@@ -2,7 +2,7 @@ require "formtastic"
 
 class CkeditorInput
   include ::Formtastic::Inputs::Base
-  
+
   def to_html
     input_wrapping do
       label_html <<
