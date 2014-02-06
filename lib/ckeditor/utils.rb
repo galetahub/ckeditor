@@ -12,16 +12,16 @@ module Ckeditor
       def escape_single_quotes(str)
         str.gsub('\\','\0\0').gsub('</','<\/').gsub(/\r\n|\n|\r/, "\\n").gsub(/["']/) { |m| "\\#{m}" }
       end
-      
+
       def parameterize_filename(filename)
         return filename unless Ckeditor.parameterize_filenames
 
         extension = File.extname(filename)
         basename = filename.gsub(/#{extension}$/, "")
-        
+
         [basename.parameterize('_'), extension].join.downcase
       end
-      
+
       def js_replace(dom_id, options = nil)
         js = ["if (typeof CKEDITOR != 'undefined') {"]
 
@@ -35,10 +35,10 @@ module Ckeditor
         js << "}"
         js.join(" ").html_safe
       end
-      
+
       def js_fileuploader(uploader_type, options = {})
         options = { :multiple => true, :element => "fileupload" }.merge(options)
-        
+
         case uploader_type.to_s.downcase
           when "image" then
             options[:action] = JavascriptCode.new("EDITOR.config.filebrowserImageUploadUrl")
@@ -58,14 +58,14 @@ module Ckeditor
 
       def filethumb(filename)
         extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
-	      image = "#{extname}.gif"
-	      source = Ckeditor.root_path.join("app/assets/javascripts/ckeditor/filebrowser/images/thumbs")
+        image = "#{extname}.gif"
+        source = Ckeditor.root_path.join("app/assets/javascripts/ckeditor/filebrowser/images/thumbs")
 
-	      unless File.exists?(File.join(source, image))
-	        image = "unknown.gif"
-	      end
+        unless File.exists?(File.join(source, image))
+          image = "unknown.gif"
+        end
 
-	      File.join(Ckeditor.relative_path, "filebrowser/images/thumbs", image)
+        File.join(Ckeditor.relative_path, "filebrowser/images/thumbs", image)
       end
 
       def select_assets(path, relative_path)

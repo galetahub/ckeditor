@@ -5,7 +5,7 @@ module Ckeditor
         base.send(:include, InstanceMethods)
         base.send(:extend, ClassMethods)
       end
-      
+
       module ClassMethods
         def attachment_file_types
           @attachment_file_types ||= Ckeditor.attachment_file_types.map(&:to_sym).tap do |formats|
@@ -22,7 +22,7 @@ module Ckeditor
           @image_file_types ||= Ckeditor.image_file_types.map(&:to_sym)
         end
       end
-      
+
       module InstanceMethods
         delegate :url, :path, :size, :image?, :width, :height, :to => :data
 

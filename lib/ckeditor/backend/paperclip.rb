@@ -7,18 +7,18 @@ module Ckeditor
         base.send(:include, InstanceMethods)
         base.send(:extend, ClassMethods)
       end
-      
+
       module ClassMethods
         def self.extended(base)
           base.class_eval do
             before_validation :extract_content_type
             before_create :read_dimensions, :parameterize_filename
-            
+
             delegate :url, :path, :styles, :size, :content_type, :to => :data
           end
         end
       end
-      
+
       module InstanceMethods
         def geometry
           @geometry ||= begin
@@ -26,7 +26,7 @@ module Ckeditor
             ::Paperclip::Geometry.from_file(file)
           end
         end
-                
+
         protected
 
           def parameterize_filename
