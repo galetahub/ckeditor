@@ -1,4 +1,4 @@
-class Ckeditor::ApplicationController < ::ApplicationController
+class Ckeditor::ApplicationController < ActionController::Base
   respond_to :html, :json
   layout 'ckeditor/application'
 
