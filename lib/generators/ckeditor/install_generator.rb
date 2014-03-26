@@ -51,7 +51,7 @@ module Ckeditor
         end
       end
 
-      def create_migration
+      def create_ckeditor_migration
         if ["active_record"].include?(orm)
           migration_template "#{generator_dir}/migration.rb", File.join('db/migrate', "create_ckeditor_assets.rb")
         end
