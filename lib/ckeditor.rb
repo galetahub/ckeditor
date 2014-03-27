@@ -52,7 +52,7 @@ module Ckeditor
 
   # Ckeditor assets path
   mattr_accessor :asset_path
-  @@asset_path = (Rails::VERSION::MAJOR == 4 ? 'assets/ckeditor' : 'ckeditor')
+  @@asset_path = nil
 
   # Ckeditor assets for precompilation
   mattr_accessor :assets
@@ -91,6 +91,10 @@ module Ckeditor
 
   def self.root_path
     @root_path ||= Pathname.new(File.dirname(File.expand_path('../', __FILE__)))
+  end
+
+  def self.base_path
+    @base_path ||= (asset_path || File.join([Rails.application.config.assets.prefix, '/ckeditor/']))
   end
 
   # All css and js files from ckeditor folder
