@@ -23,7 +23,7 @@ module Ckeditor
       end
 
       def js_replace(dom_id, options = nil)
-        js = ["if (typeof CKEDITOR != 'undefined') {"]
+        js = ["(function() { if (typeof CKEDITOR != 'undefined') {"]
 
         if options && !options.keys.empty?
           js_options = ActiveSupport::JSON.encode(options)
@@ -32,7 +32,7 @@ module Ckeditor
           js << "CKEDITOR.replace('#{dom_id}');"
         end
 
-        js << "}"
+        js << "} else { setTimeout(arguments.callee, 50); } })();"
         js.join(" ").html_safe
       end
 
