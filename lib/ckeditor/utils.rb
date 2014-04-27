@@ -69,7 +69,7 @@ module Ckeditor
       end
 
       def select_assets(path, relative_path)
-        relative_folder = Ckeditor.root_path.join relative_path
+        relative_folder = Ckeditor.asset_precompile_path.join relative_path
         folder = relative_folder.join path
         extensions = '*.{js,css,png,gif,jpg}'
 
