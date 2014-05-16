@@ -52,6 +52,7 @@ module Ckeditor
         end
 
         js_options = ActiveSupport::JSON.encode(options)
+        js_options.gsub!(/"(EDITOR\.config\.filebrowser(Image|Flash|)UploadUrl)"/, '\1')
 
         "(function() { new qq.FileUploaderInput(#{js_options}); }).call(this);".html_safe
       end
