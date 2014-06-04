@@ -2,7 +2,7 @@ require 'simple_form'
 
 module Ckeditor::Hooks::SimpleForm
   class CkeditorInput < ::SimpleForm::Inputs::Base
-    def input
+    def input(wrapper_options = nil)
       @builder.cktext_area(attribute_name, input_html_options)
     end
   end
