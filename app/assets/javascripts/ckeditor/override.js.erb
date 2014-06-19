@@ -13,8 +13,8 @@ window.CKEDITOR_GETURL = function( resource ) {
 
   // Add the timestamp, except for directories.
   if ( resource.charAt( resource.length - 1 ) != '/'  ){
-    var url = resource.match( /^(.*?:\/\/[^\/]*)\/assets\/(.+)/ );
-    if(url) resource = (CKEDITOR_ASSETS_MAPPING[url[2]] || '/assets/' + url[2]);
+    var url = resource.match( /^(.*?:\/\/[^\/]*)?<%= Rails.configuration.relative_url_root.to_s.gsub('/', '\/') %>\/assets\/(.+)/ );
+    if(url) resource = (CKEDITOR_ASSETS_MAPPING[url[2]] || '<%= Rails.configuration.relative_url_root %>/assets/' + url[2]);
   }
 
   return resource;
