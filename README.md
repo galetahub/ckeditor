@@ -153,7 +153,7 @@ end
 ```
 This also works on heroku. Even after restarting dynos running on a cedar stack, the assets will remain.
 
-You can include this rake task in a capistrano task (if you are deploying via capistrano):
+You can include this rake task in a capistrano task (if you are deploying via capistrano 2):
 
 ```ruby
 desc 'copy ckeditor nondigest assets'
@@ -162,6 +162,23 @@ task :copy_nondigest_assets, roles: :app do
 end
 after 'deploy:assets:precompile', 'copy_nondigest_assets'
 ```
+
+or this one for capistrano 3:
+
+```ruby
+desc 'copy ckeditor nondigest assets'
+task :copy_nondigest_assets do
+  on roles :app do
+    within fetch(:release_path) do
+      with rails_env: fetch(:rails_env) do
+        execute :rake, "ckeditor:create_nondigest_assets"
+      end
+    end
+  end
+end
+after 'deploy:assets:precompile', 'copy_nondigest_assets'
+```
+
 
 Periodically check your error monitoring tool, if you see some part of ckeditor try to load
 unexisting non-digest asset - if so just add it in the ckeditor rake task.
