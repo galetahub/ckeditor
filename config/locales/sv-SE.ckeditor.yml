@@ -1,9 +1,0 @@
-"sv-SE":
-  ckeditor:
-    page_title: "CKEditor filhanterare"
-    confirm_delete: "Ta bort fil?"
-    buttons:
-      cancel: "Avbryt"
-      upload: "Ladda upp"
-      delete: "Ta bort"
-      next: "Next"

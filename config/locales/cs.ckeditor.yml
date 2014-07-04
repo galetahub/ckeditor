@@ -1,9 +1,0 @@
-cs:
-  ckeditor:
-    page_title: "CKEditor Správce souborů"
-    confirm_delete: "Smazat soubor ?"
-    buttons:
-      cancel: "Zrušit"
-      upload: "Nahrát"
-      delete: "Smazat"
-      next: "Next"

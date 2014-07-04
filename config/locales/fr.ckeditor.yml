@@ -1,9 +1,0 @@
-fr:
-  ckeditor:
-    page_title: "CKEditor - Gestionnaire de fichiers"
-    confirm_delete: "Supprimer le fichier ?"
-    buttons:
-      cancel: "Annuler"
-      upload: "Ajouter"
-      delete: "Supprimer"
-      next: "Next"

@@ -1,9 +1,0 @@
-hu:
-  ckeditor:
-    page_title: "CKEditor fájlkezelő"
-    confirm_delete: "Biztosan töröljük a fájlt?"
-    buttons:
-      cancel: "Mégsem"
-      upload: "Feltöltés"
-      delete: "Törlés"
-      next: "Next"
