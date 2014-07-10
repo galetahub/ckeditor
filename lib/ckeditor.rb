@@ -76,6 +76,10 @@ module Ckeditor
   @@picture_model = nil
   @@attachment_file_model = nil
 
+  # Turn on/off alert on erros
+  mattr_accessor :alert_errors
+  @@alert_errors = false
+
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   #

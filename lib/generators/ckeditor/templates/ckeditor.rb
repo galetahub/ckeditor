@@ -31,4 +31,8 @@ Ckeditor.setup do |config|
   # Customize ckeditor assets path
   # By default: nil
   # config.asset_path = "http://www.example.com/assets/ckeditor/"
+
+  # Turn on/off alert on errors
+  # By default: false
+  # config.alert_errors = true
 end
