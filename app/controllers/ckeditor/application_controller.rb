@@ -21,7 +21,13 @@ class Ckeditor::ApplicationController < ActionController::Base
 
         render :text => body
       else
-        render :nothing => true
+        if params[:CKEditor]
+          render :text => %Q"<script type='text/javascript'>
+              window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{asset.errors.full_messages.first}');
+            </script>"
+        else
+          render :nothing => true
+        end
       end
     end
 end
