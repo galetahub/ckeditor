@@ -38,5 +38,9 @@ module Ckeditor
         require "ckeditor/hooks/pundit"
       end
     end
+
+    rake_tasks do
+      load "ckeditor/lib/tasks/ckeditor.rake"
+    end
   end
 end

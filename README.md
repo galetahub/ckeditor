@@ -5,7 +5,7 @@ CKEditor is a ready-for-use HTML text editor designed to simplify web content cr
 
 ## Features
 
-* Ckeditor version 4.3.4 (full)
+* Ckeditor version 4.4.2 (full)
 * Rails 4 integration
 * Files browser
 * HTML5 files uploader
@@ -108,6 +108,8 @@ Form helpers:
 <% end -%>
 ```
 
+### Customize ckeditor
+
 All ckeditor options [here](http://docs.ckeditor.com/#!/api/CKEDITOR.config)
 
 In order to configure the ckeditor default options, create files:
@@ -118,55 +120,10 @@ app/assets/javascripts/ckeditor/config.js
 app/assets/javascripts/ckeditor/contents.css
 ```
 
-### Usage with Rails 4 assets
+### Deployment
 
-In order to use rails 4 assets with digest in production environment you need some preparing.
-
-First, you need to include in `application.js` **before** `ckeditor/init`
-
-```
-//= require ckeditor/override
-```
-
-It forces ckeditor core to respect digested assets.
-
-Next you need to check, that some non-core plugins and skins don't use core ckeditor functions
-to determine path to assets. Therefore we have to create a rake task thats copies the original assets and creates a non-digest version of it. Some example of such rake task is:
-
-```ruby
-namespace :ckeditor do
-  desc 'Create nondigest versions of some ckeditor assets (e.g. moono skin png)'
-  task :create_nondigest_assets do
-    fingerprint = /\-[0-9a-f]{32}\./
-    for file in Dir['public/assets/ckeditor/contents-*.css', 'public/assets/ckeditor/skins/moono/*.png']
-      next unless file =~ fingerprint
-      nondigest = file.sub fingerprint, '.' # contents-0d8ffa186a00f5063461bc0ba0d96087.css => contents.css
-      FileUtils.cp file, nondigest, verbose: true
-    end
-  end
-end
-
-# auto run ckeditor:create_nondigest_assets after assets:precompile
-Rake::Task['assets:precompile'].enhance do
-  Rake::Task['ckeditor:create_nondigest_assets'].invoke
-end
-```
-This also works on heroku. Even after restarting dynos running on a cedar stack, the assets will remain.
-
-You can include this rake task in a capistrano task (if you are deploying via capistrano):
-
-```ruby
-desc 'copy ckeditor nondigest assets'
-task :copy_nondigest_assets, roles: :app do
-  run "cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} ckeditor:create_nondigest_assets"
-end
-after 'deploy:assets:precompile', 'copy_nondigest_assets'
-```
-
-Periodically check your error monitoring tool, if you see some part of ckeditor try to load
-unexisting non-digest asset - if so just add it in the ckeditor rake task.
-
-Also you can use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), which do the same work.
+Since version 4.1.0, non-digested assets of ckeditor will simply be copied after digested assets were compiled.
+For older versions, use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), to copy non digest assets.
 
 To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
 
@@ -177,6 +134,22 @@ Ckeditor.setup do |config|
   config.assets_languages = ['en', 'fr']
   config.assets_plugins = ['image', 'smiley']
 end
+```
+
+### Include customized CKEDITOR_BASEPATH setting
+  
+Add your app/assets/javascripts/ckeditor/basepath.js.erb like
+
+```erb
+<%
+  base_path = ''
+  if ENV['PROJECT'] =~ /editor/i
+    base_path << "/#{Rails.root.basename.to_s}/"
+  end
+  base_path << Rails.application.config.assets.prefix
+  base_path << '/ckeditor/'
+%>
+var CKEDITOR_BASEPATH = '<%= base_path %>';
 ```
 
 ### AJAX

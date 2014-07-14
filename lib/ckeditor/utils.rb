@@ -70,14 +70,14 @@ module Ckeditor
       end
 
       def select_assets(path, relative_path)
-        relative_folder = Ckeditor.root_path.join relative_path
-        folder = relative_folder.join path
+        relative_folder = Ckeditor.root_path.join(relative_path)
+        folder = relative_folder.join(path)
         extensions = '*.{js,css,png,gif,jpg}'
 
         # Files at root
         files = Dir[folder.join(extensions)]
 
-        # Plugins
+        # Filter plugins
         if Ckeditor.assets_plugins.nil?
           files += Dir[folder.join('plugins', '**', extensions)]
         else
@@ -86,25 +86,23 @@ module Ckeditor
           end
         end
 
+        # Filter languages
+        if Ckeditor.assets_languages.nil?
+          files += Dir[folder.join('lang', '**', extensions)]
+        else
+          Ckeditor.assets_languages.each do |lang|
+            files += Dir[folder.join('lang', lang, '**', extensions)]
+          end
+        end
+
         # Other folders
         Dir[folder.join('*/')].each do |subfolder|
           path = Pathname.new(subfolder)
-          unless path.basename.to_s == 'plugins'
-            files += Dir[path.join('**', extensions)]
-          end
+          next if ['plugins', 'lang'].include?(path.basename.to_s)
+          files += Dir[path.join('**', extensions)]
         end
 
-        paths = files.map { |file| Pathname.new(file) }
-
-        # Filter languages
-        if Ckeditor.assets_languages.present?
-          paths.select! do |path|
-            path.dirname.basename.to_s != 'lang' ||
-            Ckeditor.assets_languages.include?(path.basename.to_s.split('.')[0])
-          end
-        end
-
-        paths.map { |path| path.relative_path_from(relative_folder).to_s }
+        files.map { |file| Pathname.new(file).relative_path_from(relative_folder).to_s }
       end
     end
   end
