@@ -61,6 +61,24 @@ class CkeditorTest < ActiveSupport::TestCase
       Ckeditor::AttachmentFile.to_adapter
   end
 
+  test 'languages ingnore list' do
+    Ckeditor.assets = nil
+    Ckeditor.assets_languages = ['en', 'uk']
+
+    assert_equal Ckeditor.assets.include?('ckeditor/lang/ru.js'), false
+    assert_equal Ckeditor.assets.include?('ckeditor/lang/uk.js'), true
+    assert_equal Ckeditor.assets.include?('ckeditor/plugins/a11yhelp/dialogs/lang/bg.js'), false
+    assert_equal Ckeditor.assets.include?('ckeditor/plugins/a11yhelp/dialogs/lang/uk.js'), true
+  end
+
+  test 'plugins ingnore list' do
+    Ckeditor.assets = nil
+    Ckeditor.assets_plugins = ['image']
+
+    assert_equal Ckeditor.assets.include?('ckeditor/plugins/table/dialogs/table.js'), false
+    assert_equal Ckeditor.assets.include?('ckeditor/plugins/image/dialogs/image.js'), true
+  end
+
   class CustomPicture; end
   class CustomAttachmentFile; end
 end

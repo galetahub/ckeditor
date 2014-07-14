@@ -40,7 +40,7 @@ module Ckeditor
     end
 
     rake_tasks do
-      load "ckeditor/lib/tasks/ckeditor.rake"
+      load Ckeditor.root_path.join("lib/tasks/ckeditor.rake")
     end
   end
 end
