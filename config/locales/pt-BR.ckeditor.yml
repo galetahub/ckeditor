@@ -2,6 +2,9 @@
   ckeditor:
     page_title: "Gerenciador de arquivos do CKEditor"
     confirm_delete: "Apagar arquivo?"
+    upload:
+      title: "Gerenciador de Arquivos"
+      limit: "Limite máximo de"
     buttons:
       cancel: "Cancelar"
       upload: "Enviar"
