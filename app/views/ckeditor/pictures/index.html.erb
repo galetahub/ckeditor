@@ -1,9 +1,12 @@
 <div id="fileupload" class="gal-holder">
-  <div class="gal-item">
-    <div class="fileupload-button gal-upload-holder">
-  		<%= link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), 'javascript:void(0)', :class => "add" %>
-		</div>
-	</div>
+  <div class="header">
+    <h1>
+      <%= I18n.t("ckeditor.upload.title") %> <small>(<%= I18n.t("ckeditor.upload.limit") %> <%= number_to_human_size(Ckeditor::AttachmentFile.validators_on(:data)[3].options[:less_than]) %>)</small>
+      <div class="fileupload-button gal-upload-holder">
+        <%= link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), 'javascript:void(0)', :class => "add" %>
+      </div>
+    </h1>
+  </div>
   
   <div class="fileupload-list" data-endless="true">
     <%= render :partial => 'ckeditor/shared/asset', :collection => @pictures.scoped %>		
