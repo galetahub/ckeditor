@@ -7,7 +7,7 @@ task "assets:precompile" do
     next unless file =~ fingerprint
     nondigest = file.sub fingerprint, '.'
     if !File.exist?(nondigest) or File.mtime(file) > File.mtime(nondigest)
-      FileUtils.cp file, nondigest, verbose: true
+      FileUtils.cp file, nondigest, verbose: true, preserve: true
     end
   end
 end
