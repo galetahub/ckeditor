@@ -56,6 +56,20 @@ img {
 	border: solid 1px #D3D3D3;
 	min-height: 138px;
 }
+.fileupload-fail .gal-inner-holder{
+  border: solid 1px red !important;
+}
+.fileupload-fail .img.preloader{
+  display: none;
+}
+.fileupload-fail .img-data:before{
+  content: 'Ocorreu um error ao fazer o upload. Tente Novamente';
+  display: block;
+  font: 12px Arial;
+  color: red;
+  text-align: center;
+  margin: 30px 0;
+}
 .gal-holder .gal-item .gal-inner-holder.hover {
     background: #DFF1FF;
     border: solid 1px #99CCFF;
