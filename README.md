@@ -27,7 +27,7 @@ For usage with ruby 1.8.7 you need to specify gem version:
 gem 'ckeditor', '4.0.4'
 ```
 
-For files uploading support you need generage models for file storage.
+For files uploading support you need generate models for file storage.
 Currently supported next backends:
 
 * ActiveRecord (paperclip, carrierwave, dragonfly)
