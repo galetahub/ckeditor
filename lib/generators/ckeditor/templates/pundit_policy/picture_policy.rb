@@ -7,14 +7,14 @@ class Ckeditor::PicturePolicy
   end
 
   def index?
-    true and ! @user.nil?
+    user.present?
   end
 
   def create?
-    true and ! @user.nil?
+    user.present?
   end
 
   def destroy?
-    @picture.assetable_id == @user.id
+    picture.assetable_id == user.id
   end
 end
