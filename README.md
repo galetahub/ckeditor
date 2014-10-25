@@ -122,6 +122,12 @@ app/assets/javascripts/ckeditor/contents.css
 
 ### Deployment
 
+For rails 4, add the following to `config/initializers/assets.rb`:
+
+```ruby
+Rails.application.config.assets.precompile += %w( ckeditor/* )
+```
+
 Since version 4.1.0, non-digested assets of ckeditor will simply be copied after digested assets were compiled.
 For older versions, use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), to copy non digest assets.
 
