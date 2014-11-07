@@ -17,6 +17,6 @@ class AttachmentFileTest < ActiveSupport::TestCase
 
     assert_equal "application/x-gzip", @attachment.data_content_type
     assert_equal 6823, @attachment.data_file_size
-    assert_equal "/assets/ckeditor/filebrowser/images/thumbs/gz.gif", @attachment.url_thumb
+    assert_equal "/ckeditor/filebrowser/images/thumbs/gz.gif", @attachment.url_thumb
   end
 end
