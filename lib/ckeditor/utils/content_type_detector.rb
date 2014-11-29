@@ -24,6 +24,7 @@ module Ckeditor
       private
 
       def empty_file?
+        return true if @file_path.blank?
         File.exists?(@file_path) && File.size(@file_path) == 0
       end
 

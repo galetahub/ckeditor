@@ -19,13 +19,14 @@ module Ckeditor
 
       module InstanceMethods
         def geometry
-          @geometry ||= begin
-            file = data.respond_to?(:queued_for_write) ? data.queued_for_write[:original] : data.to_file
-            ::Paperclip::Geometry.from_file(file)
-          end
+          @geometry ||= ::Paperclip::Geometry.from_file(file)
         end
 
         protected
+
+          def file
+            @file ||= data.respond_to?(:queued_for_write) ? data.queued_for_write[:original] : data.to_file
+          end
 
           def parameterize_filename
             unless data_file_name.blank?
@@ -42,7 +43,8 @@ module Ckeditor
           end
 
           def extract_content_type
-            self.data_content_type = Utils::ContentTypeDetector.new(file).detect
+            path = file.nil? ? nil : file.path
+            self.data_content_type = Utils::ContentTypeDetector.new(path).detect
           end
       end
     end
