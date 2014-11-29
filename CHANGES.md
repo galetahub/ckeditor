@@ -1,5 +1,11 @@
 # Ckeditor changelog
 
+## Ckeditor 4.1.1
+  
+  * Update ckeditor to Version 4.4.6 (72 Plugins, 25 Nov 2014)
+  * Add 'config.allowedContent = true;' by default
+  * Setup toolbar groups configuration
+
 ## Ckeditor 4.1.0
   
   * Update ckeditor to 4.4.2 Full Package version (72 Plugins, 24 Jun 2014)
