@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.description = "CKEditor is a WYSIWYG editor to be used inside web pages"
   s.authors = ["Igor Galeta"]
   s.email = "galeta.igor@gmail.com"
+  s.licenses = ["MIT"]
   s.rubyforge_project = "ckeditor"
   s.homepage = "https://github.com/galetahub/ckeditor"
   
