@@ -1,5 +1,3 @@
-require 'mime/types'
-
 module Ckeditor
   module Backend
     module Paperclip
@@ -43,12 +41,8 @@ module Ckeditor
             end
           end
 
-          # Extract content_type from filename using mime/types gem
           def extract_content_type
-            if data_content_type == "application/octet-stream" && !data_file_name.blank?
-              content_types = MIME::Types.type_for(data_file_name)
-              self.data_content_type = content_types.first.to_s unless content_types.empty?
-            end
+            self.data_content_type = Utils::ContentTypeDetector.new(file).detect
           end
       end
     end

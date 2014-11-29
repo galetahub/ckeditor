@@ -1,4 +1,3 @@
-require 'mime/types'
 require 'mini_magick'
 
 module Ckeditor
@@ -38,13 +37,7 @@ module Ckeditor
         end
 
         def extract_content_type
-          if file.content_type == 'application/octet-stream' || file.content_type.blank?
-            content_type = MIME::Types.type_for(original_filename).first
-          else
-            content_type = file.content_type
-          end
-
-          model.data_content_type = content_type.to_s
+          model.data_content_type = Utils::ContentTypeDetector.new(file.path).detect
         end
 
         def set_size

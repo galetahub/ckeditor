@@ -1,6 +1,5 @@
 # encoding: utf-8
 require 'digest/sha1'
-require 'mime/types'
 
 module Ckeditor
   module Http
@@ -61,8 +60,7 @@ module Ckeditor
       end
 
       def content_type
-        types = MIME::Types.type_for(original_filename)
-        types.empty? ? @request.content_type : types.first.to_s
+        @request.content_type
       end
 
       def body

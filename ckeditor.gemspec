@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.md"]
   s.require_paths = ["lib"]
   
-  s.add_dependency("mime-types")
+  s.add_dependency("cocaine")
   s.add_dependency("orm_adapter", "~> 0.5.0")
 end

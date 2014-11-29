@@ -3,10 +3,8 @@ require 'active_support/json/encoding'
 
 module Ckeditor
   module Utils
-    class JavascriptCode < String
-      def as_json(options = nil) self end #:nodoc:
-      def encode_json(encoder) self end #:nodoc:
-    end
+    autoload :JavascriptCode, 'ckeditor/utils/javascript_code'
+    autoload :ContentTypeDetector, 'ckeditor/utils/content_type_detector'
 
     class << self
       def escape_single_quotes(str)
@@ -104,6 +102,10 @@ module Ckeditor
 
           items
         end
+      end
+
+      def extract_content_type(file)
+        
       end
     end
   end

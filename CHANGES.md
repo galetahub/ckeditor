@@ -5,6 +5,7 @@
   * Update ckeditor to Version 4.4.6 (72 Plugins, 25 Nov 2014)
   * Add 'config.allowedContent = true;' by default
   * Setup toolbar groups configuration
+  * Better content_type detection strategy
 
 ## Ckeditor 4.1.0
   
