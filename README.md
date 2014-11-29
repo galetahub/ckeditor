@@ -19,6 +19,13 @@ For basic usage just include ckeditor gem:
 ```
 gem 'ckeditor'
 ```
+
+or if you want to use the latest version from github:
+
+```
+gem 'ckeditor', github: 'galetahub/ckeditor'
+```
+
 #### Using with ruby 1.8.7
 
 For usage with ruby 1.8.7 you need to specify gem version:
@@ -74,7 +81,7 @@ rails generate ckeditor:install --orm=mongoid --backend=carrierwave
 #### Load generated models
 
 All ckeditor models will be generated into app/models/ckeditor folder.
-Autoload ckeditor models folder (application.rb):
+Models are autoloaded in Rails 4. For earlier Rails versions you need to add them to autoload path (in application.rb):
 
 ```ruby
 config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
@@ -88,7 +95,7 @@ mount Ckeditor::Engine => '/ckeditor'
 
 ## Usage
 
-Include ckeditor javascripts rails 3.2 (application.js):
+Include ckeditor javascripts in your `app/assets/javascripts/application.js`:
 
 ```
 //= require ckeditor/init
@@ -120,9 +127,30 @@ app/assets/javascripts/ckeditor/config.js
 app/assets/javascripts/ckeditor/contents.css
 ```
 
+#### Custom toolbars example
+
+Adding custom toolbar:
+
+```javascript
+# in app/assets/javascripts/ckeditor/config.js
+
+CKEDITOR.editorConfig = function (config) {
+  // ... other configuration ...
+  
+  config.toolbar_mini = [
+    ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
+  ];
+  config.toolbar = "simple";
+
+  // ... rest of the original config.js  ...
+}
+```
+
+When overriding default `config.js` you have to set all configuration yourself since bundled `config.js` will not be loaded. To see the default configuration run `bundle open ckeditor` and copy `app/assets/javascripts/ckeditor/config.js` to your project and customize it to your needs.
+
 ### Deployment
 
-For rails 4, add the following to `config/initializers/assets.rb`:
+For Rails 4, add the following to `config/initializers/assets.rb`:
 
 ```ruby
 Rails.application.config.assets.precompile += %w( ckeditor/* )
@@ -142,8 +170,10 @@ Ckeditor.setup do |config|
 end
 ```
 
+Note that you have to list your plugins including all their dependencies.
+
 ### Include customized CKEDITOR_BASEPATH setting
-  
+
 Add your app/assets/javascripts/ckeditor/basepath.js.erb like
 
 ```erb
