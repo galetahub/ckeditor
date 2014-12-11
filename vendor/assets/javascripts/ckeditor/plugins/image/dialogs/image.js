@@ -2,6 +2,7 @@
  Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
+
 (function() {
     var r = function(c, j) {
         function r() {
@@ -480,12 +481,30 @@
                                 commit: function(a, b, c) {
                                     var e = this.getValue();
                                     if (a == f || 4 == a) {
-                                        if (e ? b.setStyle("float", e) : b.removeStyle("float"), !c && a == f) switch (e = (b.getAttribute("align") || "").toLowerCase(), e) {
+                                        if (e == "center"){
+                                          b.removeStyle("float");
+                                          b.removeStyle("margin");
+                                          b.removeStyle("display");
+                                          b.setStyle("display", "block");
+                                          b.setStyle("margin", "0 auto");
+                                        }
+                                        else if (e || (!c && a == f)){ 
+                                          b.removeStyle("display");
+                                          b.removeStyle("margin");
+                                          b.removeStyle("float");
+                                          b.setStyle("float", e)
+                                          switch (e = (b.getAttribute("align") || "").toLowerCase(), e) {
                                             case "left":
                                             case "right":
                                                 b.removeAttribute("align")
+                                          }
                                         }
-                                    } else 8 == a && b.removeStyle("float")
+                                    } else{
+                                      8 == a; 
+                                      b.removeStyle("float");
+                                      b.removeStyle("margin");
+                                      b.removeStyle("display");
+                                    }
                                 }
                             }]
                         }]
