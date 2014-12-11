@@ -459,7 +459,7 @@
                                 items: [
                                     [c.lang.common.notSet, ""],
                                     [c.lang.common.alignLeft, "left"],
-                                    [c.lang.common.alignRight, "right"]
+                                    [c.lang.common.alignRight, "right"],
                                     [c.lang.common.alignCenter, "center"]
                                 ],
                                 onChange: function() {
