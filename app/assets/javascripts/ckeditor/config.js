@@ -33,6 +33,8 @@ CKEDITOR.editorConfig = function( config )
 
   config.allowedContent = true;
 
+  config.fillEmptyBlocks = false;
+
   // Rails CSRF token
   config.filebrowserParams = function(){
     var csrf_token, csrf_param, meta,
