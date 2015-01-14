@@ -19,7 +19,10 @@ module Ckeditor
       # action as a symbol (:create, :destroy, etc.). The second argument is the actual model
       # instance if it is available.
       def authorize(action, model_object = nil)
-        @controller.current_ability.authorize!(action.to_sym, model_object) if action
+        if action
+          @controller.instance_variable_set(:@_authorized, true)
+          @controller.current_ability.authorize!(action.to_sym, model_object)
+        end
       end
 
       # This method is called primarily from the view to determine whether the given user
