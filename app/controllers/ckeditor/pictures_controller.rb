@@ -4,7 +4,9 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
     @pictures = Ckeditor.picture_adapter.find_all(ckeditor_pictures_scope)
     @pictures = Ckeditor::Paginatable.new(@pictures).page(params[:page])
 
-    respond_with(@pictures, :layout => @pictures.first_page?)
+    respond_to do |format|
+      format.html { render :layout => @pictures.first_page? }
+    end
   end
 
   def create
@@ -14,7 +16,11 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
   def destroy
     @picture.destroy
-    respond_with(@picture, :location => pictures_path)
+
+    respond_to do |format|
+      format.html { redirect_to pictures_path }
+      format.json { render :nothing => true, :status => 204 }
+    end
   end
 
   protected
