@@ -2,6 +2,6 @@ class Ckeditor::Asset < ActiveRecord::Base
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Ckeditor::Backend::Dragonfly
 
-  ckeditor_file_accessor :data
+  dragonfly_accessor :data, app: :ckeditor
   validates_presence_of :data
 end

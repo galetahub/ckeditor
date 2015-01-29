@@ -11,7 +11,12 @@ class PictureTest < ActiveSupport::TestCase
     assert_equal "image/png", @picture.data_content_type
     assert_equal "rails.png", @picture.data_file_name
     assert_equal 6646, @picture.data_file_size
-    assert @picture.url_thumb.include?('thumb_rails.png')
+
+    if CKEDITOR_BACKEND == :dragonfly
+      assert @picture.url_thumb.include?('thumb_rails')
+    else
+      assert @picture.url_thumb.include?('thumb_rails.png')
+    end
 
     if @picture.has_dimensions?
       assert_equal 50, @picture.width

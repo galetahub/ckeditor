@@ -61,6 +61,16 @@ gem 'mini_magick'
 rails generate ckeditor:install --orm=active_record --backend=carrierwave
 ```
 
+#### ActiveRecord + dragonfly
+
+Requires Dragonfly 1.0 or greater.
+
+```
+gem 'dragonfly'
+
+rails generate ckeditor:install --orm=active_record --backend=dragonfly
+```
+
 #### Mongoid + paperclip
 
 ```
