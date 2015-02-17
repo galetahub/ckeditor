@@ -79,6 +79,12 @@ class CkeditorTest < ActiveSupport::TestCase
     assert_equal Ckeditor.assets.include?('ckeditor/plugins/image/dialogs/image.js'), true
   end
 
+  test 'configuration specifying running ckeditor:nondigest task on assets:precompile' do
+    assert_equal Ckeditor.run_on_precompile?, true
+    Ckeditor.run_on_precompile = false
+    assert_equal Ckeditor.run_on_precompile?, false
+  end
+
   class CustomPicture; end
   class CustomAttachmentFile; end
 end
