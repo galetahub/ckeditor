@@ -25,9 +25,9 @@ module Ckeditor
 
         if options && !options.keys.empty?
           js_options = ActiveSupport::JSON.encode(options)
-          js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
+          js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}', #{js_options}); }"
         else
-          js << "CKEDITOR.replace('#{dom_id}');"
+          js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}'); }"
         end
 
         js << "} else { setTimeout(arguments.callee, 50); } })();"
