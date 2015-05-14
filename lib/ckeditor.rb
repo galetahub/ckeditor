@@ -58,6 +58,10 @@ module Ckeditor
   mattr_accessor :assets
   @@assets = nil
 
+  # Remove digest from ckeditor asset files while running assets:precompile task?
+  mattr_accessor :run_on_precompile
+  @@run_on_precompile = true
+
   # Turn on/off filename parameterize
   mattr_accessor :parameterize_filenames
   @@parameterize_filenames = true
@@ -100,6 +104,10 @@ module Ckeditor
   # All css and js files from ckeditor folder
   def self.assets
     @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
+  end
+
+  def self.run_on_precompile?
+    @@run_on_precompile
   end
 
   def self.picture_model(&block)
