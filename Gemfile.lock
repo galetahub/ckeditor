@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ckeditor (4.1.1)
+    ckeditor (4.1.2)
       cocaine
       orm_adapter (~> 0.5.0)
 
