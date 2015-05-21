@@ -24,7 +24,6 @@ platforms :ruby do
   end
 
   group :active_record do
-    # gem "paperclip", "~> 3.0.3"
     gem 'paperclip', '~> 4.1.1'
     gem "carrierwave"
     gem "dragonfly"
