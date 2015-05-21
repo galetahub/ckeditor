@@ -1,5 +1,10 @@
 # Ckeditor changelog
 
+## Ckeditor 4.1.2
+  
+  * Update ckeditor to Version 4.4.7 (72 Plugins, 27 Jan 2015)
+  * Bugs fixes
+
 ## Ckeditor 4.1.1
   
   * Update ckeditor to Version 4.4.6 (72 Plugins, 25 Nov 2014)
