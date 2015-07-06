@@ -1,0 +1,9 @@
+nb:
+  ckeditor:
+    page_title: "CKEditor filbehandlingr"
+    confirm_delete: "Slette filen?"
+    buttons:
+      cancel: "Avbryt"
+      upload: "Last opp"
+      delete: "Slett"
+      next: "Neste"
