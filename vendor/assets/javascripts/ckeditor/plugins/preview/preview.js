@@ -1,5 +1,3 @@
-<script>
-
 // Prevent from DOM clobbering.
 if ( typeof window.opener._cke_htmlToLoad == 'string' ) {
 	var doc = document;
@@ -9,5 +7,3 @@ if ( typeof window.opener._cke_htmlToLoad == 'string' ) {
 
 	delete window.opener._cke_htmlToLoad;
 }
-
-</script>
