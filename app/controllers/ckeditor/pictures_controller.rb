@@ -1,4 +1,5 @@
 class Ckeditor::PicturesController < Ckeditor::ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create # FIXME: this should go away
 
   def index
     @pictures = Ckeditor.picture_adapter.find_all(ckeditor_pictures_scope)
