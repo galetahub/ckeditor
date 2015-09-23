@@ -61,6 +61,16 @@ gem 'mini_magick'
 rails generate ckeditor:install --orm=active_record --backend=carrierwave
 ```
 
+#### ActiveRecord + refile
+
+```
+gem 'refile', require: "refile/rails"
+gem 'refile-mini_magick'
+
+rails generate ckeditor:install --orm=active_record --backend=refile
+```
+
+
 #### ActiveRecord + dragonfly
 
 Requires Dragonfly 1.0 or greater.
@@ -146,7 +156,7 @@ Adding a custom toolbar:
 
 CKEDITOR.editorConfig = function (config) {
   // ... other configuration ...
-  
+
   config.toolbar_mini = [
     ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
   ];
