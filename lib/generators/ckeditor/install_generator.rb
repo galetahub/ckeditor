@@ -13,7 +13,7 @@ module Ckeditor
         :desc => "Backend processor for upload support"
 
       class_option :backend, :type => :string, :default => 'paperclip',
-        :desc => "paperclip (default), carrierwave, or dragonfly"
+        :desc => "paperclip (default), carrierwave, refile or dragonfly"
 
       def self.source_root
         @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
