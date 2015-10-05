@@ -1,0 +1,9 @@
+bg:
+  ckeditor:
+    page_title: "Списък с файлове"
+    confirm_delete: "Сигурни ли сте, че искате да изтриете този файл?"
+    buttons:
+      cancel: "Откажи"
+      upload: "Качи"
+      delete: "Изтрий"
+      next: "Следващ"
