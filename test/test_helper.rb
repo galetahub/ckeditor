@@ -3,16 +3,13 @@ ENV["RAILS_ENV"] = "test"
 CKEDITOR_ORM = (ENV["CKEDITOR_ORM"] || :active_record).to_sym
 CKEDITOR_BACKEND = (ENV["CKEDITOR_BACKEND"] || :paperclip).to_sym
 
+$:.unshift File.dirname(__FILE__)
 puts "\n==> Ckeditor.orm = #{CKEDITOR_ORM.inspect}. CKEDITOR_ORM = (active_record|mongoid)"
 puts "\n==> Ckeditor.backend = #{CKEDITOR_BACKEND.inspect}. CKEDITOR_BACKEND = (paperclip|carrierwave|refile|dragonfly)"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require 'redgreen'
-
-ActionMailer::Base.delivery_method = :test
-ActionMailer::Base.perform_deliveries = true
-ActionMailer::Base.default_url_options[:host] = "test.com"
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -25,6 +22,7 @@ Capybara.default_selector = :css
 require "orm/#{CKEDITOR_ORM}"
 
 # Load support files
+$:.unshift File.expand_path('../support', __FILE__)
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 # For generators

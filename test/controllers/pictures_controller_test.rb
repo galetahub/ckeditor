@@ -4,11 +4,10 @@ class PicturesControllerTest < ActionController::TestCase
   tests Ckeditor::PicturesController
 
   include RawPost
-  include Ckeditor::Engine.routes.url_helpers
-  include ControllerHooks
-
+  
   def setup
     @image = fixture_file_upload('files/rails.png', 'image/png')
+    @routes = Ckeditor::Engine.routes
   end
 
   def teardown
@@ -48,7 +47,7 @@ class PicturesControllerTest < ActionController::TestCase
 
   test "invalid params for create action" do
     assert_no_difference 'Ckeditor::Picture.count' do
-      post :create, :qqfile => nil
+      post :create, :qqfile => nil, :format => :html
     end
   end
 

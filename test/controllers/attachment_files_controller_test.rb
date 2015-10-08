@@ -4,10 +4,10 @@ class AttachmentFilesControllerTest < ActionController::TestCase
   tests Ckeditor::AttachmentFilesController
 
   include RawPost
-  include ControllerHooks
 
   def setup
     @attachment = fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')
+    @routes = Ckeditor::Engine.routes
   end
 
   def teardown
@@ -47,7 +47,7 @@ class AttachmentFilesControllerTest < ActionController::TestCase
 
   test "invalid params for create action" do
     assert_no_difference 'Ckeditor::AttachmentFile.count' do
-      post :create, :qqfile => nil
+      post :create, :qqfile => nil, :format => :html
     end
   end
 
