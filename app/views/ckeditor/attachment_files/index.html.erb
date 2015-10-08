@@ -4,14 +4,14 @@
   		<%= link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), 'javascript:void(0)', :class => "add" %>
 		</div>
 	</div>
-  
+
   <div class="fileupload-list">
-    <%= render :partial => 'ckeditor/shared/asset', :collection => @attachments.scoped %>		
+    <%= render :partial => 'ckeditor/shared/asset', :collection => @attachments.scoped %>
   </div>
 
   <% unless @attachments.last_page? %>
     <div class="pagination">
-      <%= link_to I18n.t("ckeditor.buttons.next"), params.merge(:page => @attachments.next_page), :class => "next", :rel => "next" %>
+      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.attachment_files_path(params.merge(:page => @attachments.next_page)), :class => "next", :rel => "next" %>
     </div>
   <% end -%>
 
