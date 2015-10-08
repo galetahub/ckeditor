@@ -34,7 +34,7 @@ platforms :ruby do
   end
 
   group :mongoid do
-    gem "mongoid"
+    gem 'mongoid', '~> 5.0.0'
     gem "bson_ext"
     gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
     gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'

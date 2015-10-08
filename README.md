@@ -303,9 +303,11 @@ en:
 ## Tests
 
 ```bash
-$> rake test
-$> rake test CKEDITOR_ORM=mongoid
+$> rake test CKEDITOR_BACKEND=paperclip
 $> rake test CKEDITOR_BACKEND=carrierwave
+$> rake test CKEDITOR_BACKEND=refile
+$> rake test CKEDITOR_BACKEND=dragonfly
+$> rake test CKEDITOR_ORM=mongoid
 
 $> rake test:controllers
 $> rake test:generators
