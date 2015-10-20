@@ -1,0 +1,9 @@
+tr:
+  ckeditor:
+    page_title: "CKEditor Dosya Yöneticisi"
+    confirm_delete: "Dosyayı sil?"
+    buttons:
+      cancel: "İptal"
+      upload: "Yükle"
+      delete: "Sil"
+      next: "Sonraki"
