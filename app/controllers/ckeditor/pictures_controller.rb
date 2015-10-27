@@ -1,5 +1,5 @@
 class Ckeditor::PicturesController < Ckeditor::ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create
+  skip_before_filter :verify_authenticity_token, only: :create
 
   def index
     @pictures = Ckeditor.picture_adapter.find_all(ckeditor_pictures_scope)
