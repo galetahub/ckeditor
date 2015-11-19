@@ -6,6 +6,7 @@ module Ckeditor
   autoload :Http, 'ckeditor/http'
   autoload :TextArea, 'ckeditor/text_area'
   autoload :Paginatable, 'ckeditor/paginatable'
+  autoload :AssetResponse, 'ckeditor/asset_response'
 
   module Helpers
     autoload :ViewHelper, 'ckeditor/helpers/view_helper'

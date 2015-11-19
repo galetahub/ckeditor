@@ -8,40 +8,13 @@ class Ckeditor::ApplicationController < ApplicationController
   protected
 
     def respond_with_asset(asset)
-      file = (params[:CKEditor].blank? && params[:responseType] != 'json') ? params[:qqfile] : params[:upload]
-      asset.data = Ckeditor::Http.normalize_param(file, request)
+      _response = Ckeditor::AssetResponse.new(asset, request)
+      _callback = ckeditor_before_create_asset(asset)
 
-      callback = ckeditor_before_create_asset(asset)
-
-      if callback && asset.save
-        if params[:responseType] == 'json'
-          render json: {
-            "uploaded" => 1,
-            "fileName" => asset.filename,
-            "url" => asset.url
-          }.to_json
-        elsif params[:CKEditor].blank?
-          render :json => asset.to_json(:only=>[:id, :type])
-        else
-          render :text => %Q"<script type='text/javascript'>
-              window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{config.relative_url_root}#{Ckeditor::Utils.escape_single_quotes(asset.url_content)}');
-            </script>"
-        end
+      if _callback && asset.save
+        render _response.success(config.relative_url_root)
       else
-        if params[:responseType] == 'json'
-          render json: {
-            "uploaded" => 0,
-            "error" => {
-              "message" => "Upload failed"
-            }
-          }.to_json
-        elsif params[:CKEditor].blank?
-          render :nothing => true, :format => :json
-        else
-          render :text => %Q"<script type='text/javascript'>
-              window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{Ckeditor::Utils.escape_single_quotes(asset.errors.full_messages.first)}');
-            </script>"
-        end
+        render _response.errors
       end
     end
 end
