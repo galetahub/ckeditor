@@ -1,5 +1,11 @@
 # Ckeditor changelog
 
+## Ckeditor 4.1.5
+
+  * Update ckeditor to Version 4.5.5 (12 Nov 2015)
+  * Turkish locale
+  * Bugs fixes
+
 ## Ckeditor 4.1.4
   
   * Update ckeditor to Version 4.5.4 (6 Oct 2015)
