@@ -1,9 +1,129 @@
-﻿/*
- Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
-*/
-CKEDITOR.dialog.add("radio",function(b){return{title:b.lang.forms.checkboxAndRadio.radioTitle,minWidth:350,minHeight:140,onShow:function(){delete this.radioButton;var a=this.getParentEditor().getSelection().getSelectedElement();a&&"input"==a.getName()&&"radio"==a.getAttribute("type")&&(this.radioButton=a,this.setupContent(a))},onOk:function(){var a,c=this.radioButton,b=!c;b&&(a=this.getParentEditor(),c=a.document.createElement("input"),c.setAttribute("type","radio"));b&&a.insertElement(c);this.commitContent({element:c})},
-contents:[{id:"info",label:b.lang.forms.checkboxAndRadio.radioTitle,title:b.lang.forms.checkboxAndRadio.radioTitle,elements:[{id:"name",type:"text",label:b.lang.common.name,"default":"",accessKey:"N",setup:function(a){this.setValue(a.data("cke-saved-name")||a.getAttribute("name")||"")},commit:function(a){a=a.element;this.getValue()?a.data("cke-saved-name",this.getValue()):(a.data("cke-saved-name",!1),a.removeAttribute("name"))}},{id:"value",type:"text",label:b.lang.forms.checkboxAndRadio.value,"default":"",
-accessKey:"V",setup:function(a){this.setValue(a.getAttribute("value")||"")},commit:function(a){a=a.element;this.getValue()?a.setAttribute("value",this.getValue()):a.removeAttribute("value")}},{id:"checked",type:"checkbox",label:b.lang.forms.checkboxAndRadio.selected,"default":"",accessKey:"S",value:"checked",setup:function(a){this.setValue(a.getAttribute("checked"))},commit:function(a){var c=a.element;if(CKEDITOR.env.ie){var d=c.getAttribute("checked"),e=!!this.getValue();d!=e&&(d=CKEDITOR.dom.element.createFromHtml('\x3cinput type\x3d"radio"'+
-(e?' checked\x3d"checked"':"")+"\x3e\x3c/input\x3e",b.document),c.copyAttributes(d,{type:1,checked:1}),d.replace(c),b.getSelection().selectElement(d),a.element=d)}else this.getValue()?c.setAttribute("checked","checked"):c.removeAttribute("checked")}},{id:"required",type:"checkbox",label:b.lang.forms.checkboxAndRadio.required,"default":"",accessKey:"Q",value:"required",setup:function(a){this.setValue(a.getAttribute("required"))},commit:function(a){a=a.element;this.getValue()?a.setAttribute("required",
-"required"):a.removeAttribute("required")}}]}]}});
+﻿/**
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
+CKEDITOR.dialog.add( 'radio', function( editor ) {
+	return {
+		title: editor.lang.forms.checkboxAndRadio.radioTitle,
+		minWidth: 350,
+		minHeight: 140,
+		onShow: function() {
+			delete this.radioButton;
+
+			var element = this.getParentEditor().getSelection().getSelectedElement();
+			if ( element && element.getName() == 'input' && element.getAttribute( 'type' ) == 'radio' ) {
+				this.radioButton = element;
+				this.setupContent( element );
+			}
+		},
+		onOk: function() {
+			var editor,
+				element = this.radioButton,
+				isInsertMode = !element;
+
+			if ( isInsertMode ) {
+				editor = this.getParentEditor();
+				element = editor.document.createElement( 'input' );
+				element.setAttribute( 'type', 'radio' );
+			}
+
+			if ( isInsertMode )
+				editor.insertElement( element );
+			this.commitContent( { element: element } );
+		},
+		contents: [ {
+			id: 'info',
+			label: editor.lang.forms.checkboxAndRadio.radioTitle,
+			title: editor.lang.forms.checkboxAndRadio.radioTitle,
+			elements: [ {
+				id: 'name',
+				type: 'text',
+				label: editor.lang.common.name,
+				'default': '',
+				accessKey: 'N',
+				setup: function( element ) {
+					this.setValue( element.data( 'cke-saved-name' ) || element.getAttribute( 'name' ) || '' );
+				},
+				commit: function( data ) {
+					var element = data.element;
+
+					if ( this.getValue() )
+						element.data( 'cke-saved-name', this.getValue() );
+					else {
+						element.data( 'cke-saved-name', false );
+						element.removeAttribute( 'name' );
+					}
+				}
+			},
+			{
+				id: 'value',
+				type: 'text',
+				label: editor.lang.forms.checkboxAndRadio.value,
+				'default': '',
+				accessKey: 'V',
+				setup: function( element ) {
+					this.setValue( element.getAttribute( 'value' ) || '' );
+				},
+				commit: function( data ) {
+					var element = data.element;
+
+					if ( this.getValue() )
+						element.setAttribute( 'value', this.getValue() );
+					else
+						element.removeAttribute( 'value' );
+				}
+			},
+			{
+				id: 'checked',
+				type: 'checkbox',
+				label: editor.lang.forms.checkboxAndRadio.selected,
+				'default': '',
+				accessKey: 'S',
+				value: 'checked',
+				setup: function( element ) {
+					this.setValue( element.getAttribute( 'checked' ) );
+				},
+				commit: function( data ) {
+					var element = data.element;
+
+					if ( !CKEDITOR.env.ie ) {
+						if ( this.getValue() )
+							element.setAttribute( 'checked', 'checked' );
+						else
+							element.removeAttribute( 'checked' );
+					} else {
+						var isElementChecked = element.getAttribute( 'checked' );
+						var isChecked = !!this.getValue();
+
+						if ( isElementChecked != isChecked ) {
+							var replace = CKEDITOR.dom.element.createFromHtml( '<input type="radio"' + ( isChecked ? ' checked="checked"' : '' ) +
+								'></input>', editor.document );
+							element.copyAttributes( replace, { type: 1, checked: 1 } );
+							replace.replace( element );
+							editor.getSelection().selectElement( replace );
+							data.element = replace;
+						}
+					}
+				}
+			},
+			{
+				id: 'required',
+				type: 'checkbox',
+				label: editor.lang.forms.checkboxAndRadio.required,
+				'default': '',
+				accessKey: 'Q',
+				value: 'required',
+				setup: function( element ) {
+					this.setValue( element.getAttribute( 'required' ) );
+				},
+				commit: function( data ) {
+					var element = data.element;
+					if ( this.getValue() )
+						element.setAttribute( 'required', 'required' );
+					else
+						element.removeAttribute( 'required' );
+				}
+			} ]
+		} ]
+	};
+} );
