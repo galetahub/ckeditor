@@ -1,13 +1,327 @@
-﻿/*
- Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
-*/
-CKEDITOR.dialog.add("colordialog",function(x){function q(){d.getById(r).removeStyle("background-color");t.getContentElement("picker","selectedColor").setValue("");l&&l.removeAttribute("aria-selected");l=null}function y(a){a=a.data.getTarget();var c;"td"==a.getName()&&(c=a.getChild(0).getHtml())&&(l=a,l.setAttribute("aria-selected",!0),t.getContentElement("picker","selectedColor").setValue(c))}function C(a){a=a.replace(/^#/,"");for(var c=0,b=[];2>=c;c++)b[c]=parseInt(a.substr(2*c,2),16);return"#"+
-(165<=.2126*b[0]+.7152*b[1]+.0722*b[2]?"000":"fff")}function z(a){!a.name&&(a=new CKEDITOR.event(a));var c=!/mouse/.test(a.name),b=a.data.getTarget(),g;"td"==b.getName()&&(g=b.getChild(0).getHtml())&&(u(a),c?e=b:A=b,c&&(b.setStyle("border-color",C(g)),b.setStyle("border-style","dotted")),d.getById(m).setStyle("background-color",g),d.getById(n).setHtml(g))}function u(a){if(a=!/mouse/.test(a.name)&&e){var c=a.getChild(0).getHtml();a.setStyle("border-color",c);a.setStyle("border-style","solid")}e||A||
-(d.getById(m).removeStyle("background-color"),d.getById(n).setHtml("\x26nbsp;"))}function D(a){var c=a.data,b=c.getTarget(),g=c.getKeystroke(),d="rtl"==x.lang.dir;switch(g){case 38:if(a=b.getParent().getPrevious())a=a.getChild([b.getIndex()]),a.focus();c.preventDefault();break;case 40:(a=b.getParent().getNext())&&(a=a.getChild([b.getIndex()]))&&1==a.type&&a.focus();c.preventDefault();break;case 32:case 13:y(a);c.preventDefault();break;case d?37:39:(a=b.getNext())?1==a.type&&(a.focus(),c.preventDefault(!0)):
-(a=b.getParent().getNext())&&(a=a.getChild([0]))&&1==a.type&&(a.focus(),c.preventDefault(!0));break;case d?39:37:if(a=b.getPrevious())a.focus(),c.preventDefault(!0);else if(a=b.getParent().getPrevious())a=a.getLast(),a.focus(),c.preventDefault(!0)}}var v=CKEDITOR.dom.element,d=CKEDITOR.document,f=x.lang.colordialog,t,B={type:"html",html:"\x26nbsp;"},l,e,A,p=function(a){return CKEDITOR.tools.getNextId()+"_"+a},m=p("hicolor"),n=p("hicolortext"),r=p("selhicolor"),h;(function(){function a(a,d){for(var w=
-a;w<a+3;w++){var e=new v(h.$.insertRow(-1));e.setAttribute("role","row");for(var f=d;f<d+3;f++)for(var g=0;6>g;g++)c(e.$,"#"+b[f]+b[g]+b[w])}}function c(a,c){var b=new v(a.insertCell(-1));b.setAttribute("class","ColorCell");b.setAttribute("tabIndex",-1);b.setAttribute("role","gridcell");b.on("keydown",D);b.on("click",y);b.on("focus",z);b.on("blur",u);b.setStyle("background-color",c);b.setStyle("border","1px solid "+c);b.setStyle("width","14px");b.setStyle("height","14px");var d=p("color_table_cell");
-b.setAttribute("aria-labelledby",d);b.append(CKEDITOR.dom.element.createFromHtml('\x3cspan id\x3d"'+d+'" class\x3d"cke_voice_label"\x3e'+c+"\x3c/span\x3e",CKEDITOR.document))}h=CKEDITOR.dom.element.createFromHtml('\x3ctable tabIndex\x3d"-1" aria-label\x3d"'+f.options+'" role\x3d"grid" style\x3d"border-collapse:separate;" cellspacing\x3d"0"\x3e\x3ccaption class\x3d"cke_voice_label"\x3e'+f.options+'\x3c/caption\x3e\x3ctbody role\x3d"presentation"\x3e\x3c/tbody\x3e\x3c/table\x3e');h.on("mouseover",z);
-h.on("mouseout",u);var b="00 33 66 99 cc ff".split(" ");a(0,0);a(3,0);a(0,3);a(3,3);var d=new v(h.$.insertRow(-1));d.setAttribute("role","row");c(d.$,"#000000");for(var e=0;16>e;e++){var k=e.toString(16);c(d.$,"#"+k+k+k+k+k+k)}c(d.$,"#ffffff")})();return{title:f.title,minWidth:360,minHeight:220,onLoad:function(){t=this},onHide:function(){q();var a=e.getChild(0).getHtml();e.setStyle("border-color",a);e.setStyle("border-style","solid");d.getById(m).removeStyle("background-color");d.getById(n).setHtml("\x26nbsp;");
-e=null},contents:[{id:"picker",label:f.title,accessKey:"I",elements:[{type:"hbox",padding:0,widths:["70%","10%","30%"],children:[{type:"html",html:"\x3cdiv\x3e\x3c/div\x3e",onLoad:function(){CKEDITOR.document.getById(this.domId).append(h)},focus:function(){(e||this.getElement().getElementsByTag("td").getItem(0)).focus()}},B,{type:"vbox",padding:0,widths:["70%","5%","25%"],children:[{type:"html",html:"\x3cspan\x3e"+f.highlight+'\x3c/span\x3e\x3cdiv id\x3d"'+m+'" style\x3d"border: 1px solid; height: 74px; width: 74px;"\x3e\x3c/div\x3e\x3cdiv id\x3d"'+
-n+'"\x3e\x26nbsp;\x3c/div\x3e\x3cspan\x3e'+f.selected+'\x3c/span\x3e\x3cdiv id\x3d"'+r+'" style\x3d"border: 1px solid; height: 20px; width: 74px;"\x3e\x3c/div\x3e'},{type:"text",label:f.selected,labelStyle:"display:none",id:"selectedColor",style:"width: 76px;margin-top:4px",onChange:function(){try{d.getById(r).setStyle("background-color",this.getValue())}catch(a){q()}}},B,{type:"button",id:"clear",label:f.clear,onClick:q}]}]}]}]}});
+﻿/**
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
+
+CKEDITOR.dialog.add( 'colordialog', function( editor ) {
+	// Define some shorthands.
+	var $el = CKEDITOR.dom.element,
+		$doc = CKEDITOR.document,
+		lang = editor.lang.colordialog;
+
+	// Reference the dialog.
+	var dialog;
+
+	var spacer = {
+		type: 'html',
+		html: '&nbsp;'
+	};
+
+	var selected;
+
+	function clearSelected() {
+		$doc.getById( selHiColorId ).removeStyle( 'background-color' );
+		dialog.getContentElement( 'picker', 'selectedColor' ).setValue( '' );
+		selected && selected.removeAttribute( 'aria-selected' );
+		selected = null;
+	}
+
+	function updateSelected( evt ) {
+		var target = evt.data.getTarget(),
+			color;
+
+		if ( target.getName() == 'td' && ( color = target.getChild( 0 ).getHtml() ) ) {
+			selected = target;
+			selected.setAttribute( 'aria-selected', true );
+			dialog.getContentElement( 'picker', 'selectedColor' ).setValue( color );
+		}
+	}
+
+	// Basing black-white decision off of luma scheme using the Rec. 709 version
+	function whiteOrBlack( color ) {
+		color = color.replace( /^#/, '' );
+		for ( var i = 0, rgb = []; i <= 2; i++ )
+			rgb[ i ] = parseInt( color.substr( i * 2, 2 ), 16 );
+		var luma = ( 0.2126 * rgb[ 0 ] ) + ( 0.7152 * rgb[ 1 ] ) + ( 0.0722 * rgb[ 2 ] );
+		return '#' + ( luma >= 165 ? '000' : 'fff' );
+	}
+
+	// Distinguish focused and hover states.
+	var focused, hovered;
+
+	// Apply highlight style.
+	function updateHighlight( event ) {
+		// Convert to event.
+		!event.name && ( event = new CKEDITOR.event( event ) );
+
+		var isFocus = !( /mouse/ ).test( event.name ),
+			target = event.data.getTarget(),
+			color;
+
+		if ( target.getName() == 'td' && ( color = target.getChild( 0 ).getHtml() ) ) {
+			removeHighlight( event );
+
+			isFocus ? focused = target : hovered = target;
+
+			// Apply outline style to show focus.
+			if ( isFocus ) {
+				target.setStyle( 'border-color', whiteOrBlack( color ) );
+				target.setStyle( 'border-style', 'dotted' );
+			}
+
+			$doc.getById( hicolorId ).setStyle( 'background-color', color );
+			$doc.getById( hicolorTextId ).setHtml( color );
+		}
+	}
+
+	function clearHighlight() {
+		var color = focused.getChild( 0 ).getHtml();
+		focused.setStyle( 'border-color', color );
+		focused.setStyle( 'border-style', 'solid' );
+		$doc.getById( hicolorId ).removeStyle( 'background-color' );
+		$doc.getById( hicolorTextId ).setHtml( '&nbsp;' );
+		focused = null;
+	}
+
+	// Remove previously focused style.
+	function removeHighlight( event ) {
+		var isFocus = !( /mouse/ ).test( event.name ),
+			target = isFocus && focused;
+
+		if ( target ) {
+			var color = target.getChild( 0 ).getHtml();
+			target.setStyle( 'border-color', color );
+			target.setStyle( 'border-style', 'solid' );
+		}
+
+		if ( !( focused || hovered ) ) {
+			$doc.getById( hicolorId ).removeStyle( 'background-color' );
+			$doc.getById( hicolorTextId ).setHtml( '&nbsp;' );
+		}
+	}
+
+	function onKeyStrokes( evt ) {
+		var domEvt = evt.data;
+
+		var element = domEvt.getTarget();
+		var relative, nodeToMove;
+		var keystroke = domEvt.getKeystroke(),
+			rtl = editor.lang.dir == 'rtl';
+
+		switch ( keystroke ) {
+			// UP-ARROW
+			case 38:
+				// relative is TR
+				if ( ( relative = element.getParent().getPrevious() ) ) {
+					nodeToMove = relative.getChild( [ element.getIndex() ] );
+					nodeToMove.focus();
+				}
+				domEvt.preventDefault();
+				break;
+				// DOWN-ARROW
+			case 40:
+				// relative is TR
+				if ( ( relative = element.getParent().getNext() ) ) {
+					nodeToMove = relative.getChild( [ element.getIndex() ] );
+					if ( nodeToMove && nodeToMove.type == 1 )
+						nodeToMove.focus();
+
+				}
+				domEvt.preventDefault();
+				break;
+
+				// SPACE
+				// ENTER
+			case 32:
+			case 13:
+				updateSelected( evt );
+				domEvt.preventDefault();
+				break;
+
+				// RIGHT-ARROW
+			case rtl ? 37 : 39:
+				// relative is TD
+				if ( ( nodeToMove = element.getNext() ) ) {
+					if ( nodeToMove.type == 1 ) {
+						nodeToMove.focus();
+						domEvt.preventDefault( true );
+					}
+				}
+				// relative is TR
+				else if ( ( relative = element.getParent().getNext() ) ) {
+					nodeToMove = relative.getChild( [ 0 ] );
+					if ( nodeToMove && nodeToMove.type == 1 ) {
+						nodeToMove.focus();
+						domEvt.preventDefault( true );
+					}
+				}
+				break;
+
+				// LEFT-ARROW
+			case rtl ? 39 : 37:
+				// relative is TD
+				if ( ( nodeToMove = element.getPrevious() ) ) {
+					nodeToMove.focus();
+					domEvt.preventDefault( true );
+				}
+				// relative is TR
+				else if ( ( relative = element.getParent().getPrevious() ) ) {
+					nodeToMove = relative.getLast();
+					nodeToMove.focus();
+					domEvt.preventDefault( true );
+				}
+				break;
+			default:
+				// Do not stop not handled events.
+				return;
+		}
+	}
+
+	function createColorTable() {
+		table = CKEDITOR.dom.element.createFromHtml( '<table tabIndex="-1" aria-label="' + lang.options + '"' +
+			' role="grid" style="border-collapse:separate;" cellspacing="0">' +
+			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
+			'<tbody role="presentation"></tbody></table>' );
+
+		table.on( 'mouseover', updateHighlight );
+		table.on( 'mouseout', removeHighlight );
+
+		// Create the base colors array.
+		var aColors = [ '00', '33', '66', '99', 'cc', 'ff' ];
+
+		// This function combines two ranges of three values from the color array into a row.
+		function appendColorRow( rangeA, rangeB ) {
+			for ( var i = rangeA; i < rangeA + 3; i++ ) {
+				var row = new $el( table.$.insertRow( -1 ) );
+				row.setAttribute( 'role', 'row' );
+
+				for ( var j = rangeB; j < rangeB + 3; j++ ) {
+					for ( var n = 0; n < 6; n++ ) {
+						appendColorCell( row.$, '#' + aColors[ j ] + aColors[ n ] + aColors[ i ] );
+					}
+				}
+			}
+		}
+
+		// This function create a single color cell in the color table.
+		function appendColorCell( targetRow, color ) {
+			var cell = new $el( targetRow.insertCell( -1 ) );
+			cell.setAttribute( 'class', 'ColorCell' );
+			cell.setAttribute( 'tabIndex', -1 );
+			cell.setAttribute( 'role', 'gridcell' );
+
+			cell.on( 'keydown', onKeyStrokes );
+			cell.on( 'click', updateSelected );
+			cell.on( 'focus', updateHighlight );
+			cell.on( 'blur', removeHighlight );
+
+			cell.setStyle( 'background-color', color );
+			cell.setStyle( 'border', '1px solid ' + color );
+
+			cell.setStyle( 'width', '14px' );
+			cell.setStyle( 'height', '14px' );
+
+			var colorLabel = numbering( 'color_table_cell' );
+			cell.setAttribute( 'aria-labelledby', colorLabel );
+			cell.append( CKEDITOR.dom.element.createFromHtml( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', CKEDITOR.document ) );
+		}
+
+		appendColorRow( 0, 0 );
+		appendColorRow( 3, 0 );
+		appendColorRow( 0, 3 );
+		appendColorRow( 3, 3 );
+
+		// Create the last row.
+		var oRow = new $el( table.$.insertRow( -1 ) );
+		oRow.setAttribute( 'role', 'row' );
+
+		// Create the gray scale colors cells.
+		appendColorCell( oRow.$, '#000000' );
+		for ( var n = 0; n < 16; n++  ) {
+			var c = n.toString( 16 );
+			appendColorCell( oRow.$, '#' + c + c + c + c + c + c );
+		}
+		appendColorCell( oRow.$, '#ffffff' );
+	}
+
+	var numbering = function( id ) {
+			return CKEDITOR.tools.getNextId() + '_' + id;
+		},
+		hicolorId = numbering( 'hicolor' ),
+		hicolorTextId = numbering( 'hicolortext' ),
+		selHiColorId = numbering( 'selhicolor' ),
+		table;
+
+	createColorTable();
+
+	return {
+		title: lang.title,
+		minWidth: 360,
+		minHeight: 220,
+		onLoad: function() {
+			// Update reference.
+			dialog = this;
+		},
+		onHide: function() {
+			clearSelected();
+			clearHighlight();
+		},
+		contents: [ {
+			id: 'picker',
+			label: lang.title,
+			accessKey: 'I',
+			elements: [ {
+				type: 'hbox',
+				padding: 0,
+				widths: [ '70%', '10%', '30%' ],
+				children: [ {
+					type: 'html',
+					html: '<div></div>',
+					onLoad: function() {
+						CKEDITOR.document.getById( this.domId ).append( table );
+					},
+					focus: function() {
+						// Restore the previously focused cell,
+						// otherwise put the initial focus on the first table cell.
+						( focused || this.getElement().getElementsByTag( 'td' ).getItem( 0 ) ).focus();
+					}
+				},
+				spacer,
+				{
+					type: 'vbox',
+					padding: 0,
+					widths: [ '70%', '5%', '25%' ],
+					children: [ {
+						type: 'html',
+						html: '<span>' + lang.highlight + '</span>' +
+							'<div id="' + hicolorId + '" style="border: 1px solid; height: 74px; width: 74px;"></div>' +
+							'<div id="' + hicolorTextId + '">&nbsp;</div><span>' + lang.selected + '</span>' +
+							'<div id="' + selHiColorId + '" style="border: 1px solid; height: 20px; width: 74px;"></div>'
+					},
+					{
+						type: 'text',
+						label: lang.selected,
+						labelStyle: 'display:none',
+						id: 'selectedColor',
+						style: 'width: 76px;margin-top:4px',
+						onChange: function() {
+							// Try to update color preview with new value. If fails, then set it no none.
+							try {
+								$doc.getById( selHiColorId ).setStyle( 'background-color', this.getValue() );
+							} catch ( e ) {
+								clearSelected();
+							}
+						}
+					},
+					spacer,
+					{
+						type: 'button',
+						id: 'clear',
+						label: lang.clear,
+						onClick: clearSelected
+					} ]
+				} ]
+			} ]
+		} ]
+	};
+} );
