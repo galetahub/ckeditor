@@ -78,6 +78,14 @@ module Ckeditor
   @@assets_languages = nil
   @@assets_plugins = nil
 
+  # CKEditor CDN
+  mattr_accessor :cdn_url
+  @@cdn_url = nil
+
+  # Url to ckeditor config, used when CDN enabled
+  mattr_accessor :js_config_url
+  @@js_config_url = '/assets/ckeditor/config.js'
+
   # Model classes
   @@picture_model = nil
   @@attachment_file_model = nil
@@ -105,11 +113,19 @@ module Ckeditor
 
   # All css and js files from ckeditor folder
   def self.assets
-    @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
+    @@assets ||= if Ckeditor.cdn_enabled?
+      ["ckeditor/config.js"]
+    else
+      Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
+    end
   end
 
   def self.run_on_precompile?
     @@run_on_precompile
+  end
+
+  def self.cdn_enabled?
+    !@@cdn_url.nil?
   end
 
   def self.picture_model(&block)

@@ -92,7 +92,7 @@ module Ckeditor
           files += Dir[path.join('**', extensions)]
         end
 
-        files.inject([]) do |items, name| 
+        files.inject([]) do |items, name|
           file = Pathname.new(name)
           base = file.basename('.*').to_s
 
@@ -102,10 +102,6 @@ module Ckeditor
 
           items
         end
-      end
-
-      def extract_content_type(file)
-        
       end
     end
   end

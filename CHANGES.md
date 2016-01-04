@@ -4,7 +4,7 @@
 
   * Update CKEditor to version 4.5.6 (9 Dec 2015)
   * Support for CKEditor CDN (http://cdn.ckeditor.com/)
-  * Load jquery form jQuery CDN (https://code.jquery.com/)
+  * Load jquery library form jQuery CDN (https://code.jquery.com/)
 
 ## Ckeditor 4.1.5
 

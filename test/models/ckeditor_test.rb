@@ -4,6 +4,8 @@ class CkeditorTest < ActiveSupport::TestCase
   def teardown
     Ckeditor.picture_model = nil
     Ckeditor.attachment_file_model = nil
+    Ckeditor.cdn_url = nil
+    Ckeditor.assets = nil
   end
 
   test "truth" do
@@ -66,6 +68,7 @@ class CkeditorTest < ActiveSupport::TestCase
     Ckeditor.assets_languages = ['en', 'uk']
 
     assert_equal Ckeditor.assets.include?('ckeditor/lang/ru.js'), false
+    assert_equal Ckeditor.assets.include?('ckeditor/lang/en.js'), true
     assert_equal Ckeditor.assets.include?('ckeditor/lang/uk.js'), true
     assert_equal Ckeditor.assets.include?('ckeditor/plugins/a11yhelp/dialogs/lang/bg.js'), false
     assert_equal Ckeditor.assets.include?('ckeditor/plugins/a11yhelp/dialogs/lang/uk.js'), true
@@ -83,6 +86,14 @@ class CkeditorTest < ActiveSupport::TestCase
     assert_equal Ckeditor.run_on_precompile?, true
     Ckeditor.run_on_precompile = false
     assert_equal Ckeditor.run_on_precompile?, false
+  end
+
+  test 'CDN setup' do
+    Ckeditor.cdn_url = "//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"
+    Ckeditor.assets = nil
+
+    assert_equal Ckeditor.cdn_enabled?, true
+    assert_equal Ckeditor.assets, ['ckeditor/config.js']
   end
 
   class CustomPicture; end

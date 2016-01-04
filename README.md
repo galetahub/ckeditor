@@ -109,24 +109,40 @@ mount Ckeditor::Engine => '/ckeditor'
 
 ## Usage
 
+### Load editor from gem vendor:
+
 Include ckeditor javascripts in your `app/assets/javascripts/application.js`:
 
 ```
 //= require ckeditor/init
 ```
 
-Form helpers:
+### Load editor via CKEditor CDN
 
-```erb
-<%= form_for @page do |form| -%>
-  ...
-  <%= form.cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'uk'} %>
-  ...
-  <%= form.cktext_area :content, :value => 'Default value', :id => 'sometext' %>
-  ...
-  <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %>
-  ...
-<% end -%>
+Setup editor version to load (more info here http://cdn.ckeditor.com/)
+
+```ruby
+# in config/initializers/ckeditor.rb
+
+Ckeditor.setup do |config|
+  # //cdn.ckeditor.com/<version.number>/<distribution>/ckeditor.js
+  config.cdn_url = "//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"
+end
+```
+
+In view template include ckeditor CDN:
+
+```slim
+= javascript_include_tag Ckeditor.cdn_url
+```
+
+### Form helpers
+
+```slim
+= form_for @page do |form|
+  = form.cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'uk'}
+  = form.cktext_area :content, :value => 'Default value', :id => 'sometext'  
+  = cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'}
 ```
 
 ### Customize ckeditor
