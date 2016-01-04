@@ -8,7 +8,7 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* Ckeditor version 4.5.5 (full 12 Nov 2015)
+* Ckeditor version 4.5.6 (9 Dec 2015)
 * Rails 4 integration
 * Files browser
 * HTML5 file uploader
@@ -27,14 +27,6 @@ or if you'd like to use the latest version from Github:
 
 ```
 gem 'ckeditor', github: 'galetahub/ckeditor'
-```
-
-#### Using with ruby 1.8.7
-
-For usage with ruby 1.8.7 you need to specify the gem version:
-
-```
-gem 'ckeditor', '4.0.4'
 ```
 
 For file upload support, you must generate the necessary file storage models.
@@ -72,7 +64,6 @@ gem 'refile-mini_magick'
 
 rails generate ckeditor:install --orm=active_record --backend=refile
 ```
-
 
 #### ActiveRecord + dragonfly
 
@@ -229,15 +220,15 @@ jQuery sample:
 
 ### Formtastic integration
 
-```erb
-<%= form.input :content, :as => :ckeditor %>
-<%= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400 } } %>
+```slim
+= form.input :content, :as => :ckeditor
+= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400 } }
 ```
 
 ### SimpleForm integration
 
-```erb
-<%= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
+```slim
+= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }
 ```
 
 ### CanCan integration
