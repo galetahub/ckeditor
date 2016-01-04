@@ -11,20 +11,22 @@ $.QueryString = (function(a) {
 })(window.location.search.substr(1).split('&'))
 
 $(document).ready(function(){
-  $("div.gal-item div.gal-inner-holder")
-    .live('mouseover', function(e){
+  var selector = "div.gal-item div.gal-inner-holder";
+
+  $(document)
+    .on('mouseover', selector, function(e){
       $(this).addClass('hover');
     })
-    .live('mouseout', function(e){
+    .on('mouseout', selector, function(e){
       $(this).removeClass('hover');
     })
-    .live('click', function(e){
+    .on('click', selector, function(e){
       var url = $(this).parents('div.gal-item').data('url');
       CKEDITOR.tools.callFunction(CKEditorFuncNum, url);
       window.close();
     });
-  
-  $("div.gal-item a.gal-del").live('ajax:complete', function(xhr, status){
+
+  $(document).on('ajax:complete', "div.gal-item a.gal-del", function(xhr, status){
     $(this).parents('div.gal-item').remove();
   });
 
@@ -49,15 +51,15 @@ qq.FileUploader.instances = new Object();
 qq.FileUploaderInput = function(o){
     // call parent constructor
     qq.FileUploaderBasic.apply(this, arguments);
-    
-    // additional options    
+
+    // additional options
     qq.extend(this._options, {
         element: null,
         // if set, will be used instead of qq-upload-list in template
         listElement: null,
-        
-        template_id: '#fileupload_tmpl',       
-        
+
+        template_id: '#fileupload_tmpl',
+
         classes: {
             // used to get elements from templates
             button: 'fileupload-button',
@@ -65,7 +67,7 @@ qq.FileUploaderInput = function(o){
             dropActive: 'fileupload-drop-area-active',
             list: 'fileupload-list',
             preview: 'fileupload-preview',
-                        
+
             file: 'fileupload-file',
             spinner: 'fileupload-spinner',
             size: 'fileupload-size',
@@ -77,18 +79,18 @@ qq.FileUploaderInput = function(o){
             fail: 'fileupload-fail'
         }
     });
-    // overwrite options with user supplied    
-    qq.extend(this._options, o);       
+    // overwrite options with user supplied
+    qq.extend(this._options, o);
 
     this._element = document.getElementById(this._options.element);
     this._listElement = this._options.listElement || this._find(this._element, 'list');
-    
+
     this._classes = this._options.classes;
-        
-    this._button = this._createUploadButton(this._find(this._element, 'button'));  
-    
+
+    this._button = this._createUploadButton(this._find(this._element, 'button'));
+
     //this._setupDragDrop();
-    
+
     qq.FileUploader.instances[this._element.id] = this;
 };
 
@@ -99,18 +101,18 @@ qq.extend(qq.FileUploaderInput.prototype, {
     /**
      * Gets one of the elements listed in this._options.classes
      **/
-    _find: function(parent, type){                                
-        var element = qq.getByClass(parent, this._options.classes[type])[0];        
+    _find: function(parent, type){
+        var element = qq.getByClass(parent, this._options.classes[type])[0];
         if (!element){
           alert(type);
             throw new Error('element not found ' + type);
         }
-        
+
         return element;
     },
     _setupDragDrop: function(){
         var self = this,
-            dropArea = this._find(this._element, 'drop');                        
+            dropArea = this._find(this._element, 'drop');
 
         var dz = new qq.UploadDropZone({
             element: dropArea,
@@ -122,49 +124,49 @@ qq.extend(qq.FileUploaderInput.prototype, {
                 e.stopPropagation();
             },
             onLeaveNotDescendants: function(e){
-                qq.removeClass(dropArea, self._classes.dropActive);  
+                qq.removeClass(dropArea, self._classes.dropActive);
             },
             onDrop: function(e){
                 dropArea.style.display = 'none';
                 qq.removeClass(dropArea, self._classes.dropActive);
-                self._uploadFileList(e.dataTransfer.files);    
+                self._uploadFileList(e.dataTransfer.files);
             }
         });
-                
+
         dropArea.style.display = 'none';
 
-        qq.attach(document, 'dragenter', function(e){     
-            if (!dz._isValidFileDrag(e)) return; 
-            
-            dropArea.style.display = 'block';            
-        });                 
+        qq.attach(document, 'dragenter', function(e){
+            if (!dz._isValidFileDrag(e)) return;
+
+            dropArea.style.display = 'block';
+        });
         qq.attach(document, 'dragleave', function(e){
-            if (!dz._isValidFileDrag(e)) return;            
-            
+            if (!dz._isValidFileDrag(e)) return;
+
             var relatedTarget = document.elementFromPoint(e.clientX, e.clientY);
             // only fire when leaving document out
-            if ( ! relatedTarget || relatedTarget.nodeName == "HTML"){               
-                dropArea.style.display = 'none';                                            
+            if ( ! relatedTarget || relatedTarget.nodeName == "HTML"){
+                dropArea.style.display = 'none';
             }
-        });                
+        });
     },
     _onSubmit: function(id, fileName){
         qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
-        this._addToList(id, fileName);  
+        this._addToList(id, fileName);
     },
     _onProgress: function(id, fileName, loaded, total){
         qq.FileUploaderBasic.prototype._onProgress.apply(this, arguments);
 
         var item = this._getItemByFileId(id);
         var size = this._find(item, 'size');
-        
-        var text; 
+
+        var text;
         if (loaded != total){
             text = Math.round(loaded / total * 100) + '% from ' + this._formatSize(total);
-        } else {                                   
+        } else {
             text = this._formatSize(total);
-        }          
-        
+        }
+
         qq.setText(size, text);
     },
     _onComplete: function(id, fileName, result){
@@ -172,13 +174,13 @@ qq.extend(qq.FileUploaderInput.prototype, {
 
         var item = this._getItemByFileId(id);
         var asset = result.asset ? result.asset : result;
-        
+
         if (asset && asset.id){
             qq.addClass(item, this._classes.success);
-            
+
             asset.size = this._formatSize(asset.size);
             asset.controller = (asset.type !== undefined && asset.type.toLowerCase() == "ckeditor::picture" ? "pictures" : "attachment_files");
-            
+
             $(item).replaceWith($(this._options.template_id).tmpl(asset));
         } else {
             qq.addClass(item, this._classes.fail);
@@ -189,37 +191,37 @@ qq.extend(qq.FileUploaderInput.prototype, {
           if (this._options.multiple === false) {
             $(this._listElement).empty();
           }
-          
+
           var asset = {
-            id: 0, 
-            filename: this._formatFileName(fileName), 
+            id: 0,
+            filename: this._formatFileName(fileName),
             size: 0,
             format_created_at: '',
             url_content: "#",
             controller: "assets",
             url_thumb: "<%= asset_path('ckeditor/filebrowser/images/preloader.gif') %>"
           };
-          
+
           var item = $(this._options.template_id)
             .tmpl(asset)
             .attr('qqfileid', id)
             .prependTo( this._listElement );
-          
+
           item.find('div.img').addClass('preloader');
-          
+
           this._bindCancelEvent(item);
         }
     },
     _getItemByFileId: function(id){
-        return $(this._listElement).find('div[qqfileid=' + id  +']').get(0); 
+        return $(this._listElement).find('div[qqfileid=' + id  +']').get(0);
     },
     /**
-     * delegate click event for cancel link 
+     * delegate click event for cancel link
      **/
     _bindCancelEvent: function(element){
         var self = this,
-            item = $(element);        
-        
+            item = $(element);
+
         item.find('a.' + this._classes.cancel).bind('click', function(e){
           self._handler.cancel( item.attr('qqfileid') );
           item.remove();
