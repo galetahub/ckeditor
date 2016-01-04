@@ -109,7 +109,7 @@ mount Ckeditor::Engine => '/ckeditor'
 
 ## Usage
 
-### Load editor from gem vendor:
+### Load editor from gem vendor
 
 Include ckeditor javascripts in your `app/assets/javascripts/application.js`:
 
@@ -178,7 +178,7 @@ CKEDITOR.editorConfig = function (config) {
 
 When overriding the default `config.js` file, you must set all configuration options yourself as the bundled `config.js` will not be loaded. To see the default configuration, run `bundle open ckeditor`, copy `app/assets/javascripts/ckeditor/config.js` into your project and customize it to your needs.
 
-### Deployment
+### Deployment (only if you use ckeditor from gem vendor)
 
 For Rails 4, add the following to `config/initializers/assets.rb`:
 
