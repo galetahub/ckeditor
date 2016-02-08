@@ -1,4 +1,4 @@
-class Ckeditor::ApplicationController < ApplicationController
+class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
   layout 'ckeditor/application'
 
   before_filter :find_asset, :only => [:destroy]

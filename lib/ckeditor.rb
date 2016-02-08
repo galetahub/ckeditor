@@ -90,6 +90,10 @@ module Ckeditor
   @@picture_model = nil
   @@attachment_file_model = nil
 
+  # Configurable parent controller
+  mattr_accessor :parent_controller
+  @@parent_controller = 'ApplicationController'
+
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   #
