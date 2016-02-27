@@ -4,6 +4,7 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
   def index
     @pictures = Ckeditor.picture_adapter.find_all(ckeditor_pictures_scope)
     @pictures = Ckeditor::Paginatable.new(@pictures).page(params[:page])
+    authorize @pictures
 
     respond_to do |format|
       format.html { render :layout => @pictures.first_page? }
@@ -12,11 +13,13 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
   def create
     @picture = Ckeditor.picture_model.new
+    authorize @picture
     respond_with_asset(@picture)
   end
 
   def destroy
     @picture.destroy
+    authorize @picture
 
     respond_to do |format|
       format.html { redirect_to pictures_path }

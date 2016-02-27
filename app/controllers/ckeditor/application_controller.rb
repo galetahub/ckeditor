@@ -4,6 +4,8 @@ class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
   before_filter :find_asset, :only => [:destroy]
   before_filter :ckeditor_authorize!
   before_filter :authorize_resource
+  skip_after_action :verify_policy_scoped
+  skip_after_action :verify_authorized
 
   protected
 
