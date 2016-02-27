@@ -1,9 +1,10 @@
 class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
-  
+
   def index
     @attachments = Ckeditor.attachment_file_adapter.find_all(ckeditor_attachment_files_scope)
     @attachments = Ckeditor::Paginatable.new(@attachments).page(params[:page])
+    authorize @attachments
 
     respond_to do |format|
       format.html { render :layout => @attachments.first_page? }
@@ -12,11 +13,13 @@ class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
 
   def create
     @attachment = Ckeditor.attachment_file_model.new
+    authorize @attachment
     respond_with_asset(@attachment)
   end
 
   def destroy
     @attachment.destroy
+    authorize @attachment
 
     respond_to do |format|
       format.html { redirect_to attachment_files_path }
