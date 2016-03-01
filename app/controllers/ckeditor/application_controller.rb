@@ -23,7 +23,7 @@ class Ckeditor::ApplicationController < ApplicationController
         elsif params[:CKEditor].blank?
           render :json => asset.to_json(:only=>[:id, :type])
         else
-          render :text => %Q"<script type='text/javascript'>
+          render :text => %Q"<script data-cfasync='false' type='text/javascript'>
               window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{config.relative_url_root}#{Ckeditor::Utils.escape_single_quotes(asset.url_content)}');
             </script>"
         end
@@ -38,7 +38,7 @@ class Ckeditor::ApplicationController < ApplicationController
         elsif params[:CKEditor].blank?
           render :nothing => true, :format => :json
         else
-          render :text => %Q"<script type='text/javascript'>
+          render :text => %Q"<script data-cfasync='false' type='text/javascript'>
               window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{Ckeditor::Utils.escape_single_quotes(asset.errors.full_messages.first)}');
             </script>"
         end
