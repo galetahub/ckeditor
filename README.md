@@ -294,6 +294,17 @@ By default, only the user that logged in can access the models (with actions *in
 
 You can customize these two policy files as you like.
 
+## Engine configuration
+ * To override the default CKEditor routes create a [config.js](https://github.com/galetahub/ckeditor/blob/master/app/assets/javascripts/ckeditor/config.js) file within the host application at `app/assets/javascripts/ckeditor/config.js`
+ * To override the default parent controller
+```
+# in config/initializers/ckeditor.rb
+
+Ckeditor.setup do |config|
+  config.parent_controller = 'MyController'
+end
+```
+
 ## I18n
 
 ```yml
