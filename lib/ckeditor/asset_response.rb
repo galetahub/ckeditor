@@ -30,7 +30,7 @@ module Ckeditor
       elsif ckeditor?
         {
           text: %Q"<script type='text/javascript'>
-            window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{relative_url_root}#{Ckeditor::Utils.escape_single_quotes(asset.url_content)}');
+            window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{asset_url(relative_url_root)}');
           </script>"
         }
       else
@@ -53,6 +53,18 @@ module Ckeditor
         }
       else
         {nothing: true, format: :json}
+      end
+    end
+
+    private
+
+    def asset_url(relative_url_root)
+      url = Ckeditor::Utils.escape_single_quotes(asset.url_content)
+
+      if URI(url).relative?
+        "#{relative_url_root}#{url}"
+      else
+        url
       end
     end
   end
