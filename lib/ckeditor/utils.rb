@@ -15,7 +15,7 @@ module Ckeditor
         return filename unless Ckeditor.parameterize_filenames
 
         extension = File.extname(filename)
-        basename = filename.gsub(/#{extension}$/, "")
+        basename = filename.gsub(/#{extension}$/, '')
 
         [basename.parameterize('_'), extension].join.downcase
       end
@@ -30,23 +30,23 @@ module Ckeditor
           js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}'); }"
         end
 
-        js << "} else { setTimeout(arguments.callee, 50); } })();"
-        js.join(" ").html_safe
+        js << '} else { setTimeout(arguments.callee, 50); } })();'
+        js.join.html_safe
       end
 
       def js_fileuploader(uploader_type, options = {})
-        options = { :multiple => true, :element => "fileupload" }.merge(options)
+        options = { multiple: true, element: 'fileupload' }.merge(options)
 
         case uploader_type.to_s.downcase
-          when "image" then
-            options[:action] = JavascriptCode.new("EDITOR.config.filebrowserImageUploadUrl")
-            options[:allowedExtensions] = Ckeditor.image_file_types
-          when "flash" then
-            options[:action] = JavascriptCode.new("EDITOR.config.filebrowserFlashUploadUrl")
-            options[:allowedExtensions] = ["swf"]
-          else
-            options[:action] = JavascriptCode.new("EDITOR.config.filebrowserUploadUrl")
-            options[:allowedExtensions] = Ckeditor.attachment_file_types
+        when 'image' then
+          options[:action] = JavascriptCode.new('EDITOR.config.filebrowserImageUploadUrl')
+          options[:allowedExtensions] = Ckeditor.image_file_types
+        when 'flash' then
+          options[:action] = JavascriptCode.new('EDITOR.config.filebrowserFlashUploadUrl')
+          options[:allowedExtensions] = Ckeditor.flash_file_types
+        else
+          options[:action] = JavascriptCode.new('EDITOR.config.filebrowserUploadUrl')
+          options[:allowedExtensions] = Ckeditor.attachment_file_types
         end
 
         js_options = ActiveSupport::JSON.encode(options)
@@ -56,15 +56,13 @@ module Ckeditor
       end
 
       def filethumb(filename)
-        extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
+        extname = filename.blank? ? 'unknown' : File.extname(filename).gsub(/^\./, '')
         image = "#{extname}.gif"
-        source = Ckeditor.root_path.join("app/assets/javascripts/ckeditor/filebrowser/images/thumbs")
+        source = Ckeditor.root_path.join('app/assets/javascripts/ckeditor/filebrowser/images/thumbs')
 
-        unless File.exists?(File.join(source, image))
-          image = "unknown.gif"
-        end
+        image = 'unknown.gif' unless File.exist?(File.join(source, image))
 
-        File.join(Ckeditor.relative_path, "filebrowser/images/thumbs", image)
+        File.join(Ckeditor.relative_path, 'filebrowser/images/thumbs', image)
       end
 
       def select_assets(path, relative_path)

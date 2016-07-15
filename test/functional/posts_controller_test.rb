@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   def setup
-    @post = Post.create!(:title => "test", :content => "content", :info => "info")
+    @post = Post.create!(title: "test", content: "content", info: "info")
   end
 
   def teardown
@@ -12,7 +12,6 @@ class PostsControllerTest < ActionController::TestCase
   test "include javascripts" do
     get :index
 
-    assert_select "script[src='/assets/application.js']"
     assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('test_area');!))
   end
 
@@ -33,7 +32,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "text_area value" do
-    get :edit, :id => @post.id
+    get :edit, id: @post.id
 
     assert_select "textarea[name='post[content]']", "content"
     assert_select "textarea[name='post[info]']", "info"

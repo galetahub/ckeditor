@@ -1,6 +1,8 @@
 module Ckeditor
   module Backend
     module Dragonfly
+      FORMATS = %w(bz2 gz lzma xz).freeze
+
       def self.included(base)
         base.send(:extend, ::Dragonfly::Model)
         base.send(:extend, ::Dragonfly::Model::Validations)
@@ -14,7 +16,7 @@ module Ckeditor
             # This is not ideal but Dragonfly doesn't return double
             # extensions. Having said that, the other backends
             # currently don't use attachment_file_types at all.
-            [ 'bz2', 'gz', 'lzma', 'xz' ].each do |f|
+            FORMATS.each do |f|
               formats << f if formats.include?("tar.#{f}")
             end
           end
@@ -26,7 +28,7 @@ module Ckeditor
       end
 
       module InstanceMethods
-        delegate :url, :path, :size, :image?, :width, :height, :to => :data
+        delegate :url, :path, :size, :image?, :width, :height, to: :data
 
         alias_attribute :data_file_name, :data_name
         alias_attribute :data_content_type, :"data.mime_type"
@@ -36,7 +38,7 @@ module Ckeditor
 
         def url_thumb_options
           if data.basename.present?
-            { :basename => "thumb_#{data.basename}" }
+            { basename: "thumb_#{data.basename}" }
           else
             {}
           end

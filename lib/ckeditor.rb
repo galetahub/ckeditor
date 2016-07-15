@@ -28,20 +28,25 @@ module Ckeditor
     autoload :Refile, 'ckeditor/backend/refile'
   end
 
-  IMAGE_TYPES = %w(image/jpeg image/png image/gif image/jpg image/pjpeg image/tiff image/x-png)
+  IMAGE_TYPES = %w(image/jpeg image/png image/gif image/jpg image/pjpeg image/tiff image/x-png).freeze
 
-  DEFAULT_AUTHORIZE = Proc.new {}
+  DEFAULT_AUTHORIZE = -> {}
 
   AUTHORIZATION_ADAPTERS = {}
 
-  DEFAULT_CURRENT_USER = Proc.new do
-    request.env["warden"].try(:user) || respond_to?(:current_user) && current_user
+  DEFAULT_CURRENT_USER = lambda do
+    request.env['warden'].try(:user) || respond_to?(:current_user) && current_user
   end
 
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :image_file_types
   @@image_file_types = %w(jpg jpeg png gif tiff)
+
+  # Allowed flash file types for upload.
+  # Set to nil or [] (empty array) for all file types
+  mattr_accessor :flash_file_types
+  @@flash_file_types = %w(swf)
 
   # Allowed attachment file types for upload.
   # Set to nil or [] (empty array) for all file types
@@ -55,10 +60,6 @@ module Ckeditor
   # Ckeditor assets path
   mattr_accessor :asset_path
   @@asset_path = nil
-
-  # Ckeditor assets for precompilation
-  mattr_accessor :assets
-  @@assets = nil
 
   # Remove digest from ckeditor asset files while running assets:precompile task?
   mattr_accessor :run_on_precompile
@@ -117,11 +118,15 @@ module Ckeditor
 
   # All css and js files from ckeditor folder
   def self.assets
-    @@assets ||= if Ckeditor.cdn_enabled?
-      ["ckeditor/config.js"]
-    else
-      Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
-    end
+    @assets ||= if Ckeditor.cdn_enabled?
+                  ['ckeditor/config.js']
+                else
+                  Utils.select_assets('ckeditor', 'vendor/assets/javascripts') << 'ckeditor/init.js'
+                end
+  end
+
+  def self.assets=(value)
+    @assets = value.nil? ? nil : Array(value)
   end
 
   def self.run_on_precompile?
@@ -202,11 +207,11 @@ module Ckeditor
     extension = args.shift
 
     if extension
-      @authorize = Proc.new {
+      @authorize = lambda do
         @authorization_adapter = Ckeditor::AUTHORIZATION_ADAPTERS[extension].new(*([self] + args).compact)
-      }
-    else
-      @authorize = block if block
+      end
+    elsif block_given?
+      @authorize = block
     end
 
     @authorize || DEFAULT_AUTHORIZE
@@ -225,10 +230,10 @@ module Ckeditor
   #   end
   #
   def self.current_user_method(&block)
-    @current_user = block if block
+    @current_user = block if block_given?
     @current_user || DEFAULT_CURRENT_USER
   end
 end
 
-require 'ckeditor/engine'
+require 'ckeditor/rails'
 require 'ckeditor/version'

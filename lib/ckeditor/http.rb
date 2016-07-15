@@ -39,24 +39,21 @@ module Ckeditor
     # Usage (paperclip example)
     # @asset.data = QqFile.new(params[:qqfile], request)
     class QqFile < ::Tempfile
+      attr_reader :original_filename
 
-      def initialize(filename, request, tmpdir = Dir::tmpdir)
-        @original_filename  = filename
+      def initialize(filename, request, tmpdir = Dir.tmpdir)
+        @original_filename = filename
         @request = request
 
-        super Digest::SHA1.hexdigest(filename), tmpdir
+        super(Digest::SHA1.hexdigest(filename), tmpdir)
         binmode
         fetch
       end
 
       def fetch
-        self.write(body)
-        self.rewind
+        write(body)
+        rewind
         self
-      end
-
-      def original_filename
-        @original_filename
       end
 
       def content_type
@@ -65,7 +62,7 @@ module Ckeditor
 
       def body
         if @request.raw_post.respond_to?(:force_encoding)
-          @request.raw_post.force_encoding("UTF-8")
+          @request.raw_post.force_encoding('UTF-8')
         else
           @request.raw_post
         end
@@ -76,7 +73,8 @@ module Ckeditor
     # file upload hash with UploadedFile objects
     def self.normalize_param(*args)
       value = args.first
-      if Hash === value && value.has_key?(:tempfile)
+
+      if value.is_a?(Hash) && value.key?(:tempfile)
         UploadedFile.new(value)
       elsif value.is_a?(String)
         QqFile.new(*args)

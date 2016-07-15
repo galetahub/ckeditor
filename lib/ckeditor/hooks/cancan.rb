@@ -33,8 +33,6 @@ module Ckeditor
         @controller.current_ability.can?(action.to_sym, model_object) if action
       end
 
-      private
-
       module ControllerExtension
         def current_ability
           # use ckeditor_current_user instead of default current_user so it works with

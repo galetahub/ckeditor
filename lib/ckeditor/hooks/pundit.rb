@@ -6,7 +6,6 @@ module Ckeditor
     # You can create another adapter for different authorization behavior, just be certain it
     # responds to each of the public methods here.
     class PunditAuthorization
-
       include Ckeditor::Helpers::Controllers
 
       # See the +authorize_with+ config method for where the initialization happens.
@@ -28,10 +27,8 @@ module Ckeditor
       # This takes the same arguments as +authorize+. The difference is that this will
       # return a boolean whereas +authorize+ will raise an exception when not authorized.
       def authorized?(action, model_object = nil)
-        Pundit.policy(@controller.current_user_for_pundit, model_object).public_send(action + '?' ) if action
+        Pundit.policy(@controller.current_user_for_pundit, model_object).public_send(action + '?') if action
       end
-
-      private
 
       module ControllerExtension
         def current_user_for_pundit

@@ -3,5 +3,5 @@ class Ckeditor::Asset < ActiveRecord::Base
   include Ckeditor::Backend::Dragonfly
 
   dragonfly_accessor :data, app: :ckeditor
-  validates_presence_of :data
+  validates :data, presence: true
 end

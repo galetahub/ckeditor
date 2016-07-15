@@ -89,7 +89,7 @@ class CkeditorTest < ActiveSupport::TestCase
   end
 
   test 'CDN setup' do
-    Ckeditor.cdn_url = "//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"
+    Ckeditor.cdn_url = '//cdn.ckeditor.com/4.5.6/standard/ckeditor.js'
     Ckeditor.assets = nil
 
     assert_equal Ckeditor.cdn_enabled?, true

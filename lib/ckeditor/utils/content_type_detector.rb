@@ -4,8 +4,8 @@ require 'cocaine'
 module Ckeditor
   module Utils
     class ContentTypeDetector
-      EMPTY_CONTENT_TYPE = 'inode/x-empty'
-      DEFAULT_CONTENT_TYPE = 'application/octet-stream'
+      EMPTY_CONTENT_TYPE = 'inode/x-empty'.freeze
+      DEFAULT_CONTENT_TYPE = 'application/octet-stream'.freeze
 
       def initialize(file_path)
         @file_path = file_path
@@ -25,16 +25,13 @@ module Ckeditor
 
       def empty_file?
         return true if @file_path.blank?
-        File.exists?(@file_path) && File.size(@file_path) == 0
+        File.exist?(@file_path) && File.size(@file_path).zero?
       end
 
       def content_type_from_file_command
-        type = begin
-          Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: @file_path)
-        rescue Cocaine::CommandLineError => e
-          # TODO: log command failure
-          DEFAULT_CONTENT_TYPE
-        end.strip
+        Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: @file_path).strip
+      rescue Cocaine::CommandLineError
+        DEFAULT_CONTENT_TYPE
       end
     end
   end

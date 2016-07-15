@@ -10,9 +10,9 @@ module Ckeditor
         def self.extended(base)
           base.class_eval do
             before_validation :extract_content_type
-            before_create :read_dimensions, :parameterize_filename
+            before_create :extract_dimensions, :parameterize_filename
 
-            delegate :url, :path, :styles, :size, :content_type, :to => :data
+            delegate :url, :path, :styles, :size, :content_type, to: :data
           end
         end
       end
@@ -24,28 +24,28 @@ module Ckeditor
 
         protected
 
-          def file
-            @file ||= data.respond_to?(:queued_for_write) ? data.queued_for_write[:original] : data.to_file
-          end
+        def file
+          @file ||= data.respond_to?(:queued_for_write) ? data.queued_for_write[:original] : data.to_file
+        end
 
-          def parameterize_filename
-            unless data_file_name.blank?
-              filename = Ckeditor::Utils.parameterize_filename(data_file_name)
-              self.data.instance_write(:file_name, filename)
-            end
+        def parameterize_filename
+          unless data_file_name.blank?
+            filename = Ckeditor::Utils.parameterize_filename(data_file_name)
+            data.instance_write(:file_name, filename)
           end
+        end
 
-          def read_dimensions
-            if image? && has_dimensions?
-              self.width = geometry.width
-              self.height = geometry.height
-            end
+        def extract_dimensions
+          if image? && has_dimensions?
+            self.width = geometry.width
+            self.height = geometry.height
           end
+        end
 
-          def extract_content_type
-            path = file.nil? ? nil : file.path
-            self.data_content_type = Utils::ContentTypeDetector.new(path).detect
-          end
+        def extract_content_type
+          path = file.nil? ? nil : file.path
+          self.data_content_type = Utils::ContentTypeDetector.new(path).detect
+        end
       end
     end
   end

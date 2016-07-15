@@ -20,7 +20,7 @@ module Ckeditor
           end
 
           def format_created_at
-            self.created_at.strftime("%d.%m.%Y")
+            I18n.l(created_at, format: :default)
           end
 
           def url_content
@@ -37,11 +37,11 @@ module Ckeditor
 
           def as_json(options = nil)
             options = {
-              :methods => as_json_methods,
-              :root => "asset"
+              methods: as_json_methods,
+              root: 'asset'
             }.merge(options || {})
 
-            super options
+            super(options)
           end
         end
       end

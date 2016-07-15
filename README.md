@@ -8,8 +8,8 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* Ckeditor version 4.5.6 (9 Dec 2015)
-* Rails 4 integration
+* Ckeditor version 4.5.10 (13 Jul 2016)
+* Rails 4.2-5 integration
 * Files browser
 * HTML5 file uploader
 * Hooks for formtastic and simple_form forms generators
@@ -78,7 +78,7 @@ rails generate ckeditor:install --orm=active_record --backend=dragonfly
 #### Mongoid + paperclip
 
 ```
-gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 
 rails generate ckeditor:install --orm=mongoid --backend=paperclip
 ```
@@ -86,7 +86,7 @@ rails generate ckeditor:install --orm=mongoid --backend=paperclip
 #### Mongoid + carrierwave
 
 ```
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick'
 
 rails generate ckeditor:install --orm=mongoid --backend=carrierwave
@@ -98,7 +98,7 @@ All ckeditor models will be generated in the app/models/ckeditor directory.
 Models are autoloaded in Rails 4. For earlier Rails versions, you need to add them to the autoload path (in application.rb):
 
 ```ruby
-config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
 ```
 
 Mount the Ckeditor::Engine in your routes (config/routes.rb):
@@ -126,7 +126,7 @@ Setup editor version to load (more info here http://cdn.ckeditor.com/)
 
 Ckeditor.setup do |config|
   # //cdn.ckeditor.com/<version.number>/<distribution>/ckeditor.js
-  config.cdn_url = "//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"
+  config.cdn_url = "//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"
 end
 ```
 
@@ -140,9 +140,9 @@ In view template include ckeditor CDN:
 
 ```slim
 = form_for @page do |form|
-  = form.cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'uk'}
-  = form.cktext_area :content, :value => 'Default value', :id => 'sometext'  
-  = cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'}
+  = form.cktext_area :notes, class: 'someclass', ckeditor: { language: 'uk'}
+  = form.cktext_area :content, value: 'Default value', id: 'sometext'
+  = cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }
 ```
 
 ### Customize ckeditor
@@ -237,14 +237,14 @@ jQuery sample:
 ### Formtastic integration
 
 ```slim
-= form.input :content, :as => :ckeditor
-= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400 } }
+= form.input :content, as: :ckeditor
+= form.input :content, as: :ckeditor, input_html: { ckeditor: { height: 400 } }
 ```
 
 ### SimpleForm integration
 
 ```slim
-= form.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }
+= form.input :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }
 ```
 
 ### CanCan integration

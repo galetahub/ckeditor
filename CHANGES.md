@@ -1,5 +1,11 @@
 # Ckeditor changelog
 
+## Ckeditor 4.2.0
+
+  * Rails 5 support
+  * Update CKEditor to version 4.5.10 (13 Jul 2016)
+  * Rubocop style fixes
+
 ## Ckeditor 4.1.6
 
   * Update CKEditor to version 4.5.6 (9 Dec 2015)
