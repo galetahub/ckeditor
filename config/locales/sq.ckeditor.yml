@@ -1,0 +1,9 @@
+sq:
+  ckeditor:
+    page_title: "Menaxher i dokumenteve CKEditor"
+    confirm_delete: "Fshi dokumentin?"
+    buttons:
+      cancel: "Anullo"
+      upload: "Upload"
+      delete: "Fshi"
+      next: "Tjetër"
