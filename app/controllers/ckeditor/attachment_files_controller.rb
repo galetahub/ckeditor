@@ -6,7 +6,7 @@ class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
     @attachments = Ckeditor::Paginatable.new(@attachments).page(params[:page])
 
     respond_to do |format|
-      format.html { render :layout => @attachments.first_page? }
+      format.html { render layout: @attachments.first_page? }
     end
   end
 
@@ -20,18 +20,18 @@ class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
 
     respond_to do |format|
       format.html { redirect_to attachment_files_path }
-      format.json { render :nothing => true, :status => 204 }
+      format.json { render json: @attachment, status: 204 }
     end
   end
 
   protected
 
-    def find_asset
-      @attachment = Ckeditor.attachment_file_adapter.get!(params[:id])
-    end
+  def find_asset
+    @attachment = Ckeditor.attachment_file_adapter.get!(params[:id])
+  end
 
-    def authorize_resource
-      model = (@attachment || Ckeditor.attachment_file_model)
-      @authorization_adapter.try(:authorize, params[:action], model)
-    end
+  def authorize_resource
+    model = (@attachment || Ckeditor.attachment_file_model)
+    @authorization_adapter.try(:authorize, params[:action], model)
+  end
 end

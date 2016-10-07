@@ -1,6 +1,7 @@
 require 'active_support'
 require 'action_view/helpers/tag_helper'
 require 'action_view/helpers/form_tag_helper'
+require 'action_view/helpers/javascript_helper'
 
 module Ckeditor
   class TextArea

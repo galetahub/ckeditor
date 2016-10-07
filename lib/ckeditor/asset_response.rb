@@ -1,5 +1,11 @@
+require 'action_view/helpers/javascript_helper'
+
 module Ckeditor
   class AssetResponse
+    include ActionView::Helpers::JavaScriptHelper
+
+    FUNCTION = 'window.parent.CKEDITOR.tools.callFunction'.freeze
+
     attr_reader :asset, :params
 
     def initialize(asset, request)
@@ -44,9 +50,7 @@ module Ckeditor
 
     def success_ckeditor(relative_url_root = nil)
       {
-        text: %"<script type='text/javascript'>
-          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{asset_url(relative_url_root)}');
-        </script>"
+        text: javascript_tag("#{FUNCTION}(#{params[:CKEditorFuncNum]}, '#{asset_url(relative_url_root)}');")
       }
     end
 
@@ -64,9 +68,7 @@ module Ckeditor
 
     def errors_ckeditor
       {
-        text: %"<script type='text/javascript'>
-          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{error_message}');
-        </script>"
+        text: javascript_tag("#{FUNCTION}(#{params[:CKEditorFuncNum]}, null, '#{error_message}');")
       }
     end
 

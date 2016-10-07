@@ -95,6 +95,10 @@ module Ckeditor
   mattr_accessor :parent_controller
   @@parent_controller = 'ApplicationController'
 
+  # Configurable controller layout
+  mattr_accessor :controller_layout
+  @@controller_layout = 'ckeditor/application'
+
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   #

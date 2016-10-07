@@ -1,20 +1,20 @@
-<%= content_tag(:div, :id => dom_id(asset), :class => "gal-item", :"data-url" => image_path(asset.url_content)) do %>
+<%= content_tag(:div, id: dom_id(asset), class: "gal-item", data: { url: image_path(asset.url_content) }) do %>
   <%= link_to image_tag('ckeditor/filebrowser/images/gal_del.png',
-    :title => I18n.t('ckeditor.buttons.delete')),
-          polymorphic_path(asset, :format => :json),
-          :remote => true,
-          :method => :delete, 
-          :data => {:confirm => t('ckeditor.confirm_delete')},
-          :class => "fileupload-cancel gal-del" %>
-	
-	<div class="fileupload-file gal-inner-holder">
-		<div class="img"><%= image_tag(asset.url_thumb, :title => asset.filename) %></div>
-		<div class="img-data">
-			<div class="img-name"><%= asset.filename %></div>
-			<div class="time-size">
-				<div class="time"><%= asset.format_created_at %></div>
-				<div class="fileupload-size size"><%= number_to_human_size(asset.size) if asset.size %></div>
-			</div>
-		</div>
-	</div>
+    title: I18n.t('ckeditor.buttons.delete')),
+          polymorphic_path(asset, format: :json),
+          remote: true,
+          method: :delete,
+          data: {confirm: t('ckeditor.confirm_delete')},
+          class: "fileupload-cancel gal-del" %>
+
+  <div class="fileupload-file gal-inner-holder">
+    <div class="img"><%= image_tag(asset.url_thumb, title: asset.filename) %></div>
+    <div class="img-data">
+      <div class="img-name"><%= asset.filename %></div>
+      <div class="time-size">
+        <div class="time"><%= asset.format_created_at %></div>
+        <div class="fileupload-size size"><%= number_to_human_size(asset.size) if asset.size %></div>
+      </div>
+    </div>
+  </div>
 <% end %>

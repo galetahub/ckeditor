@@ -6,7 +6,7 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
     @pictures = Ckeditor::Paginatable.new(@pictures).page(params[:page])
 
     respond_to do |format|
-      format.html { render :layout => @pictures.first_page? }
+      format.html { render layout: @pictures.first_page? }
     end
   end
 
@@ -20,18 +20,18 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
     respond_to do |format|
       format.html { redirect_to pictures_path }
-      format.json { render :nothing => true, :status => 204 }
+      format.json { render json: @picture, status: 204 }
     end
   end
 
   protected
 
-    def find_asset
-      @picture = Ckeditor.picture_adapter.get!(params[:id])
-    end
+  def find_asset
+    @picture = Ckeditor.picture_adapter.get!(params[:id])
+  end
 
-    def authorize_resource
-      model = (@picture || Ckeditor.picture_model)
-      @authorization_adapter.try(:authorize, params[:action], model)
-    end
+  def authorize_resource
+    model = (@picture || Ckeditor.picture_model)
+    @authorization_adapter.try(:authorize, params[:action], model)
+  end
 end

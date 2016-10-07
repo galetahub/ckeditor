@@ -1,17 +1,17 @@
 <div id="fileupload" class="gal-holder">
   <div class="gal-item">
     <div class="fileupload-button gal-upload-holder">
-  		<%= link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), 'javascript:void(0)', :class => "add" %>
-		</div>
-	</div>
+      <%= link_to I18n.t(:upload, scope: [:ckeditor, :buttons]), 'javascript:void(0)', class: "add" %>
+    </div>
+  </div>
 
   <div class="fileupload-list" data-endless="true">
-    <%= render :partial => 'ckeditor/shared/asset', :collection => @pictures.scoped %>
+    <%= render partial: 'ckeditor/shared/asset', collection: @pictures.scoped %>
   </div>
 
   <% unless @pictures.last_page? %>
     <div class="pagination">
-      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.pictures_path(params.merge(:page => @pictures.next_page)), :class => "next", :rel => "next" %>
+      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.pictures_path(params.merge(page: @pictures.next_page)), class: "next", rel: "next" %>
     </div>
   <% end -%>
 
