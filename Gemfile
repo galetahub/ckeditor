@@ -6,6 +6,7 @@ gem 'rails', '4.2.7'
 
 platforms :ruby do
   gem 'sqlite3'
+  gem 'sass'
 
   group :development do
     gem 'unicorn', '~> 4.0.1'

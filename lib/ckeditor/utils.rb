@@ -64,11 +64,11 @@ module Ckeditor
       def filethumb(filename)
         extname = filename.blank? ? 'unknown' : File.extname(filename).gsub(/^\./, '')
         image = "#{extname}.gif"
-        source = Ckeditor.root_path.join('app/assets/javascripts/ckeditor/filebrowser/images/thumbs')
+        source = Ckeditor.root_path.join('app/assets/images/ckeditor/filebrowser/thumbs')
 
         image = 'unknown.gif' unless File.exist?(File.join(source, image))
 
-        File.join(Ckeditor.relative_path, 'filebrowser/images/thumbs', image)
+        File.join(Ckeditor.relative_path, 'filebrowser/thumbs', image)
       end
 
       def select_assets(path, relative_path)

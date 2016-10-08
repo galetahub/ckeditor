@@ -16,14 +16,14 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "Assert all files are properly created" do
     run_generator %w(--orm=active_record)
 
-    assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/active_record"/
+    assert_file "config/initializers/ckeditor.rb", /require 'ckeditor\/orm\/active_record'/
     assert_file "config/routes.rb", /mount\sCkeditor::Engine\s=\>\s\'\/ckeditor\'/
   end
 
   test "Assert configurator is valid for mongoid" do
     run_generator %w(--orm=mongoid)
 
-    assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/mongoid"/
+    assert_file "config/initializers/ckeditor.rb", /require 'ckeditor\/orm\/mongoid'/
   end
 
   test "models and migration for active_record orm via paperclip" do
