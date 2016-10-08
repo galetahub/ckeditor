@@ -24,16 +24,16 @@ module Ckeditor
 
       require 'ckeditor/hooks/cancan' if Object.const_defined?('CanCan')
       require 'ckeditor/hooks/pundit' if Object.const_defined?('Pundit')
+    end
+
+    rake_tasks do
+      load Ckeditor.root_path.join('lib/tasks/ckeditor.rake')
 
       if Rake::Task.task_defined?('assets:precompile')
         Rake::Task['assets:precompile'].enhance do
           Rake::Task['ckeditor:nondigest'].invoke if Ckeditor.run_on_precompile?
         end
       end
-    end
-
-    rake_tasks do
-      load Ckeditor.root_path.join('lib/tasks/ckeditor.rake')
     end
   end
 end

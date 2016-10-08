@@ -5,6 +5,7 @@ class CreateCkeditorAssets < ActiveRecord::Migration
       t.string  :data_content_type
       t.integer :data_file_size
       t.string  :data_fingerprint
+
       t.integer :assetable_id
       t.string  :assetable_type, limit: 30
       t.string  :type, limit: 30
