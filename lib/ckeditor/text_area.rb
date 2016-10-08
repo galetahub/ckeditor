@@ -8,6 +8,7 @@ module Ckeditor
     include ActionView::Helpers::TagHelper
     include ActionView::Helpers::FormTagHelper
     include ActionView::Helpers::JavaScriptHelper
+    include ActionView::Helpers::AssetUrlHelper
 
     attr_reader :template, :options, :ck_options
 
@@ -15,7 +16,7 @@ module Ckeditor
       @template = template
       @options = options.stringify_keys
       @ck_options = (@options.delete('ckeditor') || {}).stringify_keys
-      @ck_options['customConfig'] ||= Ckeditor.js_config_url if Ckeditor.cdn_enabled?
+      @ck_options['customConfig'] ||= template.asset_path(Ckeditor.js_config_url) if Ckeditor.cdn_enabled?
     end
 
     def render_instance_tag(object_name, method)

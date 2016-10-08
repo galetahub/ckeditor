@@ -85,7 +85,7 @@ module Ckeditor
 
   # Url to ckeditor config, used when CDN enabled
   mattr_accessor :js_config_url
-  @@js_config_url = '/assets/ckeditor/config.js'
+  @@js_config_url = 'ckeditor/config.js'
 
   # Model classes
   @@picture_model = nil
