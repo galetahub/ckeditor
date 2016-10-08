@@ -1,5 +1,10 @@
 # Ckeditor changelog
 
+## Ckeditor 4.2.1
+
+  * Update CKEditor to version 4.5.11 (7 Sep 2016)
+  * Bugs fixes
+
 ## Ckeditor 4.2.0
 
   * Rails 5 support
