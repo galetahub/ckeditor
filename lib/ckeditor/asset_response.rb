@@ -1,7 +1,9 @@
+require 'action_view/helpers/tag_helper'
 require 'action_view/helpers/javascript_helper'
 
 module Ckeditor
   class AssetResponse
+    include ActionView::Helpers::TagHelper
     include ActionView::Helpers::JavaScriptHelper
 
     FUNCTION = 'window.parent.CKEDITOR.tools.callFunction'.freeze
@@ -50,7 +52,7 @@ module Ckeditor
 
     def success_ckeditor(relative_url_root = nil)
       {
-        text: javascript_tag("#{FUNCTION}(#{params[:CKEditorFuncNum]}, '#{asset_url(relative_url_root)}');")
+        html: javascript_tag("#{FUNCTION}(#{params[:CKEditorFuncNum]}, '#{asset_url(relative_url_root)}');")
       }
     end
 
@@ -68,7 +70,7 @@ module Ckeditor
 
     def errors_ckeditor
       {
-        text: javascript_tag("#{FUNCTION}(#{params[:CKEditorFuncNum]}, null, '#{error_message}');")
+        html: javascript_tag("#{FUNCTION}(#{params[:CKEditorFuncNum]}, null, '#{error_message}');")
       }
     end
 
