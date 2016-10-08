@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="robots" content="noindex, nofollow">
   <%= csrf_meta_tag %>
-  <title><%= I18n.t('page_title', :scope => [:ckeditor]) %></title>
+  <title><%= I18n.t('page_title', scope: [:ckeditor]) %></title>
   <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
 
   <% if assets_pipeline_enabled? -%>
@@ -26,6 +26,6 @@
 </head>
 <body>
   <%= yield %>
-  <%= render :partial => 'ckeditor/shared/asset_tmpl' %>
+  <%= render partial: 'ckeditor/shared/asset_tmpl' %>
 </body>
 </html>

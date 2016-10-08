@@ -199,15 +199,13 @@ qq.extend(qq.FileUploaderInput.prototype, {
             format_created_at: '',
             url_content: "#",
             controller: "assets",
-            url_thumb: "<%= asset_path('ckeditor/filebrowser/images/preloader.gif') %>"
+            url_thumb: ""
           };
 
-          var item = $(this._options.template_id)
-            .tmpl(asset)
-            .attr('qqfileid', id)
-            .prependTo( this._listElement );
+          var item = $(this._options.template_id).tmpl(asset).attr('qqfileid', id)
 
-          item.find('div.img').addClass('preloader');
+          item.find('div.img').html('').addClass('preloader');
+          item.prependTo( this._listElement );
 
           this._bindCancelEvent(item);
         }

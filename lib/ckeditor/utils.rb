@@ -21,17 +21,23 @@ module Ckeditor
       end
 
       def js_replace(dom_id, options = nil)
-        js = ["(function() { if (typeof CKEDITOR != 'undefined') {"]
+        replace = if options && !options.keys.empty?
+                    js_options = ActiveSupport::JSON.encode(options)
+                    "CKEDITOR.replace('#{dom_id}', #{js_options});"
+                  else
+                    "CKEDITOR.replace('#{dom_id}');"
+                  end
 
-        if options && !options.keys.empty?
-          js_options = ActiveSupport::JSON.encode(options)
-          js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}', #{js_options}); }"
-        else
-          js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}'); }"
-        end
+        js_init_ckeditor(dom_id, replace)
+      end
 
-        js << '} else { setTimeout(arguments.callee, 50); } })();'
-        js.join.html_safe
+      def js_init_ckeditor(dom_id, replace)
+        %((function() {
+            if (typeof CKEDITOR != 'undefined') {
+              if (CKEDITOR.instances['#{dom_id}']) { CKEDITOR.instances['#{dom_id}'].destroy(); }
+              #{replace}
+            }
+          })();)
       end
 
       def js_fileuploader(uploader_type, options = {})
