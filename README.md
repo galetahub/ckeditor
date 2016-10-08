@@ -126,7 +126,7 @@ Setup editor version to load (more info here http://cdn.ckeditor.com/)
 
 Ckeditor.setup do |config|
   # //cdn.ckeditor.com/<version.number>/<distribution>/ckeditor.js
-  config.cdn_url = "//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"
+  config.cdn_url = "//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"
 end
 ```
 
@@ -134,6 +134,14 @@ In view template include ckeditor CDN:
 
 ```slim
 = javascript_include_tag Ckeditor.cdn_url
+```
+
+Precompile ckeditor/config.js:
+
+```ruby
+# in config/initializers/assets.rb
+
+Rails.application.config.assets.precompile += %w(ckeditor/config.js)
 ```
 
 ### Form helpers
