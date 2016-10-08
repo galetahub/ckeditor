@@ -8,7 +8,6 @@ module Ckeditor
     include ActionView::Helpers::TagHelper
     include ActionView::Helpers::FormTagHelper
     include ActionView::Helpers::JavaScriptHelper
-    include ActionView::Helpers::AssetUrlHelper
 
     attr_reader :template, :options, :ck_options
 
