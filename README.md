@@ -255,6 +255,18 @@ jQuery sample:
 = form.input :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }
 ```
 
+# Turbolink integration
+Create a coffee file app/assets/javascripts/init_ckeditor.coffee_
+
+```coffee
+ready = ->
+  $('.ckeditor').each ->
+  CKEDITOR.replace $(this).attr('id')
+
+$(document).ready(ready)
+$(document).on('page:load', ready) } }
+```
+
 ### CanCan integration
 
 To use cancan with Ckeditor, add this to an initializer:
