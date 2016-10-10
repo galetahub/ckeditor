@@ -256,7 +256,7 @@ jQuery sample:
 ```
 
 ### Turbolink integration
-Create app/assets/javascripts/init_ckeditor.coffee
+Create a file app/assets/javascripts/init_ckeditor.coffee
 
 ```coffee
 ready = ->
