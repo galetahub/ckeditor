@@ -255,8 +255,8 @@ jQuery sample:
 = form.input :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }
 ```
 
-# Turbolink integration
-Create a coffee file app/assets/javascripts/init_ckeditor.coffee_
+### Turbolink integration
+Create app/assets/javascripts/init_ckeditor.coffee
 
 ```coffee
 ready = ->
@@ -266,6 +266,7 @@ ready = ->
 $(document).ready(ready)
 $(document).on('page:load', ready) } }
 ```
+Make sure the file is loaded from your app/assets/javascripts/application.js
 
 ### CanCan integration
 
