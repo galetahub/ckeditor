@@ -13,6 +13,10 @@
   * Update CKEditor to version 4.5.10 (13 Jul 2016)
   * Rubocop style fixes
 
+  **COMPATIBILITY WARNING**
+
+  Rename `read_dimensions` to `extract_dimensions` [https://github.com/galetahub/ckeditor/commit/4e6d8413cc71f40d2d58ab3d0cb8dad19dd96894]
+
 ## Ckeditor 4.1.6
 
   * Update CKEditor to version 4.5.6 (9 Dec 2015)
