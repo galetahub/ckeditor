@@ -30,8 +30,6 @@ module Ckeditor
               field :data_file_size, type: Integer
               field :width, type: Integer
               field :height, type: Integer
-
-              belongs_to :assetable, polymorphic: true
             end
           end
         end

@@ -3,6 +3,8 @@
 ## Ckeditor 4.2.1
 
   * Update CKEditor to version 4.5.11 (7 Sep 2016)
+  * Remove polymorphic assetable association
+  * Remove ckeditor_before_create_asset callback in controller
   * Bugs fixes
 
 ## Ckeditor 4.2.0

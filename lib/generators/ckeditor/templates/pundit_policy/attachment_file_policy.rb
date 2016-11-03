@@ -15,6 +15,6 @@ class Ckeditor::AttachmentFilePolicy
   end
 
   def destroy?
-    attachment.assetable_id == user.id
+    user.present?
   end
 end
