@@ -29,6 +29,12 @@ or if you'd like to use the latest version from Github:
 gem 'ckeditor', github: 'galetahub/ckeditor'
 ```
 
+The last version works with Rails 3.2.x is 4.1.3
+
+```ruby
+gem 'ckeditor', '4.1.3'
+```
+
 For file upload support, you must generate the necessary file storage models.
 The currently supported backends are:
 
