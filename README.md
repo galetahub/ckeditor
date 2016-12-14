@@ -8,7 +8,7 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* Ckeditor version 4.5.11 (7 Sep 2016)
+* Ckeditor version 4.6.1 (08 Dec 2016)
 * Rails 5.0.x, 4.2.x integration
 * Files browser
 * HTML5 file uploader
@@ -132,7 +132,7 @@ Setup editor version to load (more info here http://cdn.ckeditor.com/)
 
 Ckeditor.setup do |config|
   # //cdn.ckeditor.com/<version.number>/<distribution>/ckeditor.js
-  config.cdn_url = "//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"
+  config.cdn_url = "//cdn.ckeditor.com/4.6.1/basic/ckeditor.js"
 end
 ```
 
