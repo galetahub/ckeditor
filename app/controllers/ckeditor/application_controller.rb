@@ -5,6 +5,8 @@ class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
   before_action :ckeditor_authorize!
   before_action :authorize_resource
 
+  layout 'ckeditor/application'
+
   protected
 
   def respond_with_asset(asset)
