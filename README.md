@@ -184,7 +184,7 @@ CKEDITOR.editorConfig = function (config) {
   config.toolbar_mini = [
     ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
   ];
-  config.toolbar = "simple";
+  config.toolbar = "mini";
 
   // ... rest of the original config.js  ...
 }
@@ -256,6 +256,9 @@ jQuery sample:
 ```
 
 ### SimpleForm integration
+Note that the toolbar option should match the case specified in the config. If the config is not found it defaults to all available toolbar items. 
+
+i.e. config.toolbar_mini becomes {toolbar: 'mini'} in the form.
 
 ```slim
 = form.input :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }
