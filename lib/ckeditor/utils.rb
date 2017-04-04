@@ -17,7 +17,11 @@ module Ckeditor
         extension = File.extname(filename)
         basename = filename.gsub(/#{extension}$/, '')
 
-        [basename.parameterize('_'), extension].join.downcase
+        # R Peck 04/04/2017
+        # Old Rails (4.x.x -> https://apidock.com/rails/v4.2.7/String/parameterize)
+        # New Rails (5.x.x -> https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/string/inflections.rb#L186)
+        # New Rails requires hash
+        [basename.parameterize((Rails::VERSION::MAJOR > 5 ? '_' : {separator: '_'})), extension].join.downcase
       end
 
       def js_replace(dom_id, options = nil)
