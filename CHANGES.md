@@ -1,5 +1,10 @@
 # Ckeditor changelog
 
+## Ckeditor 4.2.3
+
+  * Update CKEditor to version 4.6.2 full (12 Jan 2017)
+  * Bugs fixes
+
 ## Ckeditor 4.2.2
 
   * Update CKEditor to version 4.6.1 full (08 Dec 2016)

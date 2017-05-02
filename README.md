@@ -8,7 +8,7 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* CKEditor version 4.6.1 full (08 Dec 2016)
+* CKEditor version 4.6.2 full (12 Jan 2017)
 * Rails 5.0.x, 4.2.x integration
 * Files browser
 * HTML5 file uploader
