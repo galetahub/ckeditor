@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ckeditor (4.2.1)
+    ckeditor (4.2.3)
       cocaine
       orm_adapter (~> 0.5.0)
 
@@ -230,4 +230,4 @@ DEPENDENCIES
   unicorn (~> 4.0.1)
 
 BUNDLED WITH
-   1.12.5
+   1.14.3
