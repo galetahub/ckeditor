@@ -194,7 +194,7 @@ When overriding the default `config.js` file, you must set all configuration opt
 
 ### Deployment (only if you use ckeditor from gem vendor)
 
-For Rails 4, add the following to `config/initializers/assets.rb`:
+For Rails 4 and 5, add the following to `config/initializers/assets.rb`:
 
 ```ruby
 Rails.application.config.assets.precompile += %w( ckeditor/* )
