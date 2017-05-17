@@ -1,5 +1,5 @@
 class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create
+  skip_before_action :verify_authenticity_token, only: :create, raise: false
 
   def index
     @attachments = Ckeditor.attachment_file_adapter.find_all(ckeditor_attachment_files_scope)
