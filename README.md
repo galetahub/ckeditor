@@ -270,7 +270,7 @@ ready = ->
   CKEDITOR.replace $(this).attr('id')
 
 $(document).ready(ready)
-$(document).on('page:load', ready) } }
+$(document).on('page:load', ready)
 ```
 Make sure the file is loaded from your app/assets/javascripts/application.js
 
