@@ -22,7 +22,7 @@ module Ckeditor
       end
 
       def ckeditor_filebrowser_scope(options = {})
-        { order: [:id, :desc] }.merge(options)
+        { order: [:id, :desc] }.merge!(options)
       end
     end
   end

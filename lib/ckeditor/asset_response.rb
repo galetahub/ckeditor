@@ -7,6 +7,7 @@ module Ckeditor
     include ActionView::Helpers::JavaScriptHelper
 
     FUNCTION = 'window.parent.CKEDITOR.tools.callFunction'.freeze
+    JSON_TYPE = 'json'.freeze
 
     attr_reader :asset, :params
 
@@ -19,7 +20,7 @@ module Ckeditor
     end
 
     def json?
-      params[:responseType] == 'json'
+      params[:responseType] == JSON_TYPE
     end
 
     def ckeditor?

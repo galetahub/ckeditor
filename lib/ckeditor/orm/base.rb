@@ -39,7 +39,7 @@ module Ckeditor
             options = {
               methods: as_json_methods,
               root: 'asset'
-            }.merge(options || {})
+            }.merge!(options || {})
 
             super(options)
           end

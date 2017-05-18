@@ -127,6 +127,46 @@ img {
   text-decoration: underline;
 }
 
-.pagination, .pagination a {
-    text-decoration: none;
+.pagination {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pagination a {
+  height: 40px;
+  width: 50%;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-decoration: none;
+
+  background: #f8f8f8;
+  border-color: #f5c002;
+  color: #000;
+
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 13px;
+
+  padding: 0 20px;
+
+  box-sizing: border-box;
+  border: 1px solid #bcbcbc;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.pagination a:hover {
+  background: #fff;
 }

@@ -11,7 +11,7 @@
 
   <% unless @attachments.last_page? %>
     <div class="pagination">
-      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.attachment_files_path(params.merge(page: @attachments.next_page)), class: "next", rel: "next" %>
+      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.attachment_files_path(page: @attachments.next_page), class: "next", rel: "next" %>
     </div>
   <% end -%>
 

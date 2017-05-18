@@ -11,7 +11,7 @@
 
   <% unless @pictures.last_page? %>
     <div class="pagination">
-      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.pictures_path(params.merge(page: @pictures.next_page)), class: "next", rel: "next" %>
+      <%= link_to I18n.t("ckeditor.buttons.next"), ckeditor.pictures_path(page: @pictures.next_page), class: "next", rel: "next" %>
     </div>
   <% end -%>
 
