@@ -267,10 +267,10 @@ Create a file app/assets/javascripts/init_ckeditor.coffee
 ```coffee
 ready = ->
   $('.ckeditor').each ->
-  CKEDITOR.replace $(this).attr('id')
+    CKEDITOR.replace $(this).attr('id')
 
 $(document).ready(ready)
-$(document).on('page:load', ready) } }
+$(document).on('page:load', ready)
 ```
 Make sure the file is loaded from your app/assets/javascripts/application.js
 
