@@ -184,7 +184,7 @@ CKEDITOR.editorConfig = function (config) {
   config.toolbar_mini = [
     ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
   ];
-  config.toolbar = "simple";
+  config.toolbar = "Mini"; // name of config using initial capital
 
   // ... rest of the original config.js  ...
 }
