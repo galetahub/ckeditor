@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 require 'active_support/json/encoding'
 
 module Ckeditor
@@ -8,16 +9,7 @@ module Ckeditor
 
     class << self
       def escape_single_quotes(str)
-        str.gsub('\\','\0\0').gsub('</','<\/').gsub(/\r\n|\n|\r/, "\\n").gsub(/["']/) { |m| "\\#{m}" }
-      end
-
-      def parameterize_filename(filename)
-        return filename unless Ckeditor.parameterize_filenames
-
-        extension = File.extname(filename)
-        basename = filename.gsub(/#{extension}$/, '')
-
-        [basename.parameterize('_'), extension].join.downcase
+        str.gsub('\\', '\0\0').gsub('</', '<\/').gsub(/\r\n|\n|\r/, "\\n").gsub(/["']/) { |m| "\\#{m}" }
       end
 
       def js_replace(dom_id, options = nil)

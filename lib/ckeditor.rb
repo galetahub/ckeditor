@@ -28,7 +28,7 @@ module Ckeditor
     autoload :Refile, 'ckeditor/backend/refile'
   end
 
-  IMAGE_TYPES = %w(image/jpeg image/png image/gif image/jpg image/pjpeg image/tiff image/x-png).freeze
+  IMAGE_TYPES = %w[image/jpeg image/png image/gif image/jpg image/pjpeg image/tiff image/x-png].freeze
 
   DEFAULT_AUTHORIZE = -> {}
 
@@ -41,17 +41,17 @@ module Ckeditor
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :image_file_types
-  @@image_file_types = %w(jpg jpeg png gif tiff)
+  @@image_file_types = %w[jpg jpeg png gif tiff]
 
   # Allowed flash file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :flash_file_types
-  @@flash_file_types = %w(swf)
+  @@flash_file_types = %w[swf]
 
   # Allowed attachment file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :attachment_file_types
-  @@attachment_file_types = %w(doc docx xls odt ods pdf rar zip tar tar.gz swf)
+  @@attachment_file_types = %w[doc docx xls odt ods pdf rar zip tar tar.gz swf]
 
   # Ckeditor files destination path
   mattr_accessor :relative_path
@@ -64,10 +64,6 @@ module Ckeditor
   # Remove digest from ckeditor asset files while running assets:precompile task?
   mattr_accessor :run_on_precompile
   @@run_on_precompile = true
-
-  # Turn on/off filename parameterize
-  mattr_accessor :parameterize_filenames
-  @@parameterize_filenames = true
 
   # Paginate assets
   mattr_accessor :default_per_page
@@ -104,7 +100,7 @@ module Ckeditor
   #
   # @example
   #   Ckeditor.setup do |config|
-  #     config.parameterize_filenames = false
+  #     config.default_per_page = 30
   #     config.attachment_file_types += ["xml"]
   #   end
   #

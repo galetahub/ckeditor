@@ -10,7 +10,7 @@ module Ckeditor
         def self.extended(base)
           base.class_eval do
             before_validation :extract_content_type
-            before_create :extract_dimensions, :parameterize_filename
+            before_create :extract_dimensions
 
             delegate :url, :path, :styles, :size, :content_type, to: :data
           end
@@ -26,13 +26,6 @@ module Ckeditor
 
         def file
           @file ||= data.respond_to?(:queued_for_write) ? data.queued_for_write[:original] : data.to_file
-        end
-
-        def parameterize_filename
-          unless data_file_name.blank?
-            filename = Ckeditor::Utils.parameterize_filename(data_file_name)
-            data.instance_write(:file_name, filename)
-          end
         end
 
         def extract_dimensions
