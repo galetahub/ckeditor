@@ -5,15 +5,10 @@ class AttachmentFileTest < ActiveSupport::TestCase
     @attachment.destroy rescue nil
   end
 
-  test "Set file content_type and size" do
+  test 'Set file content_type and size' do
     @attachment = create_attachment
 
-    # TODO: fix filename parameterization
-    if CKEDITOR_BACKEND == :paperclip
-      assert_equal "rails_tar.gz", @attachment.data_file_name
-    else
-      assert_equal "rails.tar.gz", @attachment.data_file_name
-    end
+    assert_equal "rails.tar.gz", @attachment.data_file_name
 
     assert_match /application\/(x-)?gzip/, @attachment.data_content_type
     assert_equal 6823, @attachment.data_file_size
