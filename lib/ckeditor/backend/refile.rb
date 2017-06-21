@@ -5,7 +5,7 @@ module Ckeditor
 
       included do
         validates :data, presence: true
-        delegate :rewind, :download, :to_io, :exists?, :delete, :size, :close, :eof?, :read, to: :data
+        delegate :rewind, :download, :to_io, :exists?, :delete, :close, :eof?, :read, to: :data
         alias_attribute :data_file_name, :data_filename
         alias_attribute :data_file_size, :data_size
       end

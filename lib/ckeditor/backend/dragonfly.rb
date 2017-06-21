@@ -1,7 +1,7 @@
 module Ckeditor
   module Backend
     module Dragonfly
-      FORMATS = %w(bz2 gz lzma xz).freeze
+      FORMATS = %w[bz2 gz lzma xz].freeze
 
       def self.included(base)
         base.send(:extend, ::Dragonfly::Model)
@@ -28,7 +28,7 @@ module Ckeditor
       end
 
       module InstanceMethods
-        delegate :url, :path, :size, :image?, :width, :height, to: :data
+        delegate :url, :path, :image?, :width, :height, to: :data
 
         alias_attribute :data_file_name, :data_name
         alias_attribute :data_content_type, :"data.mime_type"
