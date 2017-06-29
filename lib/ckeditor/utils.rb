@@ -63,6 +63,16 @@ module Ckeditor
         File.join(Ckeditor.relative_path, 'filebrowser/thumbs', image)
       end
 
+      def assets_pipeline_enabled?
+        if Gem::Version.new(::Rails.version.to_s) >= Gem::Version.new('4.0.0')
+          defined?(Sprockets::Rails)
+        elsif Gem::Version.new(::Rails.version.to_s) >= Gem::Version.new('3.0.0')
+          Rails.application.config.assets.enabled
+        else
+          false
+        end
+      end
+
       def select_assets(path, relative_path)
         relative_folder = Ckeditor.root_path.join(relative_path)
         folder = relative_folder.join(path)

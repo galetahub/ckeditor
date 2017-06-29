@@ -7,7 +7,7 @@
   <title><%= I18n.t('page_title', scope: [:ckeditor]) %></title>
   <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
 
-  <% if assets_pipeline_enabled? -%>
+  <% if Ckeditor.assets_pipeline_enabled? -%>
     <%= stylesheet_link_tag "ckeditor/application" %>
     <%= javascript_include_tag "ckeditor/application" %>
   <% else -%>

@@ -95,6 +95,11 @@ module Ckeditor
   mattr_accessor :controller_layout
   @@controller_layout = 'ckeditor/application'
 
+  # Turn on/off assets pipeline
+  # By default ckeditor will check assets pipeline
+  mattr_accessor :assets_pipeline_enabled
+  @@assets_pipeline_enabled = nil
+
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   #
@@ -232,6 +237,11 @@ module Ckeditor
   def self.current_user_method(&block)
     @current_user = block if block_given?
     @current_user || DEFAULT_CURRENT_USER
+  end
+
+  def self.assets_pipeline_enabled?
+    @@assets_pipeline_enabled = Utils.assets_pipeline_enabled? if @@assets_pipeline_enabled.nil?
+    @@assets_pipeline_enabled
   end
 end
 
