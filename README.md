@@ -123,6 +123,12 @@ Include ckeditor javascripts in your `app/assets/javascripts/application.js`:
 //= require ckeditor/init
 ```
 
+Make sure that you put it before:
+
+```
+//= require_tree .
+```
+
 ### Load editor via CKEditor CDN
 
 Setup editor version to load (more info here http://cdn.ckeditor.com/)
@@ -159,6 +165,13 @@ Rails.application.config.assets.precompile += %w(ckeditor/config.js)
   = cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }
 ```
 
+*It also works with bootstrap-form*
+
+```slim
+= bootstrap_form_for resource do |form|
+  = form.cktext_area :text, ckeditor: { language: 'uk'}
+```
+
 ### Customize ckeditor
 
 All ckeditor options can be found [here](http://docs.ckeditor.com/#!/api/CKEDITOR.config)
@@ -191,6 +204,17 @@ CKEDITOR.editorConfig = function (config) {
 ```
 
 When overriding the default `config.js` file, you must set all configuration options yourself as the bundled `config.js` will not be loaded. To see the default configuration, run `bundle open ckeditor`, copy `app/assets/javascripts/ckeditor/config.js` into your project and customize it to your needs.
+
+#### Install additional plugins
+
+You should download necessary plugins with all dependencies and extract them in `app/assets/javascripts/ckeditor/plugins/`.
+After that you can include your plugins in `app/assets/javascripts/ckeditor/config.js` in this way:
+
+```javascript
+CKEDITOR.editorConfig = function (config) {
+  config.extraPlugins = 'eqneditor,autosave,';
+}
+```
 
 ### Deployment (only if you use ckeditor from gem vendor)
 
