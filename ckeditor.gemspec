@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency("cocaine")
   s.add_dependency("orm_adapter", "~> 0.5.0")
+  s.add_dependency("addressable", "~> 2.5.1")
 end

@@ -88,7 +88,7 @@ module Ckeditor
     def asset_url(relative_url_root)
       url = Ckeditor::Utils.escape_single_quotes(asset.url_content)
 
-      if URI(url).relative?
+      if Addressable::URI.parse(url).relative?
         "#{relative_url_root}#{url}"
       else
         url
