@@ -54,7 +54,8 @@ module Ckeditor
       def create_ckeditor_migration
         if ['active_record'].include?(orm)
           migration_template "#{generator_dir}/migration.rb",
-                             File.join('db/migrate', 'create_ckeditor_assets.rb')
+                             File.join('db/migrate', 'create_ckeditor_assets.rb'),
+                             migration_version: migration_version
         end
       end
 
@@ -86,6 +87,16 @@ module Ckeditor
 
       def backend
         (options[:backend] || 'paperclip').to_s
+      end
+
+      def rails5?
+        Rails.version.start_with? '5'
+      end
+
+      def migration_version
+        if rails5?
+          "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
+        end
       end
     end
   end

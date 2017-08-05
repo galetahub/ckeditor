@@ -1,4 +1,4 @@
-class CreateCkeditorAssets < ActiveRecord::Migration
+class CreateCkeditorAssets < ActiveRecord::Migration<%= migration_version %>
   def self.up
     create_table :ckeditor_assets do |t|
       t.string  :data_file_name, null: false
