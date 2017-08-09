@@ -9,8 +9,9 @@ class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
 
   def respond_with_asset(asset)
     asset_response = Ckeditor::AssetResponse.new(asset, request)
+    callback = ckeditor_before_create_asset(asset)
 
-    if asset.save
+    if callback && asset.save
       render asset_response.success(config.relative_url_root)
     else
       render asset_response.errors

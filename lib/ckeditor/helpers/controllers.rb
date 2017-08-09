@@ -13,6 +13,11 @@ module Ckeditor
         instance_exec(&Ckeditor.authorize_with)
       end
 
+      def ckeditor_before_create_asset(asset)
+        asset.assetable = ckeditor_current_user if ckeditor_current_user
+        true
+      end
+
       def ckeditor_pictures_scope(options = {})
         ckeditor_filebrowser_scope(options)
       end

@@ -15,6 +15,6 @@ class Ckeditor::PicturePolicy
   end
 
   def destroy?
-    user.present?
+    picture.assetable_id.blank? || picture.assetable_id == user.id
   end
 end
