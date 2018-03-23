@@ -20,7 +20,7 @@ module Ckeditor
       end
 
       def self.next_migration_number(_dirname)
-        Time.now.strftime('%Y%m%d%H%M%S')
+        Time.now.utc.strftime('%Y%m%d%H%M%S')
       end
 
       # copy configuration
