@@ -8,7 +8,7 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* CKEditor version 4.7.1 full (28 Jun 2017)
+* CKEditor version 4.10.0 (2018-07-03)
 * Rails 5.0.x, 5.1.x, 4.2.x integration
 * Files browser
 * HTML5 file uploader
@@ -29,7 +29,7 @@ or if you'd like to use the latest version from Github:
 gem 'ckeditor', github: 'galetahub/ckeditor'
 ```
 
-The last version works with Rails 3.2.x is 4.1.3
+The last version that works with Rails 3.2.x is 4.1.3
 
 ```ruby
 gem 'ckeditor', '4.1.3'
@@ -286,7 +286,7 @@ jQuery sample:
 ```
 
 ### SimpleForm integration
-Note that the toolbar option should match the case specified in the config. If the config is not found it defaults to all available toolbar items. 
+Note that the toolbar option should match the case specified in the config. If the config is not found it defaults to all available toolbar items.
 
 i.e. config.toolbar_mini becomes {toolbar: 'mini'} in the form.
 

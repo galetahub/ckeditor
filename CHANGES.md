@@ -1,5 +1,9 @@
 # Ckeditor changelog
 
+## Ckeditor 4.10.0
+  * Update CKEditor to version 4.10.0 (2018-07-03)
+  * Minor version bumps to 4.10 to match CKEditor version
+
 ## Ckeditor 4.2.4
 
   * Remove parameterize_filenames from paperclip backend (fix issue #738)
