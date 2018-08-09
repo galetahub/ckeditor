@@ -166,16 +166,16 @@ Rails.application.config.assets.precompile += %w(ckeditor/config.js)
 
 ```slim
 = form_for @page do |form|
-  = form.cktext_area :notes, class: 'someclass', ckeditor: { language: 'uk'}
-  = form.cktext_area :content, value: 'Default value', id: 'sometext'
-  = cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }
+  = form.cktext_area :notes, class: 'ckeditor', ckeditor: { language: 'uk'}
+  = form.cktext_area :content, value: 'Default value', id: 'sometext', class:'ckeditor'
+  = cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }, class: 'ckeditor'
 ```
 
 *It also works with bootstrap-form*
 
 ```slim
 = bootstrap_form_for resource do |form|
-  = form.cktext_area :text, ckeditor: { language: 'uk'}
+  = form.cktext_area :text, ckeditor: { language: 'uk'}, class: 'ckeditor'
 ```
 
 ### Customize ckeditor
