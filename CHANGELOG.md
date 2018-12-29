@@ -1,6 +1,9 @@
 # Ckeditor changelog
 
 ## NEXT
+  * None
+
+## Ckeditor 4.3.0
 
   * Update CKEditor to version 4.11.1 full (8 November 2018)
 
