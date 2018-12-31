@@ -354,13 +354,25 @@ By default, only the user that logged in can access the models (with actions *in
 You can customize these two policy files as you like.
 
 ## Engine configuration
- * To override the default CKEditor routes create a [config.js](https://github.com/galetahub/ckeditor/blob/master/app/assets/javascripts/ckeditor/config.js) file within the host application at `app/assets/javascripts/ckeditor/config.js`
- * To override the default parent controller
+ 
+* To override the default CKEditor routes create a [config.js](https://github.com/galetahub/ckeditor/blob/master/app/assets/javascripts/ckeditor/config.js) file within the host application at `app/assets/javascripts/ckeditor/config.js`
+
+* By default, the engine inherits from `ApplicationController`. To override the default parent controller:
 ```
 # in config/initializers/ckeditor.rb
 
 Ckeditor.setup do |config|
-  config.parent_controller = 'MyController'
+  config.parent_controller = 'MyCKEditorBaseController'
+end
+```
+
+Based on this, if you want to secure CKEditor controller actions and you can't authenticate in ApplicationController, you could do so with a custom controller after configuring the override above, like so:
+
+```
+class MyCKEditorBaseController < ActionController::Base
+
+  before_action :authenticate_user! # or some other auth/permission logic here, like Pundit
+
 end
 ```
 
