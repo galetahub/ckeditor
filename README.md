@@ -12,7 +12,7 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 * Files browser
 * HTML5 file uploader
 * Hooks for formtastic and simple_form forms generators
-* Integrated with authorization framework CanCan and Pundit
+* Integrated with authorization frameworks [CanCanCan](https://github.com/CanCanCommunity/cancancan) and [Pundit](https://github.com/varvet/pundit)
 
 ## Installation
 
@@ -306,7 +306,7 @@ $(document).on('page:load', ready)
 ```
 Make sure the file is loaded from your app/assets/javascripts/application.js
 
-### CanCan integration
+### CanCanCan integration
 
 To use cancan with Ckeditor, add this to an initializer:
 
@@ -314,12 +314,12 @@ To use cancan with Ckeditor, add this to an initializer:
 # in config/initializers/ckeditor.rb
 
 Ckeditor.setup do |config|
-  config.authorize_with :cancan
+  config.authorize_with :cancancan
 end
 ```
 
 At this point, all authorization will fail and no one will be able to access the filebrowser pages.
-To grant access, add this to Ability#initialize:
+To grant access, add the following abilities (usually `ability.rb`)
 
 ```ruby
 # Always performed
@@ -332,7 +332,7 @@ can [:read, :create, :destroy], Ckeditor::AttachmentFile
 
 ### Pundit integration
 
-Just like CanCan, you can write this code in your config/initializers/ckeditor.rb file:
+Just like CanCanCan, you can write this code in your config/initializers/ckeditor.rb file:
 
 ```ruby
 Ckeditor.setup do |config|
