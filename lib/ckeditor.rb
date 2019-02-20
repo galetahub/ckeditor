@@ -201,11 +201,11 @@ module Ckeditor
   #   end
   #
   # To use an authorization adapter, pass the name of the adapter. For example,
-  # to use with CanCan[https://github.com/ryanb/cancan], pass it like this.
+  # to use with CanCanCan[https://github.com/CanCanCommunity/cancancan], pass it like this.
   #
-  # @example CanCan
+  # @example CanCanCan
   #   Ckeditor.setup do |config|
-  #     config.authorize_with :cancan
+  #     config.authorize_with :cancancan
   #   end
   #
   def self.authorize_with(*args, &block)
