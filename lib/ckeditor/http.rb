@@ -42,16 +42,16 @@ module Ckeditor
     class QqFile < ::Tempfile
       attr_reader :original_filename
 
-      def initialize(filename, request, tmpdir = Dir.tmpdir)
+      def initialize(filename, request)
         @original_filename = filename
         @request = request
 
-        super(Digest::SHA1.hexdigest(filename), tmpdir)
-        binmode
+        super(Digest::SHA1.hexdigest(filename))
         fetch
       end
 
       def fetch
+        binmode
         write(body)
         rewind
         self

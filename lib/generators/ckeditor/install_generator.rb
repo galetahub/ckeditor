@@ -54,11 +54,11 @@ module Ckeditor
       end
 
       def create_ckeditor_migration
-        if ['active_record'].include?(orm)
-          migration_template "#{generator_dir}/#{migration_file}.rb",
-                             File.join('db/migrate', 'create_ckeditor_assets.rb'),
-                             migration_version: migration_version
-        end
+        return unless ['active_record'].include?(orm)
+
+        migration_template "#{generator_dir}/#{migration_file}.rb",
+                           File.join('db/migrate', 'create_ckeditor_assets.rb'),
+                           migration_version: migration_version
       end
 
       protected

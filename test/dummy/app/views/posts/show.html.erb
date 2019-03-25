@@ -3,3 +3,6 @@
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+
+<h2>Text area test with options</h2>
+<%= cktext_area_tag("content", "Ckeditor", :cols => 10, :rows => 20, :ckeditor => {:toolbar => 'Easy'}) %>

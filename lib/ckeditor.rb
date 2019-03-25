@@ -71,12 +71,6 @@ module Ckeditor
   mattr_accessor :default_per_page
   @@default_per_page = 24
 
-  # Asset restrictions
-  mattr_accessor :assets_languages
-  mattr_accessor :assets_plugins
-  @@assets_languages = nil
-  @@assets_plugins = nil
-
   # CKEditor CDN
   mattr_accessor :cdn_url
   @@cdn_url = '//cdn.ckeditor.com/4.11.3/standard/ckeditor.js'

@@ -120,20 +120,6 @@ mount Ckeditor::Engine => '/ckeditor'
 
 ## Usage
 
-### Load editor from gem vendor
-
-Include ckeditor javascripts in your `app/assets/javascripts/application.js`:
-
-```
-//= require ckeditor/init
-```
-
-Make sure that you put it before:
-
-```
-//= require_tree .
-```
-
 ### Load editor via CKEditor CDN
 
 Setup editor version to load (more info here http://cdn.ckeditor.com/)
@@ -219,46 +205,6 @@ After that you can include your plugins in `app/assets/javascripts/ckeditor/conf
 CKEDITOR.editorConfig = function (config) {
   config.extraPlugins = 'eqneditor,autosave,';
 }
-```
-
-### Deployment (only if you use ckeditor from gem vendor)
-
-For Rails 4 and 5, add the following to `config/initializers/assets.rb`:
-
-```ruby
-Rails.application.config.assets.precompile += %w( ckeditor/* )
-```
-
-As of version 4.1.0, non-digested assets of Ckeditor will simply be copied after digested assets were compiled.
-For older versions, use gem [non-stupid-digest-assets](https://rubygems.org/gems/non-stupid-digest-assets), to copy non digest assets.
-
-To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
-
-```ruby
-# in config/initializers/ckeditor.rb
-
-Ckeditor.setup do |config|
-  config.assets_languages = ['en', 'fr']
-  config.assets_plugins = ['image', 'smiley']
-end
-```
-
-Note that you have to list your plugins, including all their dependencies.
-
-### Include customized CKEDITOR_BASEPATH setting
-
-Add your app/assets/javascripts/ckeditor/basepath.js.erb like
-
-```erb
-<%
-  base_path = ''
-  if ENV['PROJECT'] =~ /editor/i
-    base_path << "/#{Rails.root.basename.to_s}/"
-  end
-  base_path << Rails.application.config.assets.prefix
-  base_path << '/ckeditor/'
-%>
-var CKEDITOR_BASEPATH = '<%= base_path %>';
 ```
 
 ### AJAX

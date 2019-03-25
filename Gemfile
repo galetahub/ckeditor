@@ -8,12 +8,13 @@ gem 'rails', '5.2.2.1'
 
 platforms :ruby do
   gem 'sass'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
 
   group :development, :test do
     gem 'capybara', '>= 0.4.0'
     gem 'jquery-rails', '~> 4.3.3'
     gem 'mynyml-redgreen', '~> 0.7.1', require: 'redgreen'
+    gem 'rails-controller-testing'
   end
 
   group :active_record do
