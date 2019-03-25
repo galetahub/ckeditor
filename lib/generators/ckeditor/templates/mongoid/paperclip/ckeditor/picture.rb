@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ckeditor::Picture < Ckeditor::Asset
   has_mongoid_attached_file :data,
                             url: '/ckeditor_assets/pictures/:id/:style_:basename.:extension',

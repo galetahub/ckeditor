@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActiveSupport::TestCase
   setup do
     Post.delete_all

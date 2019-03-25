@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ckeditor
   class Engine < ::Rails::Engine
     isolate_namespace Ckeditor

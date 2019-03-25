@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ckeditor::AttachmentFilePolicy
   attr_reader :user, :attachment
 

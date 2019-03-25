@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 dir = File.join(Rails.root, "..", "..", "lib", "generators", "ckeditor", "templates")
 
 # Load the CKEditor initializer from the codebase.

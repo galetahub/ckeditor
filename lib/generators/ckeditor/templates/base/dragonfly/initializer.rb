@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load Dragonfly if it isn't loaded already.
 require 'dragonfly'
 

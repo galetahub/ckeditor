@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ckeditor
   # Simple paginate relation
   class Paginatable

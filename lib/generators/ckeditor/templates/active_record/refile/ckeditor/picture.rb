@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ckeditor::Picture < Ckeditor::Asset
   attachment :data, extension: image_file_types
 

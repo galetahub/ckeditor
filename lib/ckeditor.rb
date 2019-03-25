@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'orm_adapter'
 require 'pathname'
 

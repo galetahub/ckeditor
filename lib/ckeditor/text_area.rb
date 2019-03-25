@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support'
 require 'action_view/helpers/tag_helper'
 require 'action_view/helpers/form_tag_helper'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RawPost
   def raw_post(action, params, body, content_type = nil)
     @request.env['RAW_POST_DATA'] = body

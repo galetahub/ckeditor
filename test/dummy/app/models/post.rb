@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 case CKEDITOR_ORM
 
 when :active_record

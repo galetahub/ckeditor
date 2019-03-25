@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ckeditor
   module Helpers
     module Controllers

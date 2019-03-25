@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'orm_adapter/adapters/mongoid'
 require 'ckeditor/orm/base'
 

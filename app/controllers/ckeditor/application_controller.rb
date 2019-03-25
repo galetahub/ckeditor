@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
   layout Ckeditor.controller_layout
 

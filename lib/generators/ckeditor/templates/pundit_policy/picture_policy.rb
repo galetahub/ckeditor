@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ckeditor::PicturePolicy
   attr_reader :user, :picture
 
