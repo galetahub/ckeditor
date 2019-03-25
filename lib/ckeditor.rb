@@ -77,7 +77,7 @@ module Ckeditor
 
   # CKEditor CDN
   mattr_accessor :cdn_url
-  @@cdn_url = nil
+  @@cdn_url = '//cdn.ckeditor.com/4.11.3/standard/ckeditor.js'
 
   # Url to ckeditor config, used when CDN enabled
   mattr_accessor :js_config_url
@@ -123,11 +123,7 @@ module Ckeditor
 
   # All css and js files from ckeditor folder
   def self.assets
-    @assets ||= if Ckeditor.cdn_enabled?
-                  ['ckeditor/config.js']
-                else
-                  Utils.select_assets('ckeditor', 'vendor/assets/javascripts') << 'ckeditor/init.js'
-                end
+    @assets ||= Ckeditor.cdn_enabled? ? ['ckeditor/config.js'] : []
   end
 
   def self.assets=(value)

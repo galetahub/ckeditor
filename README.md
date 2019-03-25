@@ -7,8 +7,8 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* CKEditor version 4.11.1 full (8 November 2018)
-* Rails 5.0.x, 5.1.x, 4.2.x integration
+* CKEditor version 4.x (https://ckeditor.com/ckeditor-4/)
+* Rails 5.x, 4.2.x integration
 * Files browser
 * HTML5 file uploader
 * Hooks for formtastic and simple_form forms generators
@@ -285,7 +285,7 @@ jQuery sample:
 ```
 
 ### SimpleForm integration
-Note that the toolbar option should match the case specified in the config. If the config is not found it defaults to all available toolbar items. 
+Note that the toolbar option should match the case specified in the config. If the config is not found it defaults to all available toolbar items.
 
 i.e. config.toolbar_mini becomes {toolbar: 'mini'} in the form.
 
@@ -354,7 +354,7 @@ By default, only the user that logged in can access the models (with actions *in
 You can customize these two policy files as you like.
 
 ## Engine configuration
- 
+
 * To override the default CKEditor routes create a [config.js](https://github.com/galetahub/ckeditor/blob/master/app/assets/javascripts/ckeditor/config.js) file within the host application at `app/assets/javascripts/ckeditor/config.js`
 
 * By default, the engine inherits from `ApplicationController`. To override the default parent controller:
