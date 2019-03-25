@@ -9,7 +9,6 @@ module Ckeditor
       module ClassMethods
         def self.extended(base)
           base.class_eval do
-            before_validation :extract_content_type
             before_create :extract_dimensions
 
             delegate :url, :path, :styles, :content_type, to: :data
@@ -33,11 +32,6 @@ module Ckeditor
             self.width = geometry.width
             self.height = geometry.height
           end
-        end
-
-        def extract_content_type
-          path = file.nil? ? nil : file.path
-          self.data_content_type = Utils::ContentTypeDetector.new(path).detect
         end
       end
     end

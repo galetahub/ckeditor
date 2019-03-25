@@ -5,7 +5,6 @@ require 'active_support/json/encoding'
 module Ckeditor
   module Utils
     autoload :JavascriptCode, 'ckeditor/utils/javascript_code'
-    autoload :ContentTypeDetector, 'ckeditor/utils/content_type_detector'
 
     class << self
       def escape_single_quotes(str)
