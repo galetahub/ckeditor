@@ -15,7 +15,7 @@ module Ckeditor
                          desc: 'Backend processor for upload support'
 
       class_option :backend, type: :string, default: 'paperclip',
-                             desc: 'paperclip (default), carrierwave, refile or dragonfly'
+                             desc: 'paperclip (default), carrierwave or dragonfly'
 
       def self.source_root
         @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
@@ -56,9 +56,8 @@ module Ckeditor
       def create_ckeditor_migration
         return unless ['active_record'].include?(orm)
 
-        migration_template "#{generator_dir}/#{migration_file}.rb",
-                           File.join('db/migrate', 'create_ckeditor_assets.rb'),
-                           migration_version: migration_version
+        migration_template "#{generator_dir}/migration.rb",
+                           File.join('db/migrate', 'create_ckeditor_assets.rb')
       end
 
       protected
@@ -89,18 +88,6 @@ module Ckeditor
 
       def backend
         (options[:backend] || 'paperclip').to_s
-      end
-
-      def rails5?
-        Rails.version.start_with? '5'
-      end
-
-      def migration_version
-        "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
-      end
-
-      def migration_file
-        rails5? ? 'migration_versioned' : 'migration'
       end
     end
   end

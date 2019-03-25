@@ -43,7 +43,7 @@ Rails.application.config.assets.precompile += %w( ckeditor/*)
 For file upload support, you must generate the necessary file storage models.
 The currently supported backends are:
 
-* ActiveRecord (paperclip, carrierwave, dragonfly, refile)
+* ActiveRecord (paperclip, carrierwave, dragonfly)
 * Mongoid (paperclip, carrierwave, dragonfly)
 
 ### How to generate models to store uploaded files
@@ -65,15 +65,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 rails generate ckeditor:install --orm=active_record --backend=carrierwave
-```
-
-#### ActiveRecord + refile
-
-```
-gem 'refile', require: "refile/rails"
-gem 'refile-mini_magick'
-
-rails generate ckeditor:install --orm=active_record --backend=refile
 ```
 
 #### ActiveRecord + dragonfly
@@ -341,7 +332,6 @@ en:
 ```bash
 $> rake test CKEDITOR_BACKEND=paperclip
 $> rake test CKEDITOR_BACKEND=carrierwave
-$> rake test CKEDITOR_BACKEND=refile
 $> rake test CKEDITOR_BACKEND=dragonfly
 $> rake test CKEDITOR_ORM=mongoid
 

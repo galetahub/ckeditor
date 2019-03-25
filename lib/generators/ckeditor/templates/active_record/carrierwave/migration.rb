@@ -9,8 +9,8 @@ class CreateCkeditorAssets < ActiveRecord::Migration[5.2]
       t.string  :type, limit: 30
 
       # Uncomment it to save images dimensions, if your need it
-      t.integer :width
-      t.integer :height
+      # t.integer :width
+      # t.integer :height
 
       t.timestamps null: false
     end
