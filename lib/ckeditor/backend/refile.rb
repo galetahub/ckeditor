@@ -27,13 +27,6 @@ module Ckeditor
       def magick
         @magick ||= MiniMagick::Image.open(model.to_io)
       end
-
-      def extract_dimensions
-        if model.image? && model.has_dimensions?
-          model.width = magick.width
-          model.height = magick.height
-        end
-      end
     end
   end
 end

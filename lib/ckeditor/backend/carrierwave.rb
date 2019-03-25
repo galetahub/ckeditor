@@ -39,13 +39,6 @@ module Ckeditor
           model.data_file_size = file.size
         end
 
-        def extract_dimensions
-          if model.image? && model.has_dimensions?
-            model.width = magick[:width]
-            model.height = magick[:height]
-          end
-        end
-
         def magick
           @magick ||= ::MiniMagick::Image.new(current_path)
         end
