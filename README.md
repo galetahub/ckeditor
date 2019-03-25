@@ -37,7 +37,7 @@ gem 'ckeditor', '4.1.3'
 Include this inside your `config/initializers/assets.rb`:
 
 ```
-Rails.application.config.assets.precompile += %w( ckeditor/*)
+Rails.application.config.assets.precompile += %w[ckeditor/config.js]
 ```
 
 For file upload support, you must generate the necessary file storage models.
@@ -135,7 +135,7 @@ Precompile ckeditor/config.js:
 ```ruby
 # in config/initializers/assets.rb
 
-Rails.application.config.assets.precompile += %w(ckeditor/config.js)
+Rails.application.config.assets.precompile += %w[ckeditor/config.js]
 ```
 
 ### Form helpers
