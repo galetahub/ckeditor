@@ -73,12 +73,14 @@ module Ckeditor
     # Convert nested Hash to HashWithIndifferentAccess and replace
     # file upload hash with UploadedFile objects
     def self.normalize_param(*args)
-      value = args.first
+      value = args.compact.first
 
       if value.is_a?(Hash) && value.key?(:tempfile)
         UploadedFile.new(value)
       elsif value.is_a?(String)
         QqFile.new(*args)
+      elsif value.is_a?(ActionDispatch::Request)
+        value.params['upload']
       else
         value
       end
