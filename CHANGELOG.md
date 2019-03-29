@@ -1,10 +1,12 @@
 # Ckeditor changelog
 
-## Ckeditor 4.4.0
-  * CDN version only
+## Ckeditor 5.0.0
+
+  * CDN version only (breaking changes)
   * Upgrade rails to 5.2.x
   * Remove refile support due no activity since 2015
   * Remove auto-detect content-type and image dimensions
+  * Fix crash on "upload file" 3rd tab
 
 
 ## Ckeditor 4.3.0
