@@ -1,7 +1,7 @@
 da:
   ckeditor:
-    page_title: "CKEditor Fil  Manager"
-    confirm_delete: "Slet file?"
+    page_title: "CKEditor Fil Manager"
+    confirm_delete: "Slet fil?"
     buttons:
       cancel: "Annuller"
       upload: "Upload"
