@@ -24,6 +24,7 @@ module Ckeditor
   end
 
   module Backend
+    autoload :ActiveStorage, 'ckeditor/backend/active_storage'
     autoload :Paperclip, 'ckeditor/backend/paperclip'
     autoload :CarrierWave, 'ckeditor/backend/carrierwave'
     autoload :Dragonfly, 'ckeditor/backend/dragonfly'
