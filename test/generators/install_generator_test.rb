@@ -42,6 +42,20 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test 'models and migration for active_record orm via active_storage' do
+    run_generator %w[--orm=active_record --backend=active_storage]
+
+    assert_file 'app/models/ckeditor/asset.rb'
+    assert_file 'app/models/ckeditor/picture.rb'
+    assert_file 'app/models/ckeditor/attachment_file.rb'
+
+    assert_migration 'db/migrate/create_ckeditor_assets.rb' do |migration|
+      assert_method :up, migration do |up|
+        assert_match /create_table/, up
+      end
+    end
+  end
+
   test 'models and migration for active_record orm via carrierwave' do
     run_generator %w[--orm=active_record --backend=carrierwave]
 

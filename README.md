@@ -58,6 +58,15 @@ gem 'paperclip'
 rails generate ckeditor:install --orm=active_record --backend=paperclip
 ```
 
+#### ActiveRecord + active_storage
+
+```
+gem "mini_magick"
+
+rails active_storage:install # if you not install active_storage yet
+rails generate ckeditor:install --orm=active_record --backend=active_storage
+```
+
 #### ActiveRecord + carrierwave
 
 ```
@@ -84,6 +93,10 @@ gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 
 rails generate ckeditor:install --orm=mongoid --backend=paperclip
 ```
+
+#### Mongoid + active_storage
+
+Active Storage support **only** Active Record, see for [more info](https://github.com/rails/rails/issues/31408#issuecomment-351128111)
 
 #### Mongoid + carrierwave
 
@@ -331,6 +344,7 @@ en:
 
 ```bash
 $> rake test CKEDITOR_BACKEND=paperclip
+$> rake test CKEDITOR_BACKEND=active_storage
 $> rake test CKEDITOR_BACKEND=carrierwave
 $> rake test CKEDITOR_BACKEND=dragonfly
 $> rake test CKEDITOR_ORM=mongoid

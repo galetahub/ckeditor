@@ -12,7 +12,8 @@ require "action_controller/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
-
+require "active_storage/engine"
+require "active_job/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -61,5 +62,6 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.active_storage.service = :local
   end
 end
