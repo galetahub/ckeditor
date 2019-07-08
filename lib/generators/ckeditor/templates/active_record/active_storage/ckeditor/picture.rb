@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ckeditor::Picture < Ckeditor::Asset
   # for validation, see https://github.com/igorkasyanchuk/active_storage_validations
 

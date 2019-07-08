@@ -15,6 +15,8 @@ class PictureTest < ActiveSupport::TestCase
 
     if CKEDITOR_BACKEND == :dragonfly
       assert @picture.url_thumb.include?('thumb_rails')
+    elsif CKEDITOR_BACKEND == :active_storage
+      assert @picture.url_thumb =~ /\/representations\/.*\/rails.png/
     else
       assert @picture.url_thumb.include?('thumb_rails.png')
     end
