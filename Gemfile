@@ -29,5 +29,8 @@ platforms :ruby do
     gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
     gem 'mongoid', '~> 7.0.2'
     gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+    gem 'shrine'
+    gem 'shrine-mongoid'
+    gem 'image_processing'
   end
 end

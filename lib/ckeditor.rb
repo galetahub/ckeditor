@@ -28,6 +28,7 @@ module Ckeditor
     autoload :Paperclip, 'ckeditor/backend/paperclip'
     autoload :CarrierWave, 'ckeditor/backend/carrierwave'
     autoload :Dragonfly, 'ckeditor/backend/dragonfly'
+    autoload :Shrine, 'ckeditor/backend/shrine'
   end
 
   IMAGE_TYPES = %w[image/jpeg image/png image/gif image/jpg image/pjpeg image/tiff image/x-png].freeze

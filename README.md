@@ -347,6 +347,7 @@ $> rake test CKEDITOR_BACKEND=paperclip
 $> rake test CKEDITOR_BACKEND=active_storage
 $> rake test CKEDITOR_BACKEND=carrierwave
 $> rake test CKEDITOR_BACKEND=dragonfly
+$> rake test CKEDITOR_BACKEND=shrine
 $> rake test CKEDITOR_ORM=mongoid
 
 $> rake test:controllers
