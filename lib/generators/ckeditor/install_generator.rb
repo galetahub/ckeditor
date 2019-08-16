@@ -32,6 +32,10 @@ module Ckeditor
         if backend_dragonfly?
           template 'base/dragonfly/initializer.rb', 'config/initializers/ckeditor_dragonfly.rb'
         end
+
+        if backend_shrine?
+          template 'base/shrine/initializer.rb', 'config/initializers/ckeditor_shrine.rb'
+        end
       end
 
       def mount_engine
@@ -68,6 +72,10 @@ module Ckeditor
 
       def backend_dragonfly?
         backend == 'dragonfly'
+      end
+
+      def backend_shrine?
+        backend == 'shrine'
       end
 
       def ckeditor_dir
