@@ -57,9 +57,9 @@ module Ckeditor
             storage_data.attach(data)
           end
 
-          self.data_file_name = blob.filename
-          self.data_content_type = blob.content_type
-          self.data_file_size = blob.byte_size
+          self.data_file_name = storage_data.blob.filename
+          self.data_content_type = storage_data.blob.content_type
+          self.data_file_size = storage_data.blob.byte_size
         end
 
       end
