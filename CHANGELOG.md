@@ -1,5 +1,15 @@
 # Ckeditor changelog
 
+
+## NEXT
+
+  * 
+
+## Ckeditor 5.1.0 (06-03-2020)
+
+  * Add Active Storage backend support
+  * Add Shrine backend support
+
 ## Ckeditor 5.0.0
 
   * CDN version only (breaking changes)

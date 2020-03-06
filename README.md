@@ -28,12 +28,6 @@ or if you'd like to use the latest version from Github:
 gem 'ckeditor', github: 'galetahub/ckeditor'
 ```
 
-The last version works with Rails 3.2.x is 4.1.3
-
-```ruby
-gem 'ckeditor', '4.1.3'
-```
-
 Include this inside your `config/initializers/assets.rb`:
 
 ```
@@ -43,7 +37,7 @@ Rails.application.config.assets.precompile += %w[ckeditor/config.js]
 For file upload support, you must generate the necessary file storage models.
 The currently supported backends are:
 
-* ActiveRecord (paperclip, carrierwave, dragonfly)
+* ActiveRecord (active_storage, paperclip, carrierwave, dragonfly)
 * Mongoid (paperclip, carrierwave, dragonfly)
 
 ### How to generate models to store uploaded files
