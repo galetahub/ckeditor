@@ -17,7 +17,7 @@ Shrine.storages = {
 }
 
 Shrine.plugin :determine_mime_type
-Shrine.plugin :mongoid
+Shrine.plugin :activerecord
 Shrine.plugin :instrumentation
 
 Shrine.plugin :validation_helpers

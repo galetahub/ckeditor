@@ -80,6 +80,14 @@ gem 'dragonfly'
 rails generate ckeditor:install --orm=active_record --backend=dragonfly
 ```
 
+#### ActiveRecord + shrine
+
+```
+gem 'shrine'
+
+rails generate ckeditor:install --orm=active_record --backend=shrine
+```
+
 #### Mongoid + paperclip
 
 ```
