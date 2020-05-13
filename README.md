@@ -173,6 +173,26 @@ app/assets/javascripts/ckeditor/config.js
 app/assets/javascripts/ckeditor/contents.css
 ```
 
+Then configure the editor to read your contents.css file:
+
+```
+# in app/assets/javascripts/ckeditor/config.js
+CKEDITOR.editorConfig = function (config) {
+  // ... other configuration ...
+  
+  config.contentsCss = "/assets/ckeditor/contents.css";
+  
+  // ... rest of the original config.js  ...
+}
+```
+
+Don't forget to add your css file to the precompilation list!
+```ruby
+# in config/initializers/assets.rb
+
+Rails.application.config.assets.precompile += %w[ckeditor/contents.css]
+```
+
 #### Custom toolbars example
 
 Adding a custom toolbar:
