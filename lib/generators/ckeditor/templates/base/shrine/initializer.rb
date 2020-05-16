@@ -21,5 +21,11 @@ Shrine.plugin :activerecord
 Shrine.plugin :instrumentation
 
 Shrine.plugin :validation_helpers
-Shrine.plugin :processing
-Shrine.plugin :versions
+Shrine.plugin :derivatives, versions_compatibility: true
+
+class Shrine::Attacher
+  def promote(*)
+    create_derivatives
+    super
+  end
+end
