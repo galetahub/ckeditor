@@ -14,7 +14,7 @@ class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
     asset.data = asset_response.data
 
     if asset.save
-      render asset_response.success(config.relative_url_root)
+      render json: { link: asset.data.metadata['secure_url'] }
     else
       render asset_response.errors
     end

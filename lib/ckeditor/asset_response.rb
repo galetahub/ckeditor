@@ -32,7 +32,9 @@ module Ckeditor
     end
 
     def file
-      !(ckeditor? || json?) ? params[:qqfile] : params[:upload]
+      file = !(ckeditor? || json?) ? params[:qqfile] : params[:upload]
+      
+      file || params[:file]
     end
 
     def current_mode
