@@ -3,6 +3,11 @@
 ## NEXT
   * None
 
+## Ckeditor 4.4.0
+
+  * Update CKEditor to version 4.14.1 full (4 September 2020)
+
+
 ## Ckeditor 4.3.0
 
   * Update CKEditor to version 4.11.1 full (8 November 2018)
