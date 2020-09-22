@@ -14,8 +14,8 @@ module Ckeditor
     Attacher.derivatives_processor do |original|
       magick = SHRINE_PICTURE_PROCESSOR.source(original)
       {
-        content: magick.resize_to_limit(800, 800),
-        thumb:   magick.resize_to_limit(118, 100),
+        content: magick.resize_to_limit!(800, 800),
+        thumb:   magick.resize_to_limit!(118, 100),
       }
     end
   end
