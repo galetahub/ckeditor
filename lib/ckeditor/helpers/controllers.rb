@@ -3,8 +3,6 @@
 module Ckeditor
   module Helpers
     module Controllers
-      extend ActiveSupport::Concern
-
       protected
 
       def ckeditor_current_user
