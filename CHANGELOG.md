@@ -15,9 +15,12 @@
   * CDN version only (breaking changes)
   * Upgrade rails to 5.2.x
   * Remove refile support due no activity since 2015
-  * Remove auto-detect content-type and image dimensions
+  * Remove auto-detect content-type (`extract_content_type`) and image dimensions (`extract_dimensions`)
   * Fix crash on "upload file" 3rd tab
 
+  **COMPATIBILITY WARNING**
+
+  Remove `extract_dimensions` or `extract_content_type` in uploader `process` call
 
 ## Ckeditor 4.3.0
 
