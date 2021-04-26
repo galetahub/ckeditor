@@ -9,6 +9,7 @@ gem 'rails', '5.2.4.5'
 platforms :ruby do
   gem 'sass'
   gem 'sqlite3', '~> 1.3.6'
+  gem 'sprockets', '~> 3.7.2'
 
   group :development, :test do
     gem 'capybara', '>= 0.4.0'
