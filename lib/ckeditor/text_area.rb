@@ -42,7 +42,7 @@ module Ckeditor
     end
 
     def output_buffer
-      @output_buffer ||= ActiveSupport::SafeBuffer.new
+      @output_buffer ||= ActionView::OutputBuffer.new
     end
 
     def build_tag(object_name, method)
