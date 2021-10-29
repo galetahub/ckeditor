@@ -274,26 +274,27 @@ can [:read, :create, :destroy], Ckeditor::Picture
 can [:read, :create, :destroy], Ckeditor::AttachmentFile
 ```
 
-### Pundit integration
+### Pundit or Action Policy Integration
 
+Setup Pundit and Action Policy similar.
 Just like CanCanCan, you can write this code in your config/initializers/ckeditor.rb file:
 
 ```ruby
 Ckeditor.setup do |config|
-  config.authorize_with :pundit
+  config.authorize_with :pundit # or :action_policy
 end
 ```
 
 Then, generate the policy files for model **Picture** and **AttachmentFile**
 
 ```
-$ rails g ckeditor:pundit_policy
+$ rails g ckeditor:pundit_policy # or ckeditor:action_policy
 ```
 By this command, you will got two files:
 > app/policies/ckeditor/picture_policy.rb
 app/policies/ckeditor/attachment_file_policy.rb
 
-By default, only the user that logged in can access the models (with actions *index* and *create*) and only the owner of the asset can **destroy** the resource.
+By default, only the user that logged in can access the models.
 
 You can customize these two policy files as you like.
 
