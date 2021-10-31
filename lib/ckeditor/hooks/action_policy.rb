@@ -4,7 +4,7 @@ require 'action_policy'
 
 module Ckeditor
   module Hooks
-    # This adapter is for the Pundit[https://github.com/elabs/pundit] authorization library.
+    # This adapter is for the Action Policy[https://github.com/palkan/action_policy] authorization library.
     # You can create another adapter for different authorization behavior, just be certain it
     # responds to each of the public methods here.
     class ActionPolicyAuthorization
@@ -13,17 +13,15 @@ module Ckeditor
       # See the +authorize_with+ config method for where the initialization happens.
       def initialize(controller)
         @controller = controller
-        # use ckeditor_current_user instead of default current_user so it works with
-        # whatever current user method is defined with Ckeditor
-        @controller.class.authorize :user, through: :ckeditor_current_user
+        @controller.extend ControllerExtension
       end
 
       # This method is called in every controller action and should raise an exception
       # when the authorization fails. The first argument is the name of the controller
       # action as a symbol (:create, :destroy, etc.). The second argument is the actual model
       # instance if it is available.
-      def authorize(action, model_object = nil)
-        @controller.authorize!(model_object)
+      def authorize(_action, model_object = nil)
+        @controller.authorize!(model_object, context: {user: @controller.current_user_for_action_policy})
       end
 
       # This method is called primarily from the view to determine whether the given user
@@ -31,7 +29,19 @@ module Ckeditor
       # This takes the same arguments as +authorize+. The difference is that this will
       # return a boolean whereas +authorize+ will raise an exception when not authorized.
       def authorized?(action, model_object = nil)
-        @controller.allowed_to?(:"#{action}?", model_object) if action
+        if action
+          @controller.allowed_to?(:"#{action}?",
+                                  model_object,
+                                  context: {user: @controller.current_user_for_action_policy})
+        end
+      end
+
+      module ControllerExtension
+        def current_user_for_action_policy
+          # use ckeditor_current_user instead of default current_user so it works with
+          # whatever current user method is defined with Ckeditor
+          ckeditor_current_user
+        end
       end
     end
   end
