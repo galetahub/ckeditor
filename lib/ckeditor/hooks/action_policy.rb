@@ -13,7 +13,6 @@ module Ckeditor
       # See the +authorize_with+ config method for where the initialization happens.
       def initialize(controller)
         @controller = controller
-        @controller.extend ControllerExtension
       end
 
       # This method is called in every controller action and should raise an exception
@@ -21,7 +20,7 @@ module Ckeditor
       # action as a symbol (:create, :destroy, etc.). The second argument is the actual model
       # instance if it is available.
       def authorize(_action, model_object = nil)
-        @controller.authorize!(model_object, context: {user: @controller.current_user_for_action_policy})
+        @controller.authorize!(model_object, context: {user: @controller.ckeditor_current_user})
       end
 
       # This method is called primarily from the view to determine whether the given user
@@ -32,15 +31,7 @@ module Ckeditor
         if action
           @controller.allowed_to?(:"#{action}?",
                                   model_object,
-                                  context: {user: @controller.current_user_for_action_policy})
-        end
-      end
-
-      module ControllerExtension
-        def current_user_for_action_policy
-          # use ckeditor_current_user instead of default current_user so it works with
-          # whatever current user method is defined with Ckeditor
-          ckeditor_current_user
+                                  context: {user: @controller.ckeditor_current_user})
         end
       end
     end
