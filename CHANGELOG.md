@@ -3,7 +3,10 @@
 
 ## NEXT
 
-  * 
+## Ckeditor 5.1.1 (12-1-2021)
+
+  * Add hook for action_policy support
+  * Update gems to fix potential security vulnerabilities
 
 ## Ckeditor 5.1.0 (06-03-2020)
 

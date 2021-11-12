@@ -16,6 +16,8 @@ platforms :ruby do
     gem 'jquery-rails', '~> 4.3.3'
     gem 'mynyml-redgreen', '~> 0.7.1', require: 'redgreen'
     gem 'rails-controller-testing'
+
+    gem 'rubocop-rails'
   end
 
   group :active_record do
