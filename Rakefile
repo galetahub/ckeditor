@@ -9,8 +9,9 @@ end
 
 require 'rake'
 require 'rdoc/task'
-
 require 'rake/testtask'
+
+require 'bundler/gem_tasks'
 
 task default: :test
 
