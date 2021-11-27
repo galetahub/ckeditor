@@ -7,7 +7,7 @@ CKEditor is a WYSIWYG text editor designed to simplify web content creation. It 
 
 ## Features
 
-* CKEditor version 4.x (https://ckeditor.com/ckeditor-4/)
+* CKEditor version 4.x (<https://ckeditor.com/ckeditor-4/>)
 * Rails 5.x, 4.2.x integration
 * Files browser
 * HTML5 file uploader
@@ -57,7 +57,7 @@ rails generate ckeditor:install --orm=active_record --backend=paperclip
 ```
 gem "mini_magick"
 
-rails active_storage:install # if you not install active_storage yet
+rails active_storage:install # if you haven't installed active_storage yet
 rails generate ckeditor:install --orm=active_record --backend=active_storage
 ```
 
@@ -72,7 +72,7 @@ rails generate ckeditor:install --orm=active_record --backend=carrierwave
 
 #### ActiveRecord + dragonfly
 
-Requires Dragonfly 1.0 or greater.
+Requires Dragonfly 1.0 or higher.
 
 ```
 gem 'dragonfly'
@@ -110,7 +110,7 @@ Models are autoloaded in Rails 4. For earlier Rails versions, you need to add th
 config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
 ```
 
-Mount the Ckeditor::Engine in your routes (config/routes.rb):
+Mount the Ckeditor::Engine to your routes (config/routes.rb):
 
 ```ruby
 mount Ckeditor::Engine => '/ckeditor'
@@ -120,7 +120,7 @@ mount Ckeditor::Engine => '/ckeditor'
 
 ### Load editor via CKEditor CDN
 
-Setup editor version to load (more info here http://cdn.ckeditor.com/)
+Setup editor version to load (more info here <http://cdn.ckeditor.com/>)
 
 ```ruby
 # in config/initializers/ckeditor.rb
@@ -229,6 +229,7 @@ jQuery sample:
 ```
 
 ### SimpleForm integration
+
 Note that the toolbar option should match the case specified in the config. If the config is not found it defaults to all available toolbar items.
 
 i.e. config.toolbar_mini becomes {toolbar: 'mini'} in the form.
@@ -238,6 +239,7 @@ i.e. config.toolbar_mini becomes {toolbar: 'mini'} in the form.
 ```
 
 ### Turbolink integration
+
 Create a file app/assets/javascripts/init_ckeditor.coffee
 
 ```coffee
@@ -248,6 +250,7 @@ ready = ->
 $(document).ready(ready)
 $(document).on('page:load', ready)
 ```
+
 Make sure the file is loaded from your app/assets/javascripts/application.js
 
 ### CanCanCan integration
@@ -288,8 +291,9 @@ end
 Then, generate the policy files for model **Picture** and **AttachmentFile**
 
 ```
-$ rails g ckeditor:pundit_policy # or ckeditor:action_policy
+rails g ckeditor:pundit_policy # or ckeditor:action_policy
 ```
+
 By this command, you will got two files:
 > app/policies/ckeditor/picture_policy.rb
 app/policies/ckeditor/attachment_file_policy.rb
@@ -303,6 +307,7 @@ You can customize these two policy files as you like.
 * To override the default CKEditor routes create a [config.js](https://github.com/galetahub/ckeditor/blob/master/app/assets/javascripts/ckeditor/config.js) file within the host application at `app/assets/javascripts/ckeditor/config.js`
 
 * By default, the engine inherits from `ApplicationController`. To override the default parent controller:
+
 ```
 # in config/initializers/ckeditor.rb
 
