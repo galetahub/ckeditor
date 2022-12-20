@@ -16,6 +16,8 @@
 ## Ckeditor 5.0.0
 
   * CDN version only (breaking changes)
+    
+    Previously you could use a bundled version of the editor by adding `//= require ckeditor/init` to your application.js. From 5.0 this is no longer available.
   * Upgrade rails to 5.2.x
   * Remove refile support due no activity since 2015
   * Remove auto-detect content-type (`extract_content_type`) and image dimensions (`extract_dimensions`)
