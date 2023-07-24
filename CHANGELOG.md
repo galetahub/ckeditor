@@ -2,6 +2,8 @@
 
 ## NEXT
   * None
+## Ckeditor 4.6.0
+  * Update CKEditor to version 4.22.1 full (30 June 2023)
 
 ## Ckeditor 4.5.0
 
