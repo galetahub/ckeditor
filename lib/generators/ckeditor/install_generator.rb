@@ -15,7 +15,7 @@ module Ckeditor
                          desc: 'Backend processor for upload support'
 
       class_option :backend, type: :string, default: 'paperclip',
-                             desc: 'paperclip (default), active_storage, carrierwave or dragonfly'
+                             desc: 'paperclip (default), active_storage, carrierwave dragonfly or shrine'
 
       def self.source_root
         @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
@@ -48,13 +48,16 @@ module Ckeditor
                    File.join('app/models', ckeditor_dir, "#{filename}.rb")
         end
 
-        if backend_carrierwave?
-          template "#{uploaders_dir}/uploaders/ckeditor_attachment_file_uploader.rb",
-                   File.join('app/uploaders', 'ckeditor_attachment_file_uploader.rb')
+      end
 
-          template "#{uploaders_dir}/uploaders/ckeditor_picture_uploader.rb",
-                   File.join('app/uploaders', 'ckeditor_picture_uploader.rb')
-        end
+      def create_uploaders
+        return unless backend_carrierwave? || backend_shrine?
+
+        template "#{uploaders_dir}/uploaders/ckeditor_attachment_file_uploader.rb",
+                  File.join('app/uploaders', 'ckeditor_attachment_file_uploader.rb')
+
+        template "#{uploaders_dir}/uploaders/ckeditor_picture_uploader.rb",
+                  File.join('app/uploaders', 'ckeditor_picture_uploader.rb')
       end
 
       def create_ckeditor_migration
@@ -87,7 +90,11 @@ module Ckeditor
       end
 
       def uploaders_dir
-        @uploaders_dir ||= 'base/carrierwave'
+        @uploaders_dir ||= if backend_carrierwave?
+          'base/carrierwave'
+        else
+          generator_dir
+        end
       end
 
       def orm

@@ -37,7 +37,7 @@ Rails.application.config.assets.precompile += %w[ckeditor/config.js]
 For file upload support, you must generate the necessary file storage models.
 The currently supported backends are:
 
-* ActiveRecord (active_storage, paperclip, carrierwave, dragonfly)
+* ActiveRecord (active_storage, paperclip, carrierwave, dragonfly, shrine)
 * Mongoid (paperclip, carrierwave, dragonfly)
 
 ### How to generate models to store uploaded files
@@ -78,6 +78,13 @@ Requires Dragonfly 1.0 or higher.
 gem 'dragonfly'
 
 rails generate ckeditor:install --orm=active_record --backend=dragonfly
+```
+
+#### ActiveRecord + shrine
+
+```
+gem 'shrine'
+rails generate ckeditor:install --orm=active_record --backend=shrine
 ```
 
 #### Mongoid + paperclip

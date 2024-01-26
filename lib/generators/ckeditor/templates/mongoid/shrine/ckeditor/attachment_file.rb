@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
 module Ckeditor
-  class AttachmentFileUploader < Shrine
-    plugin :validation_helpers
-
-    Attacher.validate do
-      validate_max_size 100.megabytes
-    end
-  end
-
   class AttachmentFile < Ckeditor::Asset
-    include AttachmentFileUploader.attachment(:data)
+    include CkeditorAttachmentFileUploader.attachment(:data)
 
     validates :data, presence: true
 
