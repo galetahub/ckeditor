@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateCkeditorAssets < ActiveRecord::Migration[5.2]
+class CreateCkeditorAssets < ActiveRecord::Migration[6.1]
   def up
     create_table :ckeditor_assets do |t|
       t.string  :data_uid, null: false

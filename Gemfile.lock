@@ -227,6 +227,8 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     shrine (3.6.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
@@ -271,9 +273,10 @@ DEPENDENCIES
   rails (~> 6.1)
   rubocop-rails
   sass
+  sassc
   shrine
   shrine-mongoid
-  sprockets
+  sprockets-rails
   sqlite3
 
 BUNDLED WITH

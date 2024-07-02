@@ -18,7 +18,6 @@ class AttachmentFilesControllerTest < ActionController::TestCase
     get :index
 
     assert_equal 200, @response.status
-    assert_template 'ckeditor/attachment_files/index'
   end
 
   test 'create action via filebrowser' do

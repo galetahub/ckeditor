@@ -1,4 +1,4 @@
-class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
+class CreateActiveStorageTables < ActiveRecord::Migration[6.1]
   def change
     create_table :active_storage_blobs do |t|
       t.string   :key,        null: false
@@ -8,6 +8,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.bigint   :byte_size,  null: false
       t.string   :checksum,   null: false
       t.datetime :created_at, null: false
+      t.string   :service_name, null: false
 
       t.index [ :key ], unique: true
     end

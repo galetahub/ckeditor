@@ -36,4 +36,6 @@ Dummy::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.active_support.test_order = :sorted
+
+  config.assets.precompile += %w( ckeditor/application.css ckeditor/application.js application.css )
 end

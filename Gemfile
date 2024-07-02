@@ -9,7 +9,8 @@ gem 'rails', '~> 6.1'
 platforms :ruby do
   gem 'sass'
   gem 'sqlite3'
-  gem 'sprockets'
+  gem 'sprockets-rails'
+  gem 'sassc'
 
   group :development, :test do
     gem 'capybara'
