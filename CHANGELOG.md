@@ -4,6 +4,7 @@
 ## Ckeditor 5.1.2 (unreleased)
 
   * Upgrade CKEditor to 4.22.1 version
+  * Bump ruby version to 2.7.6
 
 ## Ckeditor 5.1.1 (12-1-2021)
 
