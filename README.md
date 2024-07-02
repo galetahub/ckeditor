@@ -12,7 +12,7 @@ community maintained editor. Currently this gem supports [ckeditor 4](https://ck
 
 ## Features
 
-* CKEditor version 4.x (<https://ckeditor.com/ckeditor-4/>)
+* CKEditor version 4.x (<https://ckeditor.com/cke4/release-notes>)
 * Rails 5.x, 4.2.x integration
 * Files browser
 * HTML5 file uploader
