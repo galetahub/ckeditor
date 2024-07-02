@@ -2,8 +2,13 @@
 
 [![Build Status](https://semaphoreci.com/api/v1/igor-galeta/ckeditor/branches/master/shields_badge.svg)](https://semaphoreci.com/igor-galeta/ckeditor)
 [![Code Climate](https://codeclimate.com/github/galetahub/ckeditor/badges/gpa.svg)](https://codeclimate.com/github/galetahub/ckeditor)
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
-CKEditor is a WYSIWYG text editor designed to simplify web content creation. It brings common word processing features directly to your web pages. Enhance your website experience with our community maintained editor. Currently this gem supports [ckeditor 4](https://ckeditor.com/ckeditor-4/) only.
+
+CKEditor is a WYSIWYG text editor designed to simplify web content creation. It brings common word processing features directly to your web pages. Enhance your website experience with our
+community maintained editor. Currently this gem supports [ckeditor 4](https://ckeditor.com/ckeditor-4/) only.
+
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://stand-with-ukraine.pp.ua)
 
 ## Features
 
