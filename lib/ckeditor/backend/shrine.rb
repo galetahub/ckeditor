@@ -9,11 +9,11 @@ module Ckeditor
 
       module InstanceMethods
         def data=(value)
-          self.attachment_data = value
+          self.attachment = value
         end
 
         def url
-          attachment.url
+          attachment&.url
         end
 
         def data_file_name

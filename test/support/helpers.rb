@@ -7,7 +7,7 @@ class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
 
   def new_attachment(data = nil)
-    data ||= fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')
+    data ||= Rack::Test::UploadedFile.new('test/dummy/test/fixtures/files/rails.tar.gz', 'application/x-gzip')
 
     Ckeditor.attachment_file_model.new(data: data)
   end
@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
   end
 
   def new_picture(data = nil)
-    data ||= fixture_file_upload('files/rails.png', 'image/png')
+    data ||= Rack::Test::UploadedFile.new('test/dummy/test/fixtures/files/rails.png', 'image/png')
 
     Ckeditor.picture_model.new(data: data)
   end

@@ -2,10 +2,10 @@
 
 class Ckeditor::Picture < Ckeditor::Asset
   def url_content
-    attachment.url
+    attachment&.url
   end
 
   def url_thumb
-    attachment.url
+    attachment&.url
   end
 end

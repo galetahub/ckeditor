@@ -14,3 +14,4 @@ test/dummy/public/uploads/*
 .DS_Store
 Gemfile.lock
 dragonfly.log
+public/

@@ -6,7 +6,7 @@ class PicturesControllerTest < ActionController::TestCase
   tests Ckeditor::PicturesController
 
   def setup
-    @image = fixture_file_upload('files/rails.png', 'image/png')
+    @image = Rack::Test::UploadedFile.new('test/dummy/test/fixtures/files/rails.png', 'image/png')
     @routes = Ckeditor::Engine.routes
   end
 
