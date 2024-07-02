@@ -3,7 +3,7 @@
 # Configure Rails Envinronment
 ENV['RAILS_ENV'] = 'test'
 CKEDITOR_ORM = (ENV['CKEDITOR_ORM'] || :active_record).to_sym
-CKEDITOR_BACKEND = (ENV['CKEDITOR_BACKEND'] || :paperclip).to_sym
+CKEDITOR_BACKEND = (ENV['CKEDITOR_BACKEND'] || :carrierwave).to_sym
 
 $:.unshift File.dirname(__FILE__)
 puts "\n==> Ckeditor.orm = #{CKEDITOR_ORM.inspect}. CKEDITOR_ORM = (active_record|mongoid)"

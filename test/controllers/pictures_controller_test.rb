@@ -53,7 +53,7 @@ class PicturesControllerTest < ActionController::TestCase
   end
 
   test 'destroy action via filebrowser' do
-    @picture = Ckeditor::Picture.create data: @image
+    @picture = Ckeditor::Picture.create! data: @image
 
     assert_difference 'Ckeditor::Picture.count', -1 do
       delete :destroy, params: { id: @picture.id }
