@@ -1,11 +1,11 @@
 version: v1.0
-name: Test MyApp
+name: Test CKEditor gem
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: 'Test '
+  - name: 'Test'
     task:
       env_vars:
         - name: DATABASE_URL
@@ -21,14 +21,14 @@ blocks:
             - cache restore
             - bundle install --deployment --path vendor/bundle
             - cache store
-            - 'bundle exec rake db:setup'
+            - bundle exec rake db:setup
             - bundle exec rake test CKEDITOR_BACKEND=paperclip
             - bundle exec rake test CKEDITOR_BACKEND=active_storage
             - bundle exec rake test CKEDITOR_BACKEND=carrierwave
             - bundle exec rake test CKEDITOR_BACKEND=dragonfly
             - bundle exec rake test CKEDITOR_BACKEND=shrine
             - bundle exec rake test CKEDITOR_ORM=mongoid
-            - 'bundle exec rake test:controllers'
-            - 'bundle exec rake test:generators'
-            - 'bundle exec rake test:integration'
-            - 'bundle exec rake test:models'
+            - bundle exec rake test:controllers
+            - bundle exec rake test:generators
+            - bundle exec rake test:integration
+            - bundle exec rake test:models
