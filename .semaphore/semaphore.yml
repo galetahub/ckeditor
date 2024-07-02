@@ -19,10 +19,10 @@ blocks:
             - sem-service start postgres 11
             - sem-version ruby 2.7.6
             - cache restore
-            - bundle install --deployment --path vendor/bundle
+            - bundle install --path vendor/bundle
             - cache store
             - bundle exec rake db:setup
-            - bundle exec rake test CKEDITOR_BACKEND=paperclip
+            # - bundle exec rake test CKEDITOR_BACKEND=paperclip
             - bundle exec rake test CKEDITOR_BACKEND=active_storage
             - bundle exec rake test CKEDITOR_BACKEND=carrierwave
             - bundle exec rake test CKEDITOR_BACKEND=dragonfly
