@@ -8,16 +8,15 @@ require 'ckeditor/backend/shrine'
 require 'image_processing/mini_magick'
 SHRINE_PICTURE_PROCESSOR = ImageProcessing::MiniMagick
 
-# require 'image_processing/vips'
-# SHRINE_PICTURE_PROCESSOR = ImageProcessing::Vips
-
 Shrine.storages = {
   cache: Shrine::Storage::FileSystem.new('public', prefix: 'uploads/cache'),
   store: Shrine::Storage::FileSystem.new('public', prefix: 'system')
 }
 
-Shrine.plugin :determine_mime_type
 Shrine.plugin :mongoid
+Shrine.plugin :activerecord
+
+Shrine.plugin :determine_mime_type
 Shrine.plugin :instrumentation
 
 Shrine.plugin :validation_helpers
