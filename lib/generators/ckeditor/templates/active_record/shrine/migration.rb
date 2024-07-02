@@ -3,11 +3,11 @@
 class CreateCkeditorAssets < ActiveRecord::Migration[6.1]
   def up
     create_table :ckeditor_assets do |t|
-      t.string  :data_uid, null: false
-      t.string  :data_name, null: false
-      t.string  :data_mime_type
       t.integer :data_size
       t.string  :type, limit: 30
+
+      # Shrine column
+      t.text    :attachment_data
 
       # Uncomment these to save image dimensions, if your need them.
       # t.integer :data_width

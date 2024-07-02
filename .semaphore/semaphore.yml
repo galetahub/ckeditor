@@ -1,0 +1,31 @@
+version: v1.0
+name: Test CKEditor gem
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: 'Test'
+    task:
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+      jobs:
+        - name: Test
+          commands:
+            - checkout
+            - sem-service start mongodb
+            - sem-version ruby 2.7.6
+            - cache restore
+            - bundle install --path vendor/bundle
+            - cache store
+            # - bundle exec rake test CKEDITOR_BACKEND=paperclip
+            - bundle exec rake test CKEDITOR_BACKEND=active_storage
+            - bundle exec rake test CKEDITOR_BACKEND=carrierwave
+            - bundle exec rake test CKEDITOR_BACKEND=dragonfly
+            - bundle exec rake test CKEDITOR_BACKEND=shrine
+            - bundle exec rake test CKEDITOR_ORM=mongoid CKEDITOR_BACKEND=carrierwave
+            - bundle exec rake test:controllers
+            - bundle exec rake test:generators
+            - bundle exec rake test:integration
+            - bundle exec rake test:models

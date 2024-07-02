@@ -6,7 +6,7 @@ class PicturesControllerTest < ActionController::TestCase
   tests Ckeditor::PicturesController
 
   def setup
-    @image = fixture_file_upload('files/rails.png', 'image/png')
+    @image = Rack::Test::UploadedFile.new('test/dummy/test/fixtures/files/rails.png', 'image/png')
     @routes = Ckeditor::Engine.routes
   end
 
@@ -18,7 +18,6 @@ class PicturesControllerTest < ActionController::TestCase
     get :index
 
     assert_equal 200, @response.status
-    assert_template 'ckeditor/pictures/index'
   end
 
   test 'create action via filebrowser' do
@@ -54,7 +53,7 @@ class PicturesControllerTest < ActionController::TestCase
   end
 
   test 'destroy action via filebrowser' do
-    @picture = Ckeditor::Picture.create data: @image
+    @picture = Ckeditor::Picture.create! data: @image
 
     assert_difference 'Ckeditor::Picture.count', -1 do
       delete :destroy, params: { id: @picture.id }

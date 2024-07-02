@@ -47,13 +47,20 @@ module Ckeditor
           template "#{generator_dir}/ckeditor/#{filename}.rb",
                    File.join('app/models', ckeditor_dir, "#{filename}.rb")
         end
+      end
 
+      def create_uploaders
         if backend_carrierwave?
-          template "#{uploaders_dir}/uploaders/ckeditor_attachment_file_uploader.rb",
+          template "#{uploaders_dir}/ckeditor_attachment_file_uploader.rb",
                    File.join('app/uploaders', 'ckeditor_attachment_file_uploader.rb')
 
-          template "#{uploaders_dir}/uploaders/ckeditor_picture_uploader.rb",
+          template "#{uploaders_dir}/ckeditor_picture_uploader.rb",
                    File.join('app/uploaders', 'ckeditor_picture_uploader.rb')
+        end
+
+        if backend_shrine?
+          template "#{uploaders_dir}/ckeditor_attachment_uploader.rb",
+                   File.join('app/uploaders', 'ckeditor_attachment_uploader.rb')
         end
       end
 
@@ -87,7 +94,7 @@ module Ckeditor
       end
 
       def uploaders_dir
-        @uploaders_dir ||= 'base/carrierwave'
+        @uploaders_dir ||= "base/#{backend}/uploaders"
       end
 
       def orm

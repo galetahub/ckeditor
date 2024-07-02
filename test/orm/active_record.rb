@@ -7,5 +7,6 @@ end
 if activerecord_below_5_2?
   ActiveRecord::Migrator.migrate('test/dummy/db/migrate')
 else
-  ActiveRecord::MigrationContext.new('test/dummy/db/migrate').migrate
+  schema_migration = ActiveRecord::Base.connection.schema_migration
+  ActiveRecord::MigrationContext.new('test/dummy/db/migrate', schema_migration).migrate
 end

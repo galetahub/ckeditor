@@ -8,8 +8,12 @@ module Ckeditor
       end
 
       module InstanceMethods
+        def data=(value)
+          self.attachment = value
+        end
+
         def url
-          data_url
+          attachment&.url
         end
 
         def data_file_name
@@ -21,7 +25,7 @@ module Ckeditor
         end
 
         def datasource
-          @datasource ||= data&.metadata || {}
+          @datasource ||= attachment&.metadata || {}
         end
       end
     end

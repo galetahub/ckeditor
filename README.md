@@ -1,6 +1,6 @@
 # Ckeditor
 
-[![Build Status](https://semaphoreci.com/api/v1/igor-galeta/ckeditor/branches/master/shields_badge.svg)](https://semaphoreci.com/igor-galeta/ckeditor)
+[![Build Status](https://galetahub.semaphoreci.com/badges/ckeditor/branches/master.svg?style=shields&key=eabcab57-9b51-4460-9b27-9c61c28efcdb)](https://galetahub.semaphoreci.com/projects/ckeditor)
 [![Code Climate](https://codeclimate.com/github/galetahub/ckeditor/badges/gpa.svg)](https://codeclimate.com/github/galetahub/ckeditor)
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 

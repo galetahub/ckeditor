@@ -37,5 +37,5 @@ Dummy::Application.configure do
 
   config.active_support.test_order = :sorted
 
-  config.active_record.sqlite3.represent_boolean_as_integer = true
+  config.assets.precompile += %w( ckeditor/application.css ckeditor/application.js application.css )
 end

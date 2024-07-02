@@ -10,7 +10,8 @@ class PictureTest < ActiveSupport::TestCase
   test 'Set file content_type and size' do
     @picture = create_picture
 
-    assert_equal 'rails.png', @picture.data_file_name unless CKEDITOR_BACKEND == :shrine
+    assert_equal 'rails.png', @picture.data_file_name
+
     case CKEDITOR_BACKEND
     when :dragonfly
       assert @picture.url_thumb.include?('thumb_rails')
@@ -18,7 +19,6 @@ class PictureTest < ActiveSupport::TestCase
       assert @picture.url_thumb =~ /\/representations\/.*\/rails.png/
     when :shrine
       assert @picture.url_thumb =~ /\S{32}\.png/
-      assert @picture.data_file_name =~ /image_processing(\d{8})-(\d{5})-(\S{,7})\.png/
     else
       assert @picture.url_thumb.include?('thumb_rails.png')
     end

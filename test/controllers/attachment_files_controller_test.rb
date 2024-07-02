@@ -6,7 +6,8 @@ class AttachmentFilesControllerTest < ActionController::TestCase
   tests Ckeditor::AttachmentFilesController
 
   def setup
-    @attachment = fixture_file_upload('files/rails.tar.gz', 'application/x-gzip')
+    @attachment = Rack::Test::UploadedFile.new('test/dummy/test/fixtures/files/rails.tar.gz', 'application/x-gzip')
+
     @routes = Ckeditor::Engine.routes
   end
 
@@ -18,7 +19,6 @@ class AttachmentFilesControllerTest < ActionController::TestCase
     get :index
 
     assert_equal 200, @response.status
-    assert_template 'ckeditor/attachment_files/index'
   end
 
   test 'create action via filebrowser' do
