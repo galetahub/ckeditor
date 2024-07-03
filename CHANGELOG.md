@@ -1,5 +1,8 @@
 # Ckeditor changelog
 
+## Ckeditor 5.1.3 (unreleased)
+
+  * Rename app/assets/config/manifest.js to app/assets/config/ckeditor_manifest.js to fix issue #938
 
 ## Ckeditor 5.1.2
 
@@ -20,7 +23,7 @@
 ## Ckeditor 5.0.0
 
   * CDN version only (breaking changes)
-    
+
     Previously you could use a bundled version of the editor by adding `//= require ckeditor/init` to your application.js. From 5.0 this is no longer available.
   * Upgrade rails to 5.2.x
   * Remove refile support due no activity since 2015
