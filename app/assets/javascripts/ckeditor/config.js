@@ -33,6 +33,7 @@ CKEDITOR.editorConfig = function( config )
 
   config.allowedContent = true;
   config.filebrowserUploadMethod = 'form';
+  config.versionCheck = false;
 
   // Toolbar groups configuration.
   config.toolbar = [

@@ -1,8 +1,9 @@
 # Ckeditor changelog
 
-## Ckeditor 5.1.3 (unreleased)
+## Ckeditor 5.1.3
 
-  * Rename app/assets/config/manifest.js to app/assets/config/ckeditor_manifest.js to fix issue #938
+  * Rename app/assets/config/manifest.js to app/assets/config/ckeditor_manifest.js (issue #938)
+  * Set config.versionCheck = false; by default to hide security notification (issue #933)
 
 ## Ckeditor 5.1.2
 
