@@ -15,7 +15,7 @@ blocks:
           commands:
             - checkout
             - sem-service start mongodb
-            - sem-version ruby 2.7.6
+            - sem-version ruby 3.2.6
             - cache restore
             - bundle install --path vendor/bundle
             - cache store

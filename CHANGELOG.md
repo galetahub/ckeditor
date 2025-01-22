@@ -1,5 +1,10 @@
 # Ckeditor changelog
 
+## Ckeditor 5.2.0
+
+  * Upgrade CKEditor to 5 (44.1.0) version
+  * Bump ruby version to 3.2.6
+
 ## Ckeditor 5.1.3
 
   * Rename app/assets/config/manifest.js to app/assets/config/ckeditor_manifest.js (issue #938)
