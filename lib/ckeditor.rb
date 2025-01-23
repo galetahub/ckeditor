@@ -43,73 +43,73 @@ module Ckeditor
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :image_file_types
-  @@image_file_types = %w[jpg jpeg png gif tiff]
+  @image_file_types = %w[jpg jpeg png gif tiff]
 
   # Allowed flash file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :flash_file_types
-  @@flash_file_types = %w[swf]
+  @flash_file_types = %w[swf]
 
   # Allowed attachment file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :attachment_file_types
-  @@attachment_file_types = %w[doc docx xls odt ods pdf rar zip tar tar.gz swf]
+  @attachment_file_types = %w[doc docx xls odt ods pdf rar zip tar tar.gz swf]
 
   # Ckeditor files destination path
   mattr_accessor :relative_path
-  @@relative_path = 'ckeditor'
+  @relative_path = 'ckeditor'
 
   # Ckeditor assets path
   mattr_accessor :asset_path
-  @@asset_path = nil
+  @asset_path = nil
 
   # Remove digest from ckeditor asset files while running assets:precompile task?
   mattr_accessor :run_on_precompile
-  @@run_on_precompile = true
+  @run_on_precompile = true
 
   # Paginate assets
   mattr_accessor :default_per_page
-  @@default_per_page = 24
+  @default_per_page = 24
 
   # CKEditor version
   mattr_accessor :editor_version
-  @@editor_version = '44.1.0'
+  @editor_version = '44.1.0'
 
   # CKEditor CDN javascript
   mattr_accessor :cdn_url
-  @@cdn_url = nil
+  @cdn_url = nil
 
   # CKEditor CDN css
   mattr_accessor :cdn_css_url
-  @@cdn_css_url = nil
+  @cdn_css_url = nil
 
   # CKEditor License
   # Create a free account and get <YOUR_LICENSE_KEY>
   # https://portal.ckeditor.com/checkout?plan=free
   #
   mattr_accessor :license_key
-  @@license_key = nil
+  @license_key = nil
 
   # Url to ckeditor config, used when CDN enabled
   mattr_accessor :js_config_url
-  @@js_config_url = 'ckeditor/config.js'
+  @js_config_url = 'ckeditor/config.js'
 
   # Model classes
-  @@picture_model = nil
-  @@attachment_file_model = nil
+  @picture_model = nil
+  @attachment_file_model = nil
 
   # Configurable parent controller
   mattr_accessor :parent_controller
-  @@parent_controller = 'ApplicationController'
+  @parent_controller = 'ApplicationController'
 
   # Configurable controller layout
   mattr_accessor :controller_layout
-  @@controller_layout = 'ckeditor/application'
+  @controller_layout = 'ckeditor/application'
 
   # Turn on/off assets pipeline
   # By default ckeditor will check assets pipeline
   mattr_accessor :assets_pipeline_enabled
-  @@assets_pipeline_enabled = nil
+  @assets_pipeline_enabled = nil
 
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
@@ -142,37 +142,37 @@ module Ckeditor
   end
 
   def self.run_on_precompile?
-    @@run_on_precompile
+    @run_on_precompile
   end
 
   def self.cdn_url
-    @@cdn_url ||= "//cdn.ckeditor.com/ckeditor5/#{editor_version}/ckeditor5.umd.js"
+    @cdn_url ||= "//cdn.ckeditor.com/ckeditor5/#{editor_version}/ckeditor5.umd.js"
   end
 
   def self.cdn_css_url
-    @@cdn_css_url ||= "//cdn.ckeditor.com/ckeditor5/#{editor_version}/ckeditor5.css"
+    @cdn_css_url ||= "//cdn.ckeditor.com/ckeditor5/#{editor_version}/ckeditor5.css"
   end
 
   def self.cdn_enabled?
-    !@@cdn_url.nil?
+    !@cdn_url.nil?
   end
 
   def self.picture_model(&block)
     if block_given?
       self.picture_model = block
     else
-      @@picture_model_class ||= if @@picture_model.respond_to? :call
-                                  @@picture_model.call
+      @picture_model_class ||= if @picture_model.respond_to? :call
+                                  @picture_model.call
                                 else
-                                  @@picture_model || Ckeditor::Picture
+                                  @picture_model || Ckeditor::Picture
                                 end
 
     end
   end
 
   def self.picture_model=(value)
-    @@picture_model_class = nil
-    @@picture_model = value
+    @picture_model_class = nil
+    @picture_model = value
   end
 
   def self.picture_adapter
@@ -183,18 +183,18 @@ module Ckeditor
     if block_given?
       self.attachment_file_model = block
     else
-      @@attachment_file_model_class ||= if @@attachment_file_model.respond_to? :call
-                                          @@attachment_file_model.call
+      @attachment_file_model_class ||= if @attachment_file_model.respond_to? :call
+                                          @attachment_file_model.call
                                         else
-                                          @@attachment_file_model || Ckeditor::AttachmentFile
+                                          @attachment_file_model || Ckeditor::AttachmentFile
                                         end
 
     end
   end
 
   def self.attachment_file_model=(value)
-    @@attachment_file_model_class = nil
-    @@attachment_file_model = value
+    @attachment_file_model_class = nil
+    @attachment_file_model = value
   end
 
   def self.attachment_file_adapter
@@ -253,8 +253,8 @@ module Ckeditor
   end
 
   def self.assets_pipeline_enabled?
-    @@assets_pipeline_enabled = Utils.assets_pipeline_enabled? if @@assets_pipeline_enabled.nil?
-    @@assets_pipeline_enabled
+    @assets_pipeline_enabled = Utils.assets_pipeline_enabled? if @assets_pipeline_enabled.nil?
+    @assets_pipeline_enabled
   end
 
   def self.authorization_adapters
