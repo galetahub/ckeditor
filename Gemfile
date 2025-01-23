@@ -4,13 +4,13 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7.2'
 
 platforms :ruby do
   gem 'sass'
-  gem 'sqlite3'
-  gem 'sprockets-rails'
   gem 'sassc'
+  gem 'sprockets-rails'
+  gem 'sqlite3'
 
   group :development, :test do
     gem 'capybara'
@@ -28,8 +28,8 @@ platforms :ruby do
     gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
     gem 'mongoid'
     # gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+    gem 'image_processing'
     gem 'shrine'
     gem 'shrine-mongoid'
-    gem 'image_processing'
   end
 end

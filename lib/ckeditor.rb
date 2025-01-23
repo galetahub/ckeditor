@@ -73,9 +73,24 @@ module Ckeditor
   mattr_accessor :default_per_page
   @@default_per_page = 24
 
-  # CKEditor CDN
+  # CKEditor version
+  mattr_accessor :editor_version
+  @@editor_version = '44.1.0'
+
+  # CKEditor CDN javascript
   mattr_accessor :cdn_url
-  @@cdn_url = '//cdn.ckeditor.com/4.22.1/standard/ckeditor.js'
+  @@cdn_url = nil
+
+  # CKEditor CDN css
+  mattr_accessor :cdn_css_url
+  @@cdn_css_url = nil
+
+  # CKEditor License
+  # Create a free account and get <YOUR_LICENSE_KEY>
+  # https://portal.ckeditor.com/checkout?plan=free
+  #
+  mattr_accessor :license_key
+  @@license_key = nil
 
   # Url to ckeditor config, used when CDN enabled
   mattr_accessor :js_config_url
@@ -130,6 +145,14 @@ module Ckeditor
 
   def self.run_on_precompile?
     @@run_on_precompile
+  end
+
+  def self.cdn_url
+    @@cdn_url ||= "//cdn.ckeditor.com/ckeditor5/#{editor_version}/ckeditor5.umd.js"
+  end
+
+  def self.cdn_css_url
+    @@cdn_css_url ||= "//cdn.ckeditor.com/ckeditor5/#{editor_version}/ckeditor5.css"
   end
 
   def self.cdn_enabled?

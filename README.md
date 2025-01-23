@@ -12,8 +12,8 @@ community maintained editor. Currently this gem supports [ckeditor 4](https://ck
 
 ## Features
 
-* CKEditor version 4.x (<https://ckeditor.com/cke4/release-notes>)
-* Rails 5.x, 4.2.x integration
+* CKEditor version 5 (<https://ckeditor.com/ckeditor-5/download/>)
+* Rails 7.x, 6.x, 5.x, 4.x integration
 * Files browser
 * HTML5 file uploader
 * Hooks for formtastic and simple_form forms generators

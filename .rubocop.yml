@@ -5,7 +5,7 @@ AllCops:
   NewCops: disable
   SuggestExtensions: false
   TargetRubyVersion: 3.2.6
-  TargetRailsVersion: 5.2.4.6
+  TargetRailsVersion: 7.2
   Exclude:
     - '**/vendor/**/*'
     - '**/db/schema.rb'

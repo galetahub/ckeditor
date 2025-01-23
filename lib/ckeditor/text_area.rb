@@ -33,7 +33,7 @@ module Ckeditor
       render text_area_tag(name, content, options)
     end
 
-    protected
+    private
 
     def render(input)
       output_buffer << input
