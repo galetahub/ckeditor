@@ -13,10 +13,9 @@ module Ckeditor
         def self.extended(base)
           base.class_eval do
             before_save :apply_data
+
             validate do
-              if data.nil? || file.nil?
-                errors.add(:data, :not_data_present, message: "data must be present")
-              end
+              errors.add(:data, :not_data_present, message: 'data must be present') if data.nil? || file.nil?
             end
           end
         end
@@ -24,22 +23,15 @@ module Ckeditor
 
       module InstanceMethods
         def url
-          rails_blob_path(self.storage_data, only_path: true)
+          rails_blob_path(storage_data, only_path: true)
         end
 
         def path
-          rails_blob_path(self.storage_data, only_path: true)
+          rails_blob_path(storage_data, only_path: true)
         end
 
-        def styles
-        end
+        delegate :content_type, :content_type=, to: :storage_data
 
-        def content_type
-          self.storage_data.content_type
-        end
-        def content_type=(_content_type)
-          self.storage_data.content_type = _content_type
-        end
         protected
 
         def file
@@ -61,7 +53,6 @@ module Ckeditor
           self.data_content_type = storage_data.blob.content_type
           self.data_file_size = storage_data.blob.byte_size
         end
-
       end
     end
   end

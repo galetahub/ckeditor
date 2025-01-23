@@ -13,7 +13,7 @@ module Ckeditor
 
       # copy configuration
       def copy_policy_files
-        [:picture, :attachment_file].each do |model_name|
+        %w[picture attachment_file].each do |model_name|
           template "action_policy/#{model_name}_policy.rb", "app/policies/ckeditor/#{model_name}_policy.rb"
         end
       end

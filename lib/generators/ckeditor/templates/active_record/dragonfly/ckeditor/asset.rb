@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ckeditor::Asset < ActiveRecord::Base
+class Ckeditor::Asset < ApplicationRecord
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Ckeditor::Backend::Dragonfly
 

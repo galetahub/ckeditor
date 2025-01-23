@@ -33,9 +33,7 @@ module Ckeditor
           template 'base/dragonfly/initializer.rb', 'config/initializers/ckeditor_dragonfly.rb'
         end
 
-        if backend_shrine?
-          template 'base/shrine/initializer.rb', 'config/initializers/ckeditor_shrine.rb'
-        end
+        template 'base/shrine/initializer.rb', 'config/initializers/ckeditor_shrine.rb' if backend_shrine?
       end
 
       def mount_engine
@@ -58,10 +56,10 @@ module Ckeditor
                    File.join('app/uploaders', 'ckeditor_picture_uploader.rb')
         end
 
-        if backend_shrine?
-          template "#{uploaders_dir}/ckeditor_attachment_uploader.rb",
-                   File.join('app/uploaders', 'ckeditor_attachment_uploader.rb')
-        end
+        return unless backend_shrine?
+
+        template "#{uploaders_dir}/ckeditor_attachment_uploader.rb",
+                 File.join('app/uploaders', 'ckeditor_attachment_uploader.rb')
       end
 
       def create_ckeditor_migration

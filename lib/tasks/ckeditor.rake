@@ -5,11 +5,12 @@ require 'fileutils'
 namespace :ckeditor do
   desc 'Create nondigest versions of all ckeditor digest assets'
   task nondigest: :environment do
-    fingerprint = /\-[0-9a-f]{32,64}\./
+    fingerprint = /-[0-9a-f]{32,64}\./
     path = Rails.root.join("public#{Ckeditor.base_path}**/*")
 
     Dir[path].each do |file|
-      next unless file =~ fingerprint
+      next unless file.match?(fingerprint)
+
       nondigest = file.sub fingerprint, '.'
 
       if !File.exist?(nondigest) || File.mtime(file) > File.mtime(nondigest)

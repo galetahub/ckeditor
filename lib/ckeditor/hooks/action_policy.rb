@@ -20,7 +20,7 @@ module Ckeditor
       # action as a symbol (:create, :destroy, etc.). The second argument is the actual model
       # instance if it is available.
       def authorize(_action, model_object = nil)
-        @controller.authorize!(model_object, context: {user: @controller.ckeditor_current_user})
+        @controller.authorize!(model_object, context: { user: @controller.ckeditor_current_user })
       end
 
       # This method is called primarily from the view to determine whether the given user
@@ -28,11 +28,11 @@ module Ckeditor
       # This takes the same arguments as +authorize+. The difference is that this will
       # return a boolean whereas +authorize+ will raise an exception when not authorized.
       def authorized?(action, model_object = nil)
-        if action
-          @controller.allowed_to?(:"#{action}?",
-                                  model_object,
-                                  context: {user: @controller.ckeditor_current_user})
-        end
+        return false unless action
+
+        @controller.allowed_to?(:"#{action}?",
+                                model_object,
+                                context: { user: @controller.ckeditor_current_user })
       end
     end
   end

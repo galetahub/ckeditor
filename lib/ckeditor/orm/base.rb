@@ -13,7 +13,7 @@ module Ckeditor
             data_file_size
           end
 
-          def has_dimensions?
+          def respond_to_dimensions?
             respond_to?(:width) && respond_to?(:height)
           end
 
@@ -34,7 +34,7 @@ module Ckeditor
           end
 
           def as_json_methods
-            [:url_content, :url_thumb, :size, :filename, :format_created_at]
+            %i[url_content url_thumb size filename format_created_at]
           end
 
           def as_json(options = nil)

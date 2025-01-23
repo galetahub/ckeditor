@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Ckeditor
   class PictureUploader < Shrine
     plugin :determine_mime_type

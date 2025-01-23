@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ckeditor::Asset < ActiveRecord::Base
+class Ckeditor::Asset < ApplicationRecord
   include Ckeditor::Orm::ActiveRecord::AssetBase
 
   delegate :url, :current_path, :content_type, to: :data

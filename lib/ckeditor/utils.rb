@@ -8,7 +8,7 @@ module Ckeditor
 
     class << self
       def escape_single_quotes(str)
-        str.gsub('\\', '\0\0').gsub('</', '<\/').gsub(/\r\n|\n|\r/, "\\n").gsub(/["']/) { |m| "\\#{m}" }
+        str.gsub('\\', '\0\0').gsub('</', '<\/').gsub(/\r\n|\n|\r/, '\\n').gsub(/["']/) { |m| "\\#{m}" }
       end
 
       def js_replace(dom_id, options = nil)
@@ -35,10 +35,10 @@ module Ckeditor
         options = { multiple: true, element: 'fileupload' }.merge!(options)
 
         case uploader_type.to_s.downcase
-        when 'image' then
+        when 'image'
           options[:action] = JavascriptCode.new('EDITOR.config.filebrowserImageUploadUrl')
           options[:allowedExtensions] = Ckeditor.image_file_types
-        when 'flash' then
+        when 'flash'
           options[:action] = JavascriptCode.new('EDITOR.config.filebrowserFlashUploadUrl')
           options[:allowedExtensions] = Ckeditor.flash_file_types
         else
@@ -69,6 +69,14 @@ module Ckeditor
           Rails.application.config.assets.enabled
         else
           false
+        end
+      end
+
+      def call_or_return(value, default)
+        if value.respond_to? :call
+          value.call
+        else
+          value || default
         end
       end
     end

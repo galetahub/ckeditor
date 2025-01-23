@@ -53,7 +53,7 @@ module Ckeditor
 
     # Current page number
     def current_page
-      offset = (offset_value < 0 ? 0 : offset_value)
+      offset = (offset_value.negative? ? 0 : offset_value)
       (offset / limit_value) + 1
     end
   end

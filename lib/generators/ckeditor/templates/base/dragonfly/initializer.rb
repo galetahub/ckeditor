@@ -5,7 +5,7 @@ require 'dragonfly'
 
 Dragonfly.app(:ckeditor).configure do
   plugin :imagemagick
-  secret "<%= SecureRandom.hex(32) %>"
+  secret '<%= SecureRandom.hex(32) %>'
 
   # Store files in public/uploads/ckeditor. This is not
   # mandatory and the files don't even have to be stored under

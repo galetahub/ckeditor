@@ -21,6 +21,12 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/RedundantParentheses:
+  Enabled: false
+
+Style/ZeroLengthPredicate:
+  Enabled: false
+
 ##################### Metrics ##################################
 
 Layout/LineLength:
@@ -32,7 +38,16 @@ Metrics/ClassLength:
 Metrics/ModuleLength:
   Max: 200
 
+Metrics/AbcSize:
+  Max: 25
+
 ##################### Rails ##################################
 
 Rails:
   Enabled: true
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false

@@ -161,12 +161,7 @@ module Ckeditor
     if block_given?
       self.picture_model = block
     else
-      @picture_model_class ||= if @picture_model.respond_to? :call
-                                  @picture_model.call
-                                else
-                                  @picture_model || Ckeditor::Picture
-                                end
-
+      @picture_model_class ||= Ckeditor::Utils.call_or_return(@picture_model, Ckeditor::Picture)
     end
   end
 
@@ -183,12 +178,8 @@ module Ckeditor
     if block_given?
       self.attachment_file_model = block
     else
-      @attachment_file_model_class ||= if @attachment_file_model.respond_to? :call
-                                          @attachment_file_model.call
-                                        else
-                                          @attachment_file_model || Ckeditor::AttachmentFile
-                                        end
-
+      @attachment_file_model_class ||= Ckeditor::Utils.call_or_return(@attachment_file_model,
+                                                                      Ckeditor::AttachmentFile)
     end
   end
 
