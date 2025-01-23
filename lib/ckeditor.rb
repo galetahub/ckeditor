@@ -36,8 +36,6 @@ module Ckeditor
 
   DEFAULT_AUTHORIZE = -> {}
 
-  AUTHORIZATION_ADAPTERS = {}
-
   DEFAULT_CURRENT_USER = lambda do
     request.env['warden'].try(:user) || respond_to?(:current_user) && current_user
   end
@@ -127,11 +125,11 @@ module Ckeditor
   end
 
   def self.root_path
-    @root_path ||= Pathname.new(File.dirname(File.expand_path('../', __FILE__)))
+    @root_path ||= Pathname.new(File.dirname(File.expand_path(__dir__)))
   end
 
   def self.base_path
-    @base_path ||= (asset_path || File.join([Rails.application.config.assets.prefix, '/ckeditor/']))
+    @base_path ||= asset_path || File.join([Rails.application.config.assets.prefix, '/ckeditor/'])
   end
 
   # All css and js files from ckeditor folder
@@ -163,13 +161,12 @@ module Ckeditor
     if block_given?
       self.picture_model = block
     else
-      @@picture_model_class ||= begin
-        if @@picture_model.respond_to? :call
-          @@picture_model.call
-        else
-          @@picture_model || Ckeditor::Picture
-        end
-      end
+      @@picture_model_class ||= if @@picture_model.respond_to? :call
+                                  @@picture_model.call
+                                else
+                                  @@picture_model || Ckeditor::Picture
+                                end
+
     end
   end
 
@@ -186,13 +183,12 @@ module Ckeditor
     if block_given?
       self.attachment_file_model = block
     else
-      @@attachment_file_model_class ||= begin
-        if @@attachment_file_model.respond_to? :call
-          @@attachment_file_model.call
-        else
-          @@attachment_file_model || Ckeditor::AttachmentFile
-        end
-      end
+      @@attachment_file_model_class ||= if @@attachment_file_model.respond_to? :call
+                                          @@attachment_file_model.call
+                                        else
+                                          @@attachment_file_model || Ckeditor::AttachmentFile
+                                        end
+
     end
   end
 
@@ -230,7 +226,7 @@ module Ckeditor
 
     if extension
       @authorize = lambda do
-        @authorization_adapter = Ckeditor::AUTHORIZATION_ADAPTERS[extension].new(*([self] + args).compact)
+        @authorization_adapter = Ckeditor.authorization_adapters[extension].new(*([self] + args).compact)
       end
     elsif block_given?
       @authorize = block
@@ -259,6 +255,10 @@ module Ckeditor
   def self.assets_pipeline_enabled?
     @@assets_pipeline_enabled = Utils.assets_pipeline_enabled? if @@assets_pipeline_enabled.nil?
     @@assets_pipeline_enabled
+  end
+
+  def self.authorization_adapters
+    @authorization_adapters ||= {}
   end
 end
 

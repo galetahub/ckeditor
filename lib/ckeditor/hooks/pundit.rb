@@ -43,4 +43,4 @@ module Ckeditor
   end
 end
 
-Ckeditor::AUTHORIZATION_ADAPTERS[:pundit] = Ckeditor::Hooks::PunditAuthorization
+Ckeditor.authorization_adapters[:pundit] = Ckeditor::Hooks::PunditAuthorization

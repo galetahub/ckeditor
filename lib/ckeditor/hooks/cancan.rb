@@ -46,5 +46,5 @@ module Ckeditor
   end
 end
 
-Ckeditor::AUTHORIZATION_ADAPTERS[:cancan] = Ckeditor::Hooks::CanCanAuthorization
-Ckeditor::AUTHORIZATION_ADAPTERS[:cancancan] = Ckeditor::Hooks::CanCanAuthorization
+Ckeditor.authorization_adapters[:cancan] = Ckeditor::Hooks::CanCanAuthorization
+Ckeditor.authorization_adapters[:cancancan] = Ckeditor::Hooks::CanCanAuthorization

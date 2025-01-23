@@ -14,8 +14,8 @@ module Ckeditor
       class_option :orm, type: :string, default: 'active_record',
                          desc: 'Backend processor for upload support'
 
-      class_option :backend, type: :string, default: 'paperclip',
-                             desc: 'paperclip (default), active_storage, carrierwave or dragonfly'
+      class_option :backend, type: :string, default: 'active_storage',
+                             desc: 'active_storage (default), paperclip, carrierwave or dragonfly'
 
       def self.source_root
         @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
@@ -43,7 +43,7 @@ module Ckeditor
       end
 
       def create_models
-        [:asset, :picture, :attachment_file].each do |filename|
+        %w[asset picture attachment_file].each do |filename|
           template "#{generator_dir}/ckeditor/#{filename}.rb",
                    File.join('app/models', ckeditor_dir, "#{filename}.rb")
         end
@@ -67,7 +67,7 @@ module Ckeditor
       def create_ckeditor_migration
         return unless ['active_record'].include?(orm)
 
-        migration_template "#{generator_dir}/migration.rb",
+        migration_template "#{generator_dir}/create_ckeditor_assets.rb",
                            File.join('db/migrate', 'create_ckeditor_assets.rb')
       end
 
@@ -102,7 +102,7 @@ module Ckeditor
       end
 
       def backend
-        (options[:backend] || 'paperclip').to_s
+        (options[:backend] || 'active_storage').to_s
       end
     end
   end

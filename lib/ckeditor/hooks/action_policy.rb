@@ -38,4 +38,4 @@ module Ckeditor
   end
 end
 
-Ckeditor::AUTHORIZATION_ADAPTERS[:action_policy] = Ckeditor::Hooks::ActionPolicyAuthorization
+Ckeditor.authorization_adapters[:action_policy] = Ckeditor::Hooks::ActionPolicyAuthorization
