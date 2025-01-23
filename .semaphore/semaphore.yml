@@ -19,6 +19,7 @@ blocks:
             - cache restore
             - bundle install --path vendor/bundle
             - cache store
+            - bundle exec rubocop app config lib
             # - bundle exec rake test CKEDITOR_BACKEND=paperclip
             - bundle exec rake test CKEDITOR_BACKEND=active_storage
             - bundle exec rake test CKEDITOR_BACKEND=carrierwave
